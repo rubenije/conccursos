@@ -1,0 +1,93 @@
+@media (max-width: 575px) {
+
+    .is-mobile { display: block; }
+    .is-desktop { display: none; }
+
+    .page-energia .minions {
+        margin-top: 15px;
+        width: 60%;
+    }
+    .page-minions .minions {
+        margin-top: 15px;
+        width: 60%;
+    }
+
+    .cliente-verde, .cliente-rojo, .cliente-azul {
+        width: 50%;
+    }
+    .logo-ccu {
+        margin-top: 5px;
+        width: 50px;
+    }
+    .table {
+        vertical-align: bottom;
+
+        & th { font-weight: 300; font-size: .7rem; font-style: normal;}
+        & td { font-weight: 300; font-size: .7rem; font-style: normal;}
+    }
+    p.premios {
+        font-weight: 400;
+        font-size: .6rem;
+        margin-top: 1rem;
+    }
+
+    footer {
+        height: 50px;
+
+        & .linea-sm {
+            margin-top: -25px;
+        }
+        & .virus-publicidad {
+            margin-top: -1.6rem !important;
+            height: 60px;
+        }
+     
+   }
+    footer { border-bottom: solid 2px black; }
+    
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    .is-mobile { display: block; }
+    .is-desktop { display: none; }
+
+    .page-energia .minions {
+        width: 300px;
+    }
+
+    footer { border-bottom: solid 2px red; }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .is-mobile { display: block; }
+    .is-desktop { display: none; }
+
+    footer { border-bottom: solid 2px blue; }
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+    .is-mobile { display: none; }
+    .is-desktop { display: block; }
+
+    footer { border-bottom: solid 2px pink; }
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    .is-mobile { display: none; }
+    .is-desktop { display: block; }
+
+    footer { border-bottom: solid 2px green; }
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { 
+    .is-mobile { display: none; }
+    .is-desktop { display: block; }
+
+    .footer { border-bottom: solid 2px orange; }
+}

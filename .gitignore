@@ -1,0 +1,35 @@
+# Dependencias
+/node_modules/
+/vendor/
+
+# Builds
+/build/
+/dist/
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Logs y cache
+/var/log/
+/var/cache/
+/*.log
+
+# Archivos de base de datos / datos temporales
+*.sql
+*.csv
+*.sqlite
+
+# Config JSON sensibles (pero mantener package.json, composer.json)
+*.secret.json
+*.config.json
+
+# IDEs y SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml

@@ -1,0 +1,14 @@
+footer {
+    height: 125px;
+
+    & .container {
+        position: relative;
+    }
+    & .footer-lineas {
+        position: absolute;
+    }
+    & .virus-publicidad {
+        margin-top: 2rem;
+        height: 85px;
+    }
+}

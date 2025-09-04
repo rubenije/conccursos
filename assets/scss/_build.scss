@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.ubuntu-regular {
+    font-family: "Ubuntu", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.ubuntu-medium {
+    font-family: "Ubuntu", serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.ubuntu-bold {
+    font-family: "Ubuntu", serif;
+    font-weight: 700;
+    font-style: normal; 
+}
+
+.minions-01, .minions-02{
+    width: 70%;
+}
+.minions-03, .minions-04, .minions-05{
+    width: 50%;
+}
+::-webkit-scrollbar {
+    width: 10px; /* Ancho del scroll vertical */
+    height: 10px; /* Alto del scroll horizontal */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; /* Fondo del track transparente */
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(7, 78, 49, .8); /* Color del dragger */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 2px solid transparent; /* Espacio alrededor del dragger */
+    background-clip: content-box; /* Hace visible la transparencia del borde */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 127, 45, .8); /* Color al pasar el mouse */
+}
+.table-spacing {
+  border-collapse: separate;
+  border-spacing: 1px 2px;
+  border-spacing: 1px; /* Ajusta este valor como necesites */
+  border-spacing: 2px 1px;
+}
+.borde {
+    border: 1px solid #dee2e6;
+}
+.botella-cc { 
+    width: 94px;
+    padding: .2rem .2rem;
+    margin-bottom: -1.2rem;
+}
+.botella-cn { 
+    width: 59.5px;
+    padding: .2rem .2rem;
+    margin-bottom: -1.2rem;
+}
+p.premios {
+    color: $color-blanco;
+    font-weight: 500;
+    font-size: .8rem;
+    margin-top: 1rem;
+
+    & a.irpdf {
+        background-color: $color-amarillo-claro;
+        border-radius: 5px;
+        color: $color-blanco;
+        padding: 0rem 0.5rem;
+    }
+}
+.table {
+    margin-bottom: .2rem;
+    
+    & .transparent {
+        background-color: transparent !important;
+        padding: 0 !important;
+    }
+    & thead{
+        & small {
+            font-size: .75rem;
+            line-height: 8px !important;
+        }
+        & .titulo{
+            height: 44px;
+            padding: .3rem .2rem;
+        }
+    }
+    
+    & th { font-weight: 300; font-size: .75rem; font-style: normal;}
+    & td { font-weight: 300; font-size: .75rem; font-style: normal;}
+}
+
+.totales {
+    & th { font-weight: 300; font-size: .75rem; font-style: normal;}
+    & td { font-weight: 300; font-size: .75rem; font-style: normal;}
+}
+.table>:not(caption)>*>* {
+    padding: .1rem .2rem;
+}
+
+.text-small {
+    font-size: .7rem;
+    line-height: 12px;
+
+    & strong {
+        font-weight: 700;
+    }
+}
+.text-xsmall {
+    font-size: .55rem;
+    line-height: 9px;
+    & strong {
+        font-weight: 700;
+    }
+}
+.bordered { border: 1px solid #dee2e6; }
+.cliente-verde, .cliente-rojo, .cliente-azul {
+    width: 340px;
+}
+.bg-verde-oscuro {
+    background-color: $color-verde-oscuro !important;
+    color: $color-blanco !important;
+}
+.bg-verde {
+    background-color: $color-verde-claro !important;
+    color: $color-blanco !important;
+}
+.bg-amarillo {
+    background-color: $color-amarillo !important;
+    color: $color-blanco !important;
+}
+.bg-amarillo-claro {
+    background-color: $color-amarillo-claro !important;
+    color: $color-blanco !important;
+}
+.bg-rojo-oscuro {
+    background-color: $color-rojo-oscuro !important;
+    color: $color-blanco !important;
+}
+.bg-rojo {
+    background-color: $color-rojo !important;
+    color: $color-blanco !important;
+}
+.bg-gris {
+    background-color: $color-gris !important;
+    color: $color-blanco !important;
+}
+.bg-azul {
+    background-color: $color-azul !important;
+    color: $color-blanco !important;
+}
+.bg-negro {
+    background-color: $color-negro !important;
+    color: $color-blanco !important;
+}
+.bg-blanco {
+    background-color: $color-blanco !important;
+    color: $color-negro !important;
+}
+
+.txt-verde-oscuro {
+    color: $color-verde-oscuro !important;
+}
+.txt-verde {
+    color: $color-verde-claro !important;
+}
+.txt-amarillo {
+    color: $color-amarillo !important;
+}
+.txt-amarillo-claro {
+    color: $color-amarillo-claro !important;
+}
+.txt-rojo {
+    color: $color-rojo !important;
+}
+.txt-gris {
+    color: $color-gris !important;
+}
+.txt-azul {
+    color: $color-azul !important;
+}
+.txt-blanco {
+    color: $color-blanco !important;
+}
+.txt-negro {
+    color: $color-negro !important;
+}
+
+.logo-ccu {
+    margin-top: 10px;
+    width: 100px;
+}
+
+.page-index {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background: url(../img/bg-home.png) no-repeat center center ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Ubuntu', sans-serif;
+    color: $color-blanco;
+    
+    .interior {
+        margin-top: -1.8rem;
+    }
+    .home-gana {
+        max-width: 70%;
+    }
+    //Formulario
+    .formulario-inline {
+        
+        margin-top: 1rem;
+        margin-right: 2rem;
+
+        .form-text {
+            color: $color-blanco;
+            text-align: left;
+        }
+        .input-entrar,
+        .btn-entrar {
+            font-family: 'Ubuntu', serif;
+            font-weight: 700;
+            font-style: normal;
+            
+        }
+    
+        .input-entrar {
+            background-color: $color-blanco;
+            color: $color-rosado;
+            text-align: center;
+            font-size: 1rem;
+        }
+    
+        .btn-entrar {
+            background-color: $color-rosado;
+            color: $color-blanco;
+            font-size: 1.2rem;
+            padding: 0.275rem 1rem;
+            border-color: $color-rosado;
+    
+            &:hover {
+                background-color: $color-blanco;
+                color: $color-rosado;
+                transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            }
+        }
+    }
+    
+}
+
+
+
+.page-home {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background: url(../img/bg-home.png) no-repeat center center ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Ubuntu', sans-serif;
+    color: $color-blanco;
+
+    & .conccursos-blanco {
+        margin-top: 1rem;
+        width: 80%;
+    }
+
+    & .txt-selecciona-el-concurso {
+        margin-top: 1rem;
+        width: 50%;
+        padding-bottom: 2rem;
+    }
+
+    & .btn-minions {
+        margin-top: 1rem;
+        width: 280px;
+    }
+    & .btn-energia {
+        margin-top: 1rem;
+        width: 280px; 
+    }
+}
+
+
+.page-minions {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background: url(../img/bg-home.png) no-repeat center center ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Ubuntu', sans-serif;
+    color: $color-blanco;
+
+    & .tablitas {
+        margin-top: -2.5rem;
+    }
+    & .minions {
+        width: 400px;
+    }
+    
+}
+
+
+.page-energia {
+    width: 100%;
+    height: 100vh;
+    background: url('../img/bg-energia.png') no-repeat center center;
+    background-size: cover;
+
+    font-family: 'Ubuntu', sans-serif;
+    color: $color-blanco;
+
+    & .tablitas {
+        margin-top: -2.5rem;
+    }
+    & .minions {
+        width: 400px;
+    }
+    
+}
