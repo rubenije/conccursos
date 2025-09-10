@@ -12,18 +12,17 @@
     header('Location: index-php');
     exit;
   }
-
+  $table = "redbull";
   $objRegistro = new registro();
   $z_norte      = $objRegistro->getZonaByCodigo('NORTE');
-  $z_costa      = $objRegistro->getZonaByCodigo('COSTA');
+  $z_costa      = $objRegistro->getZonaByCodigo('CENTRO COSTA');
   $z_santiago   = $objRegistro->getZonaByCodigo('SANTIAGO');
-  $z_centro_sur = $objRegistro->getZonaByCodigo('CENTRO_SUR');
+  $z_centro_sur = $objRegistro->getZonaByCodigo('CENTRO SUR');
   $z_sur        = $objRegistro->getZonaByCodigo('SUR');
-  $totales      = $objRegistro->getTotales();
+  $totales      = $objRegistro->getTotalesByTable($table);
 
   $totFinalIngresos = 0;
   $totFinalUnicos = 0;
-  
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,69 +52,68 @@
       <div class="container tablitas">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="assets/img/minions.png" class="img-fluid minions" alt="Minions">
+            <img src="assets/img/redbull-titulo.png" class="img-fluid minions" alt="Minions">
           </div>
         </div>
         <div class="row">
           <div class="col-12 col-lg-2 text-center is-desktop">
-            <?php include("include-izquierda.php"); ?>
+            <?php //include("include-izquierda.php"); ?>
           </div>
           <div class="col-12 col-lg-8 text-center">
             <!-- INI TABLA -->
             <div class="space-20"></div>
 
             <div class="is-desktop">
-            <table class="table table-spacing mx-auto" style="width: 690px;">
+            <table class="table table-spacing mx-auto">
               <thead>
                 <tr>
-                  <th scope="col" class="text-start transparent">
+                  <th scope="col" class="transparent">
                     <div class="titulo bg-verde-oscuro">
                       <div class="space-10"></div>
-                      &nbsp;Distrito_venta
+                      <div class="text-small">DISTRITO VENTA</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-amarillo">
+                    <div class="titulo bg-redbull-amarillo">
                       <div class="space-5"></div>
-                      <div class="text-small">Tasa Uso Sitio Web<br>(Ingresos Totales)</div>
+                      <div class="text-small">INGRESOS<br/>TOTALES</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-amarillo">
-                      <div class="space-10"></div>
-                      ID Únicos
+                    <div class="titulo bg-redbull-amarillo">
+                      <div class="space-5"></div>
+                      <div class="text-small">ID<br/>ÚNICOS</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="bg-rojo-oscuro borde">
-                      <img src="assets/img/botella-cc.png" class="botella-cc" alt="Botella Cobertura Conjunta">
+                    <div class="bg-redbull-celeste borde">
                       <div class="titulo">
-                        <div class="space-20"></div>
-                        <div class="text-small">Cobertura Conjunta</div>
-                      </div>
-                    </div>
-                      
-                  </th>
-                  <th scope="col" class="transparent">
-                    <div class="bg-verde borde"> 
-                      <img src="assets/img/botella-cn.png" class="botella-cn" alt="Botella Cobertura Nectar">
-                      <div class="titulo">
-                        <div class="space-20"></div>
-                        <div class="text-small">Cobertura Néctar</div>
+                        <div class="space-5"></div>
+                        <div class="text-small">CUMP 250 REGULAR</div>
                       </div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-verde-oscuro">
-                      <div class="space-10"></div>
-                      Total Cupones
+                    <div class="bg-redbull-rojo borde">
+                      <div class="titulo">
+                        <div class="space-5"></div>
+                        <div class="text-small">CUMP COB 3 SKU</div>
+                      </div>
+                    </div>
+                  </th>
+                  <th scope="col" class="transparent">
+                    <div class="bg-redbull-azul borde">
+                      <div class="titulo">
+                        <div class="space-5"></div>
+                        <div class="text-small">CUMP TOTAL</div>
+                      </div>
                     </div>
                   </th>
                 </tr>
               </thead>
               <?php if($z_norte){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_norte->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_norte->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_norte->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_norte->zona_codigo);
               ?>  
               <tbody>
                 <?php 
@@ -131,24 +129,24 @@
                 ?>
                  <tr>
                     <td style="width: 180px;" class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td style="width: 110px;" class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td style="width: 70px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td style="width: 120px;" class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td style="width: 90px;" class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -159,11 +157,11 @@
             </table>
 
             <?php if($z_costa){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_costa->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_costa->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_costa->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_costa->zona_codigo);
               
             ?> 
-            <table class="table table-spacing mx-auto" style="width: 690px;">
+            <table class="table table-spacing mx-auto" >
               <tbody>
                  <?php 
                  $totIngresos = 0;
@@ -178,24 +176,24 @@
                 ?>
                  <tr>
                     <td style="width: 180px;" class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td style="width: 110px;" class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td style="width: 70px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td style="width: 120px;" class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td style="width: 90px;" class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -205,11 +203,11 @@
             ?>
 
             <?php if($z_santiago){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_santiago->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_santiago->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_santiago->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_santiago->zona_codigo);
 
             ?> 
-            <table class="table table-spacing mx-auto" style="width: 690px;">
+            <table class="table table-spacing mx-auto">
               <tbody>
                  <?php 
                  $totIngresos = 0;
@@ -223,25 +221,25 @@
                  ?>
                  <tr>
                     <td style="width: 180px;" class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td style="width: 110px;" class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td style="width: 70px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td style="width: 120px;" class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td style="width: 90px;" class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -251,10 +249,10 @@
             ?>
 
             <?php if($z_centro_sur){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_centro_sur->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_centro_sur->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_centro_sur->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_centro_sur->zona_codigo);
             ?> 
-            <table class="table table-spacing mx-auto" style="width: 690px;">
+            <table class="table table-spacing mx-auto">
               <tbody>
                  <?php 
                  $totIngresos = 0;
@@ -268,24 +266,24 @@
                  ?>
                  <tr>
                     <td style="width: 180px;" class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td style="width: 110px;" class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td style="width: 70px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td style="width: 120px;" class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td style="width: 90px;" class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -295,11 +293,11 @@
             ?>
 
             <?php if($z_sur){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_sur->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_sur->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_sur->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_sur->zona_codigo);
 
             ?> 
-            <table class="table table-spacing mx-auto" style="width: 690px;">
+            <table class="table table-spacing mx-auto">
               <tbody>
                  <?php 
                  $totIngresos = 0;
@@ -314,24 +312,24 @@
                   ?>
                  <tr>
                     <td style="width: 180px;" class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>&zona_codigo=<?= $z_sur->zona_codigo; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>&zona_codigo=<?= $z_sur->zona_codigo; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td style="width: 110px;" class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td style="width: 70px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td style="width: 120px;" class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td style="width: 90px;" class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -341,64 +339,64 @@
            
             ?>
 
-            <table class="table table-spacing totales mx-auto" style="width: 690px;">
+            <table class="table table-spacing totales mx-auto">
               <tbody>
                   <tr class="bg-verde-oscuro">
                     <td style="width: 180px;" class="text-start bg-verde-oscuro">Total General</td>
-                    <td style="width: 110px;" class="bg-amarillo"><?= $totFinalIngresos; ?></td>
-                    <td style="width: 70px;" class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td style="width: 120px;" class="bg-rojo"><?= $totales->m_cob_conjunta; ?></td>
-                    <td style="width: 120px;" class="bg-verde"><?= $totales->m_cob_nectar; ?></td>
-                    <td style="width: 90px;" class="bg-verde-oscuro"><?= $totales->m_cupones; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-amarillo"><?= $totFinalIngresos; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-amarillo"><?= $totFinalUnicos; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-celeste"><?= $totales->cumplimiento_250; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-rojo"><?= $totales->cumplimiento_3_skus; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-azul"><?= $totales->cumplimiento_total; ?></td>
                   </tr>
               </tbody>
             </table>
             </div>
-
-
+            <?php 
+              unset($totFinalIngresos);
+              unset($totFinalUnicos);
+            ?>
             <!-- SM -->
             <div class="table-responsive d-flex justify-content-center"> 
-              <table class="table is-mobile w-auto">
+              <table class="table is-mobile w-auto w-100">
               <thead>
                 <tr>
                   <th scope="col" class="text-start transparent">
                     <div class="titulo bg-verde-oscuro borde">
                       <div class="space-10"></div>
-                      &nbsp;Distrito_venta
+                      <div class="text-small">DISTRITO VENTA</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-amarillo borde">
+                    <div class="titulo bg-redbull-amarillo borde">
                       <div class="text-small">Ingresos<br>Totales</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-amarillo borde">
+                    <div class="titulo bg-redbull-amarillo borde">
                       <div class="text-small">ID<br>Únicos</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    
-                      <div class="titulo bg-rojo-oscuro borde">
-                        <div class="text-small">Cob.<br>Conjunta</div>
-                      </div>
-                      
+                    <div class="titulo bg-redbull-celeste borde">
+                      <div class="text-small">CUMP 250</div>
+                    </div>
                   </th>
                   <th scope="col" class="transparent">
-                      <div class="titulo bg-verde borde">
-                        <div class="text-small">Cob.<br>Néctar</div>
-                      </div>
+                    <div class="titulo bg-redbull-rojo borde">
+                      <div class="text-small">CUMP COB 3 SKU</div>
+                    </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-verde-oscuro borde">
-                      <div class="text-small">Total<br>Cupones</div>
+                    <div class="titulo bg-redbull-azul borde">
+                      <div class="text-small">CUMP TOTAL</div>
                     </div>
                   </th>
                 </tr>
               </thead>
               <?php if($z_norte){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_norte->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_norte->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_norte->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_norte->zona_codigo);
               ?>  
               <tbody>
                 <?php 
@@ -414,24 +412,24 @@
                 ?>
                   <tr>
                     <td class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
@@ -439,8 +437,8 @@
 
               ?>
             <?php if($z_costa){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_costa->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_costa->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_costa->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_costa->zona_codigo);
               
             ?> 
                   <?php 
@@ -456,24 +454,24 @@
                 ?>
                   <tr>
                     <td class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -481,8 +479,8 @@
             ?>
 
             <?php if($z_santiago){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_santiago->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_santiago->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_santiago->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_santiago->zona_codigo);
 
             ?> 
                   <?php 
@@ -497,25 +495,25 @@
                   ?>
                   <tr>
                     <td class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -523,8 +521,8 @@
             ?>
 
             <?php if($z_centro_sur){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_centro_sur->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_centro_sur->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_centro_sur->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_centro_sur->zona_codigo);
             ?> 
                   <?php 
                   $totIngresos = 0;
@@ -538,24 +536,24 @@
                   ?>
                   <tr>
                     <td class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -563,8 +561,8 @@
             ?>
 
             <?php if($z_sur){ 
-                    $distritos = $objRegistro->getDistritoByZonaId($z_sur->zona_id);
-                    $subtotal = $objRegistro->getSubTotalByTipo($z_sur->zona_codigo);
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_sur->zona_id);
+                    $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_sur->zona_codigo);
 
             ?> 
                   <?php 
@@ -580,24 +578,24 @@
                   ?>
                   <tr>
                     <td class="text-start">
-                      <a href="minions-jdv.php?id=<?= $distrito->id; ?>&zona_codigo=<?= $z_sur->zona_codigo; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>&zona_codigo=<?= $z_sur->zona_codigo; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
-                    <td class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-rojo"><?= $distrito->m_cob_conjunta; ?></td>
-                    <td class="txt-verde"><?= $distrito->m_cob_nectar; ?></td>
-                    <td class="txt-verde-oscuro fw-bold"><?= $distrito->m_cupones; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
+                    <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
-                    <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $subtotal->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $subtotal->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -607,11 +605,12 @@
 
                   <tr class="bg-verde-oscuro">
                     <td class="text-start bg-verde-oscuro">Total General</td>
-                    <td class="bg-amarillo"><?= $totFinalIngresos; ?></td>
-                    <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td class="bg-rojo"><?= $totales->m_cob_conjunta; ?></td>
-                    <td class="bg-verde"><?= $totales->m_cob_nectar; ?></td>
-                    <td class="bg-verde-oscuro"><?= $totales->m_cupones; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totFinalIngresos; ?></td>
+                    <td class="bg-redbull-amarillo"><?= $totFinalUnicos; ?></td>
+                    <td class="bg-redbull-celeste"><?= $totales->cumplimiento_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $totales->cumplimiento_3_skus; ?></td>
+                    <td class="bg-redbull-azul"><?= $totales->cumplimiento_total; ?></td>
+                    
                   </tr>
               </tbody>
             </table>
@@ -623,7 +622,7 @@
 
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
-            <?php include("include-derecha.php"); ?>
+            <?php //include("include-derecha.php"); ?>
           </div>
           
         </div>

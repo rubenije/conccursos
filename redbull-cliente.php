@@ -8,22 +8,23 @@
   require_once(INCLUDE_PATH.'class/class.master.php');
   require_once(INCLUDE_PATH.'class/class.registro.php');
   
+  
   session_start();
   if(!$_SESSION['LOGIN']){
     header('Location: index-php');
     exit;
   }
-  
+  $table = "redbull";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
 
   if($get['tipo'] == 'vendedor'){
-    $detalles  = $objDetalle->getDetalleByVendedorId($get['id']);
+    $detalles  = $objDetalle->getDetalleByTableByVendedorId($table, $get['id']);
   }else{
     $master         = $objMaster->getMasterId($get['id']);
-    $vendedores_ids = $objRegistro->getIdsVendedorBySupervisorId($get['id']);
-    $detalles       = $objDetalle->getDetalleByVendedoresByIds($vendedores_ids);
+    $vendedores_ids = $objRegistro->getIdsVendedorByTableBySupervisorId($table, $get['id']);
+    $detalles       = $objDetalle->getDetalleByTableByVendedoresByIds($table, $vendedores_ids);
   }
 ?>
 <!doctype html>
@@ -54,40 +55,56 @@
       <div class="container tablitas">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="assets/img/minions.png" class="img-fluid minions" alt="Minions">
+            <img src="assets/img/redbull-titulo.png" class="img-fluid minions" alt="Minions">
           </div>
         </div>
         <div class="row">
           <div class="col-12 col-lg-2 text-center is-desktop">
-            <?php include("include-izquierda.php"); ?>
+            <?php //include("include-izquierda.php"); ?>
           </div>
-          <div class="col-12 col-lg-8 text-center">
-            <img src="assets/img/cliente-rojo.png" class="img-fluid cliente-rojo" alt="Cliente Rojo">
+          <div class="col-12 text-center">
+            <!-- <img src="assets/img/cliente-rojo.png" class="img-fluid cliente-rojo" alt="Cliente Rojo"> -->
             
             <!-- INI TABLA -->
             <div class="space-20"></div>
-            <div class="is-desktop">
-              <table class="table table-spacing mx-auto" style="width: 500px;">
+
+            <div class="mb-3">
+              <label for="filtroSector" class="form-label text-white">Filtrar por sector:</label>
+              <select id="filtroSector" class="form-select w-auto mx-auto">
+                <option value="">Todos</option>
+                <?php
+                  $sectores = array_unique(array_map(fn($d) => $d->sector, $detalles));
+                  sort($sectores);
+                  foreach ($sectores as $sector) {
+                    echo "<option value=\"$sector\">Sector $sector</option>";
+                  }
+                ?>
+              </select>
+            </div>
+
+            
+            <div class="table-responsive d-flex justify-content-center">
+              <table class="table table-spacing mx-auto tableDetalles pt-2 pb-3">
                 <thead>
-                  <tr>
+                  <tr style="vertical-align: middle !important;">
                       <th scope="col" class="bg-verde-oscuro" style="height: 30px;">ID</th>
                       <th scope="col" class="bg-verde-oscuro">Sector</th>
                       <th scope="col" class="bg-verde-oscuro">Razón Social</th>
-                      <th scope="col" class="bg-rojo-oscuro borde">Compra gaseosas</th>
-                      <th scope="col" class="bg-verde borde">Compra catun 600</th>
+                      <th scope="col" class="bg-redbull-celeste borde text-center">COB REG 250</th>
+                      <th scope="col" class="bg-redbull-azul borde text-center">SKU 250 SABORES + SF</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                    $classg = ($detalle->compra_gaseosas == 'SI') ? 'txt-verde' : 'txt-rojo';
-                    $classd = ($detalle->compra_catun == 'SI') ? 'txt-verde' : 'txt-rojo';  
+                      $class_250 = ($detalle->cob_reg_250 == 'SI') ? 'txt-redbull-celeste' : 'txt-redbull-rojo';
+                      $class_003 = ($detalle->cob_3_skus == 'SI') ? 'txt-redbull-azul' : 'txt-redbull-rojo';
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <td class="<?= $classg; ?>"><?= $detalle->compra_gaseosas; ?></td>
-                      <td class="<?= $classd; ?>"><?= $detalle->compra_catun; ?></td>
+                      <td class="<?= $class_250; ?>"><?= $detalle->cob_reg_250; ?></td>
+                      <td class="<?= $class_003; ?>"><?= $detalle->cob_3_skus; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -95,41 +112,39 @@
             </div>
 
             <!-- SM -->
-            <div class="table-responsive d-flex justify-content-center"> 
-            <table class="table is-mobile w-auto">
+            <!--
+            <div class="table-responsive d-flex justify-content-center is-mobile"> 
+            <table class="table is-mobile w-auto tableDetalles">
               <thead>
                 <tr>
                     <th scope="col" class="bg-verde-oscuro" style="height: 30px;">ID</th>
                     <th scope="col" class="bg-verde-oscuro">Sector</th>
                     <th scope="col" class="bg-verde-oscuro">Razón Social</th>
-                    <th scope="col" class="bg-rojo-oscuro borde">Compra<br>gaseosas</th>
-                    <th scope="col" class="bg-verde borde">Compra <br>catun 600</th>
+                    <th scope="col" class="bg-celeste borde">VENTA_MES_CURSO_RET</th>
+                    <th scope="col" class="bg-verde-claro borde">VENTA_MES_CERRADO_AA_RET</th>
                 </tr>
               </thead>
               <tbody>
-                 <?php foreach($detalles as $detalle){ 
-                    $classg = ($detalle->compra_gaseosas == 'SI') ? 'txt-verde' : 'txt-rojo';
-                    $classd = ($detalle->compra_catun == 'SI') ? 'txt-verde' : 'txt-rojo';
-                     
-                  ?>
+                 <?php foreach($detalles as $detalle){ ?>
                  <tr>
                     <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
                     <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                     <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                    <td class="<?= $classg; ?>"><?= $detalle->compra_gaseosas; ?></td>
-                    <td class="<?= $classd; ?>"><?= $detalle->compra_catun; ?></td>
+                    <td class="txt-celeste"><?= $detalle->mes_curso; ?></td>
+                    <td class="txt-verde-claro"><?= $detalle->mes_cerrado; ?></td>
                   </tr>
                   <?php } ?>
               </tbody>
             </table>
             </div>
+            -->
             <!-- SM -->
             <!-- END TABLA -->
             <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="premios.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
-            <?php include("include-derecha.php"); ?>
+            <?php //include("include-derecha.php"); ?>
           </div>
           
         </div>
@@ -141,7 +156,37 @@
     </main>
 
     <?php // include("include-footer.php"); ?>
+    <style>
+    .dataTables_filter,
+    .dataTables_info,
+    .dataTables_paginate {
+      display: none !important;
+    }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="assets/js/main.js?<?= $time; ?>"></script>
+    <script>
+      $(document).ready(function () {
+        const tabla = $('.tableDetalles').DataTable({
+          paging: false,       // 🚫 sin paginación
+          info: false, 
+          ordering: false,
+          language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+          }
+        });
+
+        // Filtro personalizado por sector
+        $('#filtroSector').on('change', function () {
+          const valor = $(this).val();
+          tabla.column(1).search(valor).draw(); // columna 1 = Sector
+        });
+      });
+    </script>
+
+
   </body>
 </html>

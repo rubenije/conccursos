@@ -21,10 +21,11 @@
 	
 	$objDetalle 	= new detalle();
 	$objResumen 	= new resumen();
+	$table 			= "redbull";
 
 	$date = date('Ymd');
-	$file_csv 	= 'RETORNABLE_DETALLE_'.$date.'.csv';
-	//$file_csv 	= 'RETORNABLE_DETALLE.csv';
+	//$file_csv 	= 'MINIONS_ENERGIA_DETALLE_'.$date.'.csv';
+	$file_csv 	= 'RED_BULL_DETALLE.csv';
 
 	
 	if(file_exists($file_csv)){
@@ -34,23 +35,20 @@
 		$count = 0;
 
 		if(is_array($datas) && !empty($datas)){
-			$objDetalle->truncateDetalle();
+			$objDetalle->truncateDetalleByTable($table);
 			//sleep(1000);
 			foreach ($datas as $data) { 
 
-				//pre($data);
-				//exit;
-
-			    $post['vendedor_id'] 			= $data['ID_VENDEDOR'] ?? "";
+				$post['vendedor_id'] 			= $data['ID_VENDEDOR'] ?? "";
 				$post['id'] 					= $data['ID_CLIENTE'] ?? "";
 				$post['sector'] 				= $data['SECTOR'] ?? "";
 				$post['razon'] 					= $data['RAZON_SOCIAL'] ?? "";
 
-				$post['mes_curso'] 				= $data['VENTA_MES_CURSO_RET'] ?? "";
-				$post['mes_cerrado'] 		    = $data['VENTA_MES_CERRADO_AA_RET'] ?? "";
+				$post['cob_reg_250'] 			= $data['COB_REG_250'] ?? "";
+				$post['cob_3_skus'] 		    = $data['COB_3_SKUS'] ?? "";
 				
 				if( !empty($post['id']) ){
-					$objDetalle->saveDetalle($post);
+					$objDetalle->saveDetalleByTable($table, $post);
 					$count++;
 				}
             }	

@@ -25,12 +25,7 @@ body, html {
     font-style: normal; 
 }
 
-.minions-01, .minions-02{
-    width: 70%;
-}
-.minions-03, .minions-04, .minions-05{
-    width: 50%;
-}
+
 ::-webkit-scrollbar {
     width: 10px; /* Ancho del scroll vertical */
     height: 10px; /* Alto del scroll horizontal */
@@ -99,8 +94,8 @@ p.premios {
         }
     }
     
-    & th { font-weight: 300; font-size: .75rem; font-style: normal;}
-    & td { font-weight: 300; font-size: .75rem; font-style: normal;}
+    & th { font-weight: 500; font-size: .75rem; font-style: normal;}
+    & td { font-weight: 400; font-size: .75rem; font-style: normal;}
 }
 
 .totales {
@@ -119,13 +114,6 @@ p.premios {
         font-weight: 700;
     }
 }
-.text-xsmall {
-    font-size: .55rem;
-    line-height: 9px;
-    & strong {
-        font-weight: 700;
-    }
-}
 .bordered { border: 1px solid #dee2e6; }
 .cliente-verde, .cliente-rojo, .cliente-azul {
     width: 340px;
@@ -134,12 +122,16 @@ p.premios {
     background-color: $color-verde-oscuro !important;
     color: $color-blanco !important;
 }
-.bg-verde {
+.bg-verde-claro {
     background-color: $color-verde-claro !important;
     color: $color-blanco !important;
 }
 .bg-amarillo {
     background-color: $color-amarillo !important;
+    color: $color-blanco !important;
+}
+.bg-celeste {
+    background-color: $color-celeste !important;
     color: $color-blanco !important;
 }
 .bg-amarillo-claro {
@@ -168,13 +160,13 @@ p.premios {
 }
 .bg-blanco {
     background-color: $color-blanco !important;
-    color: $color-negro !important;
+    color: $color-blanco !important;
 }
 
 .txt-verde-oscuro {
     color: $color-verde-oscuro !important;
 }
-.txt-verde {
+.txt-verde-claro {
     color: $color-verde-claro !important;
 }
 .txt-amarillo {
@@ -186,6 +178,9 @@ p.premios {
 .txt-rojo {
     color: $color-rojo !important;
 }
+.txt-rojo-oscuro {
+    color: $color-rojo-oscuro !important;
+}
 .txt-gris {
     color: $color-gris !important;
 }
@@ -194,6 +189,9 @@ p.premios {
 }
 .txt-blanco {
     color: $color-blanco !important;
+}
+.txt-celeste {
+    color: $color-celeste !important;
 }
 .txt-negro {
     color: $color-negro !important;
@@ -339,3 +337,44 @@ p.premios {
     }
     
 }
+
+
+/* Cambiar color del filtro de búsqueda */
+.dataTables_filter input {
+  background-color: $color-blanco !important;   /* verde claro */
+  border: 1px solid $color-verde-claro !important;   /* borde verde */
+  color: $color-verde-oscuro !important;
+  padding: 5px;
+}
+
+/* Cambiar el color de fondo del paginador */
+.dataTables_paginate {
+  background-color: $color-verde-oscuro !important;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Estilos de los botones del paginador */
+.dataTables_paginate a {
+  color: #fff !important;
+  background-color: $color-verde-claro;
+  margin: 0 2px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Página activa */
+.dataTables_paginate .current {
+  background-color: $color-amarillo !important;
+  color: #000 !important;
+  font-weight: bold;
+}
+
+/* Estilo de select de "mostrar N registros" */
+.dataTables_length select {
+  background-color: $color-blanco !important;
+  border: 1px solid $color-verde-claro !important;
+  color: $color-verde-oscuro !important;
+}
+

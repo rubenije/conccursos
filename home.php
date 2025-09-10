@@ -58,12 +58,15 @@
               <div class="col-8 m-auto col-auto">
                   <div class="container">
                     <div class="row">
+                      <!--    
                       <div class="col-12 col-md-6 text-center">
-                        <a href="minions-<?= $page; ?>.php"><img src="assets/img/btn-minions.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
+                        <a href="retornables-<?= $page; ?>.php"><img src="assets/img/btn-retornables.png" class="img-fluid btn-minions" alt="Botón Retornables"></a>
                       </div>
-                      <div class="col-12 col-md-6 text-center">
-                        <a href="energia-<?= $page; ?>.php"><img src="assets/img/btn-energia.png" class="img-fluid btn-energia" alt="Botón Energia"></a>
+                      -->
+                      <div class="col-12 col-md-12 text-center">
+                        <a href="redbull-<?= $page; ?>.php"><img src="assets/img/btn-redbull.png" class="img-fluid btn-minions" alt="Botón RedBull"></a>
                       </div>
+                      
                     </div>
                   </div>
               </div>
@@ -83,12 +86,25 @@
             <div class="col-12">
               <img src="assets/img/txt-selecciona-el-concurso.png" class="img-fluid txt-selecciona-el-concurso" alt="Selecciona el concurso">
             </div>
+            <!--
+            <div class="col-12">
+              <a href="retornables-<?= $page; ?>.php"><img src="assets/img/btn-retornables.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
+            </div>
+            -->
+            <div class="col-12">
+              <a href="redbull-<?= $page; ?>.php"><img src="assets/img/btn-redbull.png" class="img-fluid btn-minions" alt="Botón Redbull"></a>
+            </div>
+            
+            <!--
             <div class="col-12">
               <a href="minions-<?= $page; ?>.php"><img src="assets/img/btn-minions.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
             </div>
             <div class="col-12">
-              <a href="energia-<?= $page; ?>.php"><img src="assets/img/btn-energia.png" class="img-fluid btn-energia" alt="Botón Energia"></a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#energiaModal">
+                  <img src="assets/img/btn-energia.png" class="img-fluid btn-energia" alt="Bot��n Energia">
+                </a>
             </div>
+            -->
           </div>
         </div>
       </div> 
@@ -100,8 +116,25 @@
       
     </main>
 
+    <!-- Modal transparente con bot��n de cerrar -->
+    <div class="modal fade" id="energiaModal" tabindex="-1" aria-labelledby="energiaModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-transparent border-0 position-relative">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <br/>
+          <!-- Bot��n cerrar -->
+          <div class="modal-body text-center">
+            <!-- Contenido del modal -->
+            <img src="assets/img/modal-energia.png" class="img-fluid" alt="Contenido del Modal">
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
     <?php include("include-footer.php"); ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="assets/js/main.js?<?= $time; ?>"></script>
+    <!-- <script src="assets/js/main.js?<?= $time; ?>"></script>-->
   </body>
 </html>

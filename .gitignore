@@ -20,6 +20,8 @@
 *.sql
 *.csv
 *.sqlite
+*.sh
+
 
 # Config JSON sensibles (pero mantener package.json, composer.json)
 *.secret.json

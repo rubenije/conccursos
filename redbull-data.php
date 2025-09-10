@@ -2,12 +2,14 @@
     if (!defined('INCLUDE_PATH')) {
         define('INCLUDE_PATH', 'xrqEi2rpfA73XH9cruLMxt2oZ/');
     }
+    error_reporting(0);
     $time = date('His');
     require_once(INCLUDE_PATH.'class/class.inputfilter.php');
     require_once(INCLUDE_PATH.'class/class.master.php');
     require_once(INCLUDE_PATH.'class/class.registro.php');
   
     session_start();
+    $table = "redbull";
     $objRegistro = new registro();
   
     if(isset($get['opc']) && $get['opc'] == 'bypass'){
@@ -24,7 +26,8 @@
     }
 
     $objRegistro = new registro();
-    $registros = $objRegistro->getRegistroDataAllNew();
+    $registros = $objRegistro->getRegistroDataAllNewByTable($table);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -54,19 +57,13 @@
                                 <th scope="col">Tipo</th>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">m_cob<br>conj</th>
-                                <th scope="col">m_cob<br>conc</th>
-                                <th scope="col">m_cob<br>nec</th>
-                                <th scope="col">m_cob<br>nec_conc</th>
-                                <th scope="col">m_cupones</th>
-                                <th scope="col">e_cob<br>conj</th>
-                                <th scope="col">e_cob<br>conc</th>
-                                <th scope="col">e_cob<br>rb</th>
-                                <th scope="col">e_cob<br>rb_conc</th>
-                                <th scope="col">e_cupones</th>
+                                <th scope="col">CUMPLIMIENTO_250</th>
+                                <th scope="col">CUANTOS_FALTAN_250</th>
+                                <th scope="col">CUMPLIMIENTO_3_SKUS</th>
+                                <th scope="col">CUANTOS_FALTAN_3_SKUS</th>
+                                <th scope="col">CUMPLIMIENTO_TOTAL</th>
                                 <th scope="col">Supervisor</th>
                                 <th scope="col">Distrito</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -79,16 +76,11 @@
                                 </th>
                                 <td><?= $registro->id; ?></td>
                                 <td><?= $registro->nombre; ?></td>
-                                <td><?= $registro->m_cob_conjunta; ?></td>
-                                <td><?= $registro->m_cob_concretar; ?></td>
-                                <td><?= $registro->m_cob_nectar; ?></td>
-                                <td><?= $registro->m_cob_nectar_concretar; ?></td>
-                                <td><?= $registro->m_cupones; ?></td>
-                                <td><?= $registro->e_cob_conjunta; ?></td>
-                                <td><?= $registro->e_cob_concretar; ?></td>
-                                <td><?= $registro->e_cob_redbull; ?></td>
-                                <td><?= $registro->e_cob_rebull_concretar; ?></td>
-                                <td><?= $registro->e_cupones; ?></td>
+                                <td><?= $registro->cumplimiento_250; ?></td>
+                                <td><?= $registro->cuantos_faltan_250; ?></td>
+                                <td><?= $registro->cumplimiento_3_skus; ?></td>
+                                <td><?= $registro->cuantos_faltan_3_skus; ?></td>
+                                <td><?= $registro->cumplimiento_total; ?></td>
                                 <td><?= $registro->supervisor_id; ?></td>
                                 <td><?= $registro->distrito; ?></td>
                             </tr>

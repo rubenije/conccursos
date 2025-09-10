@@ -1,14 +1,15 @@
 $color-negro:#000;
 $color-blanco:#fff;
-$color-rojo-oscuro: #B21420;
+$color-rojo-oscuro: #ae0a3b;
 $color-rojo: #e72c37;
 $color-azul: #000080;
 $color-gris: #6D6E71;
-$color-verde-claro: #469844;
-$color-verde-oscuro: #084e30;
+$color-verde-claro: #5ab031;
+$color-verde-oscuro: #044e31;
 $color-rosado: #BE1E49;
-$color-amarillo: #f48f00;
+$color-amarillo: #fab700;
 $color-amarillo-claro: #FBB800;
+$color-celeste: #0086c9;
 
 .space-5 {
     width: 100%;
@@ -29,6 +30,11 @@ $color-amarillo-claro: #FBB800;
     width: 100%;
     display: block;
     height: 20px;
+}
+.space-25 {
+    width: 100%;
+    display: block;
+    height: 25px;
 }
 .space-30 {
     width: 100%;
