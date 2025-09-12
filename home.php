@@ -58,13 +58,11 @@
               <div class="col-8 m-auto col-auto">
                   <div class="container">
                     <div class="row">
-                      <!--    
                       <div class="col-12 col-md-6 text-center">
-                        <a href="retornables-<?= $page; ?>.php"><img src="assets/img/btn-retornables.png" class="img-fluid btn-minions" alt="Botón Retornables"></a>
-                      </div>
-                      -->
-                      <div class="col-12 col-md-12 text-center">
                         <a href="redbull-<?= $page; ?>.php"><img src="assets/img/btn-redbull.png" class="img-fluid btn-minions" alt="Botón RedBull"></a>
+                      </div>
+                      <div class="col-12 col-md-6 text-center">
+                        <a href="tirate-al-agua-<?= $page; ?>.php"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Retornables"></a>
                       </div>
                       
                     </div>
@@ -86,25 +84,12 @@
             <div class="col-12">
               <img src="assets/img/txt-selecciona-el-concurso.png" class="img-fluid txt-selecciona-el-concurso" alt="Selecciona el concurso">
             </div>
-            <!--
-            <div class="col-12">
-              <a href="retornables-<?= $page; ?>.php"><img src="assets/img/btn-retornables.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
-            </div>
-            -->
             <div class="col-12">
               <a href="redbull-<?= $page; ?>.php"><img src="assets/img/btn-redbull.png" class="img-fluid btn-minions" alt="Botón Redbull"></a>
             </div>
-            
-            <!--
             <div class="col-12">
-              <a href="minions-<?= $page; ?>.php"><img src="assets/img/btn-minions.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
+              <a href="tirate-al-agua-<?= $page; ?>.php"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
             </div>
-            <div class="col-12">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#energiaModal">
-                  <img src="assets/img/btn-energia.png" class="img-fluid btn-energia" alt="Bot��n Energia">
-                </a>
-            </div>
-            -->
           </div>
         </div>
       </div> 
