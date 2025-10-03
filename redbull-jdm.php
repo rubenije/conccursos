@@ -9,7 +9,7 @@
   
   session_start();
   if(!$_SESSION['LOGIN']){
-    header('Location: index-php');
+    header('Location: index.php');
     exit;
   }
   $table = "redbull";
@@ -23,6 +23,7 @@
 
   $totFinalIngresos = 0;
   $totFinalUnicos = 0;
+  
 ?>
 <!doctype html>
 <html lang="en">
@@ -338,7 +339,7 @@
               $totFinalUnicos+= $totUnicos;
            
             ?>
-
+            <?php if($totales){ ?>
             <table class="table table-spacing totales mx-auto">
               <tbody>
                   <tr class="bg-verde-oscuro">
@@ -351,10 +352,15 @@
                   </tr>
               </tbody>
             </table>
+            <?php } ?>
             </div>
             <?php 
               unset($totFinalIngresos);
               unset($totFinalUnicos);
+
+              $totFinalIngresos = 0;
+              $totFinalUnicos = 0;
+
             ?>
             <!-- SM -->
             <div class="table-responsive d-flex justify-content-center"> 
@@ -394,7 +400,8 @@
                   </th>
                 </tr>
               </thead>
-              <?php if($z_norte){ 
+              <?php 
+              if($z_norte){ 
                     $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_norte->zona_id);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_norte->zona_codigo);
               ?>  
@@ -602,7 +609,7 @@
               $totFinalUnicos+= $totUnicos;
 
             ?>
-
+                <?php if($totales){ ?>
                   <tr class="bg-verde-oscuro">
                     <td class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-redbull-amarillo"><?= $totFinalIngresos; ?></td>
@@ -610,8 +617,8 @@
                     <td class="bg-redbull-celeste"><?= $totales->cumplimiento_250; ?></td>
                     <td class="bg-redbull-rojo"><?= $totales->cumplimiento_3_skus; ?></td>
                     <td class="bg-redbull-azul"><?= $totales->cumplimiento_total; ?></td>
-                    
                   </tr>
+                <?php } ?>
               </tbody>
             </table>
             </div>

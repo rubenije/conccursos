@@ -11,7 +11,7 @@
 
   if( !empty($post['opc']) && $post['opc'] == 'autenticate' && !empty($post['master_id']) ){
     $objMaster   = new master();
-    $autenticate  = $objMaster->autenticate($post['master_id']);
+    $autenticate  = $objMaster->autenticateSinIngreso($post['master_id']);
     
     if($autenticate){
       header("Location: home.php");

@@ -9,7 +9,7 @@
   
   session_start();
   if(!$_SESSION['LOGIN']){
-    header('Location: index-php');
+    header('Location: index.php');
     exit;
   }
   $table = "redbull";
@@ -339,19 +339,20 @@
               $totFinalUnicos+= $totUnicos;
            
             ?>
-
+            <?php if($totales){ ?>
             <table class="table table-spacing totales mx-auto">
               <tbody>
                   <tr class="bg-verde-oscuro">
                     <td style="width: 180px;" class="text-start bg-verde-oscuro">Total General</td>
                     <td style="width: 120px;" class="bg-redbull-amarillo"><?= $totFinalIngresos; ?></td>
                     <td style="width: 120px;" class="bg-redbull-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td style="width: 120px;" class="bg-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td style="width: 120px;" class="bg-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td style="width: 120px;" class="bg-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-celeste"><?= $totales->cumplimiento_250; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-rojo"><?= $totales->cumplimiento_3_skus; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-azul"><?= $totales->cumplimiento_total; ?></td>
                   </tr>
               </tbody>
             </table>
+            <?php } ?>
             </div>
 
 
@@ -601,7 +602,7 @@
               $totFinalUnicos+= $totUnicos;
 
             ?>
-
+            <?php if($totales){ ?>
                   <tr class="bg-verde-oscuro">
                     <td class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-redbull-amarillo"><?= $totFinalIngresos; ?></td>
@@ -609,10 +610,10 @@
                     <td class="bg-redbull-celeste"><?= $totales->cumplimiento_250; ?></td>
                     <td class="bg-redbull-rojo"><?= $totales->cumplimiento_3_skus; ?></td>
                     <td class="bg-redbull-azul"><?= $totales->cumplimiento_total; ?></td>
-                    
                   </tr>
               </tbody>
             </table>
+            <?php } ?>
             </div>
             <!-- SM -->
 

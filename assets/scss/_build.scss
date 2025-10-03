@@ -197,6 +197,36 @@ p.premios {
     color: $color-negro !important;
 }
 
+/* REDBULL */
+.bg-redbull-amarillo {
+    background-color: $redbull-amarillo !important;
+    color: $color-blanco !important;
+}
+.bg-redbull-celeste {
+    background-color: $redbull-celeste !important;
+    color: $color-blanco !important;
+}
+.bg-redbull-azul {
+    background-color: $redbull-azul !important;
+    color: $color-blanco !important;
+}
+.bg-redbull-rojo {
+    background-color: $redbull-rojo !important;
+    color: $color-blanco !important;
+}
+.txt-redbull-amarillo {
+    color: $redbull-amarillo !important;
+}
+.txt-redbull-celeste {
+    color: $redbull-celeste !important;
+}
+.txt-redbull-azul {
+    color: $redbull-azul !important;
+}   
+.txt-redbull-rojo {
+    color: $redbull-rojo !important;
+}
+
 .logo-ccu {
     margin-top: 10px;
     width: 100px;

@@ -11,7 +11,7 @@
   session_start();
   
   if(!$_SESSION['LOGIN']){
-    header('Location: index-php');
+    header('Location: index.php');
     exit;
   }
   $table = "redbull";

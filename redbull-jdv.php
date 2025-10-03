@@ -10,7 +10,7 @@
   
   session_start();
   if(!$_SESSION['LOGIN']){
-    header('Location: index-php');
+    header('Location: index.php');
     exit;
   }
   $table = "redbull";
@@ -134,7 +134,7 @@
                 <?php 
                 $totIngresos = 0;
                 foreach($registros as $registro){ 
-                  $ingresos = $objIngreso->getIngresosByClienteId($registro->id);  
+                  $ingresos = $objIngreso->getIngresosBySupervisorId($registro->id);  
                   ?> 
                  <tr>
                     <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
@@ -232,7 +232,7 @@
               <?php 
                 $totIngresos = 0;
                 foreach($registros as $registro){ 
-                $ingresos = $objIngreso->getIngresosByClienteId($registro->id);    
+                $ingresos = $objIngreso->getIngresosBySupervisorId($registro->id);    
                 ?> 
                 <tr>
                   <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>

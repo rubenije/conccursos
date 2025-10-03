@@ -5,13 +5,34 @@
   $time = date('His');
   require_once(INCLUDE_PATH.'class/class.inputfilter.php');
   require_once(INCLUDE_PATH.'class/class.master.php');
+  require_once(INCLUDE_PATH.'class/class.ingreso.php');
+  
   
 
   session_start();
-  $page = strtolower($_SESSION['LOGIN_TIPO']);
   if(!$_SESSION['LOGIN']){
-    header('Location: index-php');
+    header('Location: index.php');
     exit;
+  }
+
+  if(isset($get['opc']) && isset($get['grupo']) && $get['opc'] == 'ingreso'){
+
+    $objIngreso = new ingreso();
+    $distrito   = $objIngreso->getDistritoByCodigo($_SESSION['LOGIN_DISTRITO']);
+
+    $page = strtolower($_SESSION['LOGIN_TIPO']);
+    
+    $tmp['grupo']             = (isset($get['grupo']) && !empty($get['grupo'])) ? $get['grupo'] : '';
+    $tmp['tipo'] 		          = $_SESSION['LOGIN_TIPO'];
+    $tmp['cliente_id'] 		    = $_SESSION['LOGIN_ID'];
+    $tmp['distrito_id'] 	    = $distrito->distrito_id;
+    $tmp['zona_id'] 		      = $distrito->zona_id;
+    $tmp['supervisor_id'] 	  = $_SESSION['LOGIN_SUPERVISOR_ID'];
+
+    $_SESSION['LOGIN_GRUPO']  = $get['grupo'];
+    $objIngreso->saveIngreso($tmp);
+
+    header("Location: ".$get['grupo']."-".$page.".php");
   }
 ?>
 <!doctype html>
@@ -59,12 +80,17 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-12 col-md-6 text-center">
-                        <a href="redbull-<?= $page; ?>.php"><img src="assets/img/btn-redbull.png" class="img-fluid btn-minions" alt="Botón RedBull"></a>
+                        <a href="?opc=ingreso&grupo=tirate"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Retornables"></a>
                       </div>
                       <div class="col-12 col-md-6 text-center">
-                        <a href="tirate-al-agua-<?= $page; ?>.php"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Retornables"></a>
+                        <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón Craft"></a>
                       </div>
-                      
+                      <div class="col-12 col-md-6 text-center">
+                        <a href="?opc=ingreso&grupo=bep"><img src="assets/img/btn-bep.png" class="img-fluid btn-minions" alt="Botón BEP"></a>
+                      </div>
+                      <div class="col-12 col-md-6 text-center">
+                        <a href="?opc=ingreso&grupo=gaseosas"><img src="assets/img/btn-gaseosas.png" class="img-fluid btn-minions" alt="Botón Gaseosas"></a>
+                      </div>
                     </div>
                   </div>
               </div>
@@ -85,11 +111,18 @@
               <img src="assets/img/txt-selecciona-el-concurso.png" class="img-fluid txt-selecciona-el-concurso" alt="Selecciona el concurso">
             </div>
             <div class="col-12">
-              <a href="redbull-<?= $page; ?>.php"><img src="assets/img/btn-redbull.png" class="img-fluid btn-minions" alt="Botón Redbull"></a>
+              <a href="?opc=ingreso&grupo=tirate"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
             </div>
             <div class="col-12">
-              <a href="tirate-al-agua-<?= $page; ?>.php"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
+              <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón Redbull"></a>
             </div>
+            <div class="col-12">
+              <a href="?opc=ingreso&grupo=bep"><img src="assets/img/btn-bep.png" class="img-fluid btn-minions" alt="Botón BEP"></a>
+            </div>
+            <div class="col-12">
+              <a href="?opc=ingreso&grupo=gaseosas"><img src="assets/img/btn-gaseosas.png" class="img-fluid btn-minions" alt="Botón Gaseosas"></a>
+            </div>
+            
           </div>
         </div>
       </div> 
@@ -101,25 +134,7 @@
       
     </main>
 
-    <!-- Modal transparente con bot��n de cerrar -->
-    <div class="modal fade" id="energiaModal" tabindex="-1" aria-labelledby="energiaModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-transparent border-0 position-relative">
-          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          <br/>
-          <!-- Bot��n cerrar -->
-          <div class="modal-body text-center">
-            <!-- Contenido del modal -->
-            <img src="assets/img/modal-energia.png" class="img-fluid" alt="Contenido del Modal">
-          </div>
-          
-        </div>
-      </div>
-    </div>
-
-
     <?php include("include-footer.php"); ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- <script src="assets/js/main.js?<?= $time; ?>"></script>-->
   </body>
 </html>
