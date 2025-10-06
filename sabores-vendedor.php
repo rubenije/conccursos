@@ -125,7 +125,7 @@
                       <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
                       <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                       <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                      <td width="150"><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><?= $registro->CUANTOS_FALTAN; ?></a></td>
+                      <td width="150"><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
                     </tr>
                     <?php 
                       $totIngresos += $ingresos;
@@ -137,7 +137,7 @@
                       <td class="bg-amarillo"><?= $totIngresos; ?></td>
                       <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                       <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                      <td class="bg-rojo"><?= $total->CUANTOS_FALTAN; ?></td>
+                      <td class="bg-rojo">&nbsp;</td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -206,7 +206,7 @@
                       <td class="txt-amarillo"><?= $ingresos; ?></td>
                       <td class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                       <td class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                      <td ><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><?= $registro->CUANTOS_FALTAN; ?></a></td>
+                      <td ><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
                     </tr>
                     <?php 
                       $totIngresos += $ingresos;
@@ -218,7 +218,7 @@
                       <td class="bg-amarillo"><?= $totIngresos; ?></td>
                       <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                       <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                      <td class="bg-rojo"><?= $total->CUANTOS_FALTAN; ?></td>
+                      <td class="bg-rojo">&nbsp;</td>
                     </tr>
                     <?php } ?>
                     <tr class="transparent">

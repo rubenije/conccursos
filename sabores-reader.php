@@ -45,8 +45,8 @@
 				$post['nombre'] 					= $data['NOMBRE'] ?? "";
 				$post['canal'] 						= $data['CANAL'] ?? "";
 
-				$post['CUMPLIMIENTO_COB_2_SABORES_3L'] 	= $data['CUMPLIMIENTO_COB_2_SABORES_3L'] ?? "";
-				$post['CUMPLIMIENTO_COB_3_SABORES_3L'] 	= $data['CUMPLIMIENTO_COB_3_SABORES_3L'] ?? "";
+				$post['CUMPLIMIENTO_COB_2_SABORES_3L'] 	= $data['CUMPLIMIENTO_ COB_2_SABORES_3L'] ?? "";
+				$post['CUMPLIMIENTO_COB_3_SABORES_3L'] 	= $data['CUMPLIMIENTO_ COB_3_SABORES_3L'] ?? "";
 				
 
 				if( !empty($post['id']) ){

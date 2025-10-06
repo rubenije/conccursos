@@ -97,13 +97,6 @@
                             <div class="text-small">CUMPLIMIENTO<br>3 SABORES</div>
                         </div>
                       </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-rojo borde">
-                            <div class="space-5"></div>
-                              <div class="text-small">CUMPLIMIENTO<br>TOTAL</div>
-                            </div>
-                        </div>
-                      </th>
                 </tr>
               </thead>
               <tbody>
@@ -119,7 +112,6 @@
                     <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td width="150" class="txt-rojo"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php 
                   $totIngresos += $ingresos;
@@ -130,7 +122,6 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $total->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
               </tbody>
@@ -173,15 +164,6 @@
                           <div class="text-small">CUMPLIMIENTO<br>3 SABORES</div>
                         </div>
                       </th>
-                      <!-- 
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-rojo borde" style="height: 60px;">
-                          <div class="space-10"></div>
-                          <div class="text-small">CUMPLIMIENTO<br>TOTAL</div>
-                        </div>
-                      </th>
-                      -->
-                  
               </tr>
             </thead>
             <tbody>
@@ -196,7 +178,6 @@
                   <td class="txt-amarillo"><?= $ingresos; ?></td>
                   <td class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                   <td class="txt-azul"><?= $registro->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                  <!-- <td class="txt-rojo"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td> -->
                 </tr>
                 <?php 
                 $totIngresos += $ingresos;
@@ -207,7 +188,6 @@
                   <td class="bg-amarillo"><?= $totIngresos; ?></td>
                   <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                   <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                  <!-- <td class="bg-rojo"><?= $total->CUMPLIMIENTO_TOTAL; ?></td> -->
                 </tr>
                 <?php } ?>
             </tbody>

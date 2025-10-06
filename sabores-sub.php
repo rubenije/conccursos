@@ -98,12 +98,6 @@
                         <div class="text-small">CUMPLIMIENTO<br>3 SABORES 3L</div>
                     </div>
                   </th>
-                  <th scope="col" class="transparent">
-                    <div class="titulo bg-rojo borde">
-                        <div class="space-5"></div>
-                        <div class="text-small">CUMPLIMIENTO<br>TOTAL</div>
-                    </div>
-                  </th>
                 </tr>
               </thead>
               <?php if($z_norte){ 
@@ -132,7 +126,6 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td style="width: 140px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -141,7 +134,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -179,7 +171,6 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td style="width: 140px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -188,7 +179,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -224,7 +214,6 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td style="width: 140px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -234,7 +223,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -269,7 +257,6 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td style="width: 140px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -278,7 +265,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -315,7 +301,6 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td style="width: 140px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -324,7 +309,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -342,7 +326,6 @@
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalUnicos; ?></td>
                     <td style="width: 140px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td style="width: 140px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td style="width: 140px;" class="bg-rojo"><?= $totales->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -381,11 +364,6 @@
                       <div class="text-small">Cump<br>3 Sabores 3L</div>
                     </div>
                   </th>
-                  <th scope="col" class="transparent">
-                    <div class="titulo bg-rojo borde">
-                      <div class="text-small">Cump<br>Total</div>
-                    </div>
-                  </th>
                 </tr>
               </thead>
               <?php if($z_norte){ 
@@ -414,7 +392,6 @@
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -423,7 +400,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
@@ -456,7 +432,6 @@
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -465,8 +440,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
-                    
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -498,7 +471,6 @@
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -508,7 +480,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -539,7 +510,6 @@
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -548,7 +518,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -581,7 +550,6 @@
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -590,7 +558,6 @@
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -604,7 +571,6 @@
                     <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
                     <td class="bg-azul"><?= $totales->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                     <td class="bg-azul"><?= $totales->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                    <td class="bg-rojo"><?= $totales->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } ?>
               </tbody>
