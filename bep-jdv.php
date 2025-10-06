@@ -91,13 +91,6 @@
                             <div class="text-small">CUMPLIMIENTO<br>BEP</div>
                         </div>
                       </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-rojo borde">
-                            <div class="space-5"></div>
-                              <div class="text-small">CUMPLIMIENTO<br>TOTAL</div>
-                            </div>
-                        </div>
-                      </th>
                 </tr>
               </thead>
               <tbody>
@@ -112,7 +105,6 @@
                     <td width="250" class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                     <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_BEP; ?></td>
-                    <td width="150" class="txt-rojo"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php 
                   $totIngresos += $ingresos;
@@ -122,7 +114,6 @@
                     <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-azul"><?= $total->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-rojo"><?= $total->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
               </tbody>
@@ -148,22 +139,17 @@
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                        <div class="titulo bg-amarillo borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="space-20"></div>
-                            <div class="text-small">INGRESOS</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="text-small">CUMP<br>BEP</div>
-                        </div>
-                      </th>
-                      
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-rojo borde" style="height: 60px;padding-top: 0px;">
-                            <div class="text-small">CUMP<br>TOTAL</div>
-                        </div>
-                      </th>
+                    <div class="titulo bg-amarillo borde" style="height: 60px;padding-top: 0px;"> 
+                        <div class="space-20"></div>
+                        <div class="text-small">INGRESOS</div>
+                    </div>
+                  </th>
+                  <th scope="col" class="transparent">
+                    <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
+                        <div class="text-small">CUMP<br>BEP</div>
+                    </div>
+                  </th>
+                  
                   
               </tr>
             </thead>
@@ -178,7 +164,6 @@
                   <td class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                   <td class="txt-amarillo"><?= $ingresos; ?></td>
                   <td class="txt-azul"><?= $registro->CUMPLIMIENTO_BEP; ?></td>
-                  <td class="txt-rojo"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
                 </tr>
                 <?php 
                 $totIngresos += $ingresos;
@@ -188,7 +173,6 @@
                   <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                   <td class="bg-amarillo"><?= $totIngresos; ?></td>
                   <td class="bg-azul"><?= $total->CUMPLIMIENTO_BEP; ?></td>
-                  <td class="bg-rojo"><?= $total->CUMPLIMIENTO_TOTAL; ?></td>
                 </tr>
                 <?php } ?>
             </tbody>
