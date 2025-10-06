@@ -7,8 +7,6 @@
   require_once(INCLUDE_PATH.'class/class.master.php');
   require_once(INCLUDE_PATH.'class/class.ingreso.php');
   
-  
-
   session_start();
   if(!$_SESSION['LOGIN']){
     header('Location: index.php');
@@ -31,7 +29,6 @@
 
     $_SESSION['LOGIN_GRUPO']  = $get['grupo'];
     $objIngreso->saveIngreso($tmp);
-
     header("Location: ".$get['grupo']."-".$page.".php");
   }
 ?>
@@ -89,7 +86,7 @@
                         <a href="?opc=ingreso&grupo=bep"><img src="assets/img/btn-bep.png" class="img-fluid btn-minions" alt="Botón BEP"></a>
                       </div>
                       <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=gaseosas"><img src="assets/img/btn-gaseosas.png" class="img-fluid btn-minions" alt="Botón Gaseosas"></a>
+                        <a href="?opc=ingreso&grupo=sabores"><img src="assets/img/btn-sabores.png" class="img-fluid btn-minions" alt="Botón Sabores"></a>
                       </div>
                     </div>
                   </div>
@@ -120,7 +117,7 @@
               <a href="?opc=ingreso&grupo=bep"><img src="assets/img/btn-bep.png" class="img-fluid btn-minions" alt="Botón BEP"></a>
             </div>
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=gaseosas"><img src="assets/img/btn-gaseosas.png" class="img-fluid btn-minions" alt="Botón Gaseosas"></a>
+              <a href="?opc=ingreso&grupo=sabores"><img src="assets/img/btn-sabores.png" class="img-fluid btn-minions" alt="Botón Saboress"></a>
             </div>
             
           </div>

@@ -70,7 +70,7 @@
             <div class="space-20"></div>
             <?php if($registros){ ?>
             <div class="is-desktop">
-              <table class="table table-spacing mx-auto">
+              <table class="table table-spacing mx-auto" style="vertical-align: middle !important;">
                 <thead>
                   <tr>
                       <th scope="col" class="transparent">
@@ -147,7 +147,7 @@
                       <td class="bg-azul"><?= $total->CUMPLIMIENTO_DUO_LN; ?></td>
                       <td class="bg-rojo"><?= $total->CUMPLIMIENTO_TORRES; ?></td>
                       <td class="bg-amarillo"><?= $total->CUMPLIMIENTO_GUAYACAN; ?></td>
-                      <td class="bg-rojo">&nbsp;</td>
+                      <td class="transparent" style="border-bottom: none;">&nbsp;</td>
                     </tr>
                     <?php } ?>
                 </tbody>
