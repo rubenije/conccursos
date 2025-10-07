@@ -1,0 +1,11 @@
+{
+  "name": "conccursos",
+  "version": "1.0.0",
+  "description": "Compilación SCSS del sitio conCCUrsos",
+  "scripts": {
+    "scss": "sass --watch assets/scss:assets/css"
+  },
+  "devDependencies": {
+    "sass": "^1.79.4"
+  }
+}

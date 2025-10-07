@@ -18,18 +18,23 @@
     $objIngreso = new ingreso();
     $distrito   = $objIngreso->getDistritoByCodigo($_SESSION['LOGIN_DISTRITO']);
 
+    $distrito_id = $distrito && isset($distrito->distrito_id) ? (int)$distrito->distrito_id : null;
+    $zona_id     = $distrito && isset($distrito->zona_id)     ? (int)$distrito->zona_id     : null;
+
+
     $page = strtolower($_SESSION['LOGIN_TIPO']);
     
     $tmp['grupo']             = (isset($get['grupo']) && !empty($get['grupo'])) ? $get['grupo'] : '';
     $tmp['tipo'] 		          = $_SESSION['LOGIN_TIPO'];
     $tmp['cliente_id'] 		    = $_SESSION['LOGIN_ID'];
-    $tmp['distrito_id'] 	    = $distrito->distrito_id;
-    $tmp['zona_id'] 		      = $distrito->zona_id;
+    $tmp['distrito_id'] 	    = $distrito_id;
+    $tmp['zona_id'] 		      = $zona_id;
     $tmp['supervisor_id'] 	  = $_SESSION['LOGIN_SUPERVISOR_ID'];
 
     $_SESSION['LOGIN_GRUPO']  = $get['grupo'];
     $objIngreso->saveIngreso($tmp);
     header("Location: ".$get['grupo']."-".$page.".php");
+    exit;
   }
 ?>
 <!doctype html>
