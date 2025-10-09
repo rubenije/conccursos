@@ -17,6 +17,7 @@
 	include_once(INCLUDE_PATH . 'class/class.resumen.php');
 	
 
+	/**	Carga del archivo registro */
 	$resumen['resu_inicio'] = date('Y-m-d H:i:s');
 	
 	$objRegistro 	= new registro();
@@ -66,7 +67,7 @@
 
 
 
-
+	/**	Carga del archivo detalle */
 	$resumen['resu_inicio'] = date('Y-m-d H:i:s');
 	
 	$objDetalle 	= new detalle();
