@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "bep";
+  $table = "lipton";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
@@ -80,28 +80,28 @@
             </div>
 
             
-            <div class="table-responsive d-flex justify-content-center">
-              <table class="table table-spacing mx-auto tableDetalles pt-2 pb-3">
+            <div class="d-flex justify-content-center">
+              <table class="table table-spacing tableDetalles pt-2 pb-3">
                 <thead>
                   <tr style="vertical-align: middle !important;">
                       <th scope="col" class="bg-verde-oscuro borde" style="height: 30px;">ID</th>
                       <th scope="col" class="bg-verde-oscuro borde">Sector</th>
                       <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
-                      <th scope="col" class="bg-azul borde text-center">Cobertura Vivo</th>
-                      <th scope="col" class="bg-azul borde text-center">Cobertura Sprim</th>
+                      <th scope="col" class="bg-azul borde text-center">PET600</th>
+                      <th scope="col" class="bg-celeste borde text-center">LATA310</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                      $class_vivo = ($detalle->COB_VIVO == 'SI') ? 'txt-azul' : 'txt-rojo';
-                      $class_sprim = ($detalle->COB_SPRIM == 'SI') ? 'txt-azul' : 'txt-rojo';
+                      $class_vivo = ($detalle->PET600 == 'SI') ? 'txt-azul' : 'txt-rojo';
+                      $class_sprim = ($detalle->LATA310 == 'SI') ? 'txt-azul' : 'txt-rojo';
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <td class="<?= $class_vivo; ?>"><?= $detalle->COB_VIVO; ?></td>
-                      <td class="<?= $class_sprim; ?>"><?= $detalle->COB_SPRIM; ?></td>
+                      <td class="<?= $class_vivo; ?>"><?= $detalle->PET600; ?></td>
+                      <td class="<?= $class_sprim; ?>"><?= $detalle->LATA310; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>

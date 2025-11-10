@@ -228,9 +228,16 @@
 					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_BEP', '$fecha')";
 				}
 			}
-			echo $sql."<br>";
+			if($table == 'lipton' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_LIPTON = '$CUMPLIMIENTO_LIPTON', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_LIPTON, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_LIPTON', '$fecha')";
+				}
+			}
 			
-	
 			return DB::query($sql);
 	    }
 

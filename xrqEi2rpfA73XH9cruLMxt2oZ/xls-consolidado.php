@@ -10,12 +10,8 @@ include_once(INCLUDE_PATH.'class/class.informe.php');
 
 // Obtén tus datos
 $objInforme = new informe();
-$elements   = $objInforme->getIngresosByGrupo($get['grupo']); // ajusta si usas $get
-$grupo = !empty($get['grupo']) ? $get['grupo'] : 'consolidado';
-$filename = date('Ymd') . '-'.$grupo.'-ingresos.xls';
-
-pre($elements);
-exit;
+$elements   = $objInforme->getIngresosConsolidado(); // ajusta si usas $get
+$filename = date('Ymd') . '-consolidado-ingresos.xls';
 
 // Headers para que el navegador lo abra como Excel
 header('Content-Type: application/vnd.ms-excel; charset=utf-8');
@@ -52,7 +48,9 @@ echo "\xEF\xBB\xBF";
     <th>Fecha</th>
     <th>Hora</th>
     <th>Supervisor</th>
+    <th>Grupo</th>
     <th>Ingresos</th>
+    
   </tr>
   <?php if (!empty($elements)): ?>
     <?php foreach ($elements as $r): 
@@ -61,7 +59,8 @@ echo "\xEF\xBB\xBF";
       $nombre      = htmlspecialchars((string)html_entity_decode(trim($r->nombre ?? ''), ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
       $zona        = htmlspecialchars((string)($r->zona_nombre ?? ''), ENT_QUOTES, 'UTF-8');
       $distrito    = htmlspecialchars((string)($r->dist_nombre ?? ''), ENT_QUOTES, 'UTF-8');
-      $ingresos    = htmlspecialchars((string)($r->ingresos ?? '0'), ENT_QUOTES, 'UTF-8');
+      $grupo       = htmlspecialchars((string)($r->grupo ?? ''), ENT_QUOTES, 'UTF-8');
+      $ingresos    = htmlspecialchars((string)($r->ingresos ?? ''), ENT_QUOTES, 'UTF-8');
       // Normalizar fecha/hora
       $fechaRaw    = (string)($r->ingr_fecha ?? '');
       $horaRaw     = (string)($r->ingr_hora ?? '');
@@ -78,7 +77,8 @@ echo "\xEF\xBB\xBF";
         <td class="date"><?= $fecha ?></td>
         <td class="time"><?= $hora ?></td>
         <td class="text"><?= htmlspecialchars((string)($r->supervisor_id ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
-        <td class="text"><?= $ingresos ?></td>
+        <td class="wrap"><?= $grupo ?></td>
+        <td class="wrap"><?= $ingresos ?></td>
     </tr>
     <?php endforeach; ?>
   <?php endif; ?>

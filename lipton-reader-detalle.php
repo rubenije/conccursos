@@ -21,11 +21,11 @@
 	
 	$objDetalle 	= new detalle();
 	$objResumen 	= new resumen();
-	$table 			= "bep";
+	$table 			= "lipton";
 
 	$date = date('Ymd');
 	//$file_csv 	= 'MINIONS_ENERGIA_DETALLE_'.$date.'.csv';
-	$file_csv 	= 'BEP_DETALLE.csv';
+	$file_csv 	= 'LIPTON_DETALLE.csv';
 
 	
 	if(file_exists($file_csv)){
@@ -44,8 +44,8 @@
 				$post['sector'] 			= $data['SECTOR'] ?? "";
 				$post['razon'] 				= $data['RAZON_SOCIAL'] ?? "";
 
-				$post['COB_VIVO'] 			= $data['COB_VIVO'] ?? "";
-				$post['COB_SPRIM'] 		    = $data['COB_SPRIM'] ?? "";
+				$post['PET600'] 			= $data['PET600'] ?? "";
+				$post['LATA310'] 		    = $data['LATA310'] ?? "";
 				
 				
 				if( !empty($post['id']) ){

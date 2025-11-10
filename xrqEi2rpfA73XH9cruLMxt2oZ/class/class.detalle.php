@@ -80,7 +80,6 @@
 				extract($data);
 				$vendedor_id 	= (int) $vendedor_id;
 				$id 			= (int) $id;
-				$sector 		= (int) $sector;
 				$razon 		    = DB::filter($razon);
 				$fecha 		    = date('Y-m-d');
 
@@ -100,9 +99,10 @@
 					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, COB_VIVO, COB_SPRIM, fecha) VALUES ";
 					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$COB_VIVO', '$COB_SPRIM', '$fecha')";
 				}
-
-				echo $sql."<br>";
-				
+				if($table == 'lipton'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, PET600, LATA310, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$PET600', '$LATA310', '$fecha')";
+				}
 				return DB::query($sql);
 			}
 			return false;

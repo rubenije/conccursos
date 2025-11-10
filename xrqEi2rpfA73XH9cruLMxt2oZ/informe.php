@@ -8,14 +8,50 @@ require_once(INCLUDE_PATH.'class/class.inputfilter.php');
 require_once(INCLUDE_PATH.'class/inc.globals.php');
 require_once(INCLUDE_PATH.'class/class.informe.php');
 
+session_start();
+
+$opc  = $post['opc']  ?? null;
+if($opc == 'setFechas'){
+  $desde = trim($post['desde'] ?? '');
+  $hasta = trim($post['hasta'] ?? '');
+  if(!empty($post['desde']) && !empty($post['hasta'])){
+    $_SESSION['FECHA_DESDE'] = trim($post['desde'] ?? '');
+    $_SESSION['FECHA_HASTA'] = trim($post['hasta'] ?? '');
+  } else {
+    unset($_SESSION['FECHA_DESDE']);
+    unset($_SESSION['FECHA_HASTA']);
+  }
+}
+
+if(!empty($_SESSION['FECHA_DESDE']) && !empty($_SESSION['FECHA_HASTA'])){
+    $titleFecha = "Desde:".sql2date($_SESSION['FECHA_DESDE'])." Hasta:".sql2date($_SESSION['FECHA_HASTA']);
+}
+
 $objInforme = new informe();
-$icu        =  $objInforme->getIngresoClientesUnicos();
-$ict        = $objInforme->getIngresoClientesTotales();
-$cgu        = $objInforme->getCantidadGirosUnicos();
-$igt        = (int) $objInforme->getIngresoGirosTotales();
-$giros      = $objInforme->getGirosByDia();
-$distritos  = $objInforme->getDistritosIntento();
-$ingresos   = $objInforme->getIngresosByDia();
+$campanas = $objInforme->getCampanas();
+$concursos = $objInforme->getConsolidadoPorConcurso();
+$zonas = $objInforme->getConsolidadoPorZona();
+$distritos = $objInforme->getConsolidadoPorDistrito();
+$dias = $objInforme->getConsolidadoPorDia();
+
+// 1) mapa para búsqueda O(1)
+$campanasByGrupo = [];
+foreach ($campanas as $c) {
+  $campanasByGrupo[$c['grupo']] = $c['nombre'];
+}
+
+// 2) inicializar arrays para charts
+$lConcursos = $iConcursos = $uConcursos = [];
+$lDiarios   = $iDiarios   = $uDiarios   = [];
+
+// 3) Totales útiles (KPI)
+$totalIngresos = 0;
+$totalUnicos   = 0;
+foreach ($concursos as $row) {
+  $totalIngresos += (int)$row->ingresos;
+  $totalUnicos   += (int)$row->unicos;
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,10 +68,10 @@ $ingresos   = $objInforme->getIngresosByDia();
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-12 col-md-8 m-auto pt-4">
+        <div class="col-12 col-md-10 m-auto">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="informe.php">Almaceneros</a>
+              <a class="navbar-brand" href="informe.php">ConCCUrsos</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -44,23 +80,11 @@ $ingresos   = $objInforme->getIngresosByDia();
                   <li class="nav-item">
                     <a class="nav-link active" href="informe.php">INICIO</a>
                   </li>
-                  <!--
-                  <li class="nav-item">
-                    <a class="nav-link" href="informe-ingreso.php">Ingresos</a>
+                  <?php foreach($campanas as $campana){ ?>
+                    <li class="nav-item">
+                    <a class="nav-link active" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
                   </li>
-                  -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="informe-giro.php">TODOS LOS GIROS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="informe-canje.php">FORMULARIO DE CANJE</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="informe-premio.php">PREMIOS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="informe-configuracion.php">CONFIGURACIÓN</a>
-                  </li>
+                  <?php } ?>
                 </ul>
               </div>
             </div>
@@ -70,379 +94,268 @@ $ingresos   = $objInforme->getIngresosByDia();
     </div>
 
     <div class="container-fluid pt-5">
-      <div class="row">
-        <div class="col-12 col-md-8 m-auto pt-4">
-          <h4>Resumen Totales</h4>
-          <?php 
-            
-          ?>
-          <table class="table table-striped" style="font-size: 12px;">
-            <tbody>
-              <tr>
-                <td>Ingreso clientes únicos</td>
-                <td class="text-center"><?= $icu; ?></td>
-                <!-- <td class="text-center"><a href="informe-cliente.php" class="btn btn-dark btn-sm">Ver</a></td> -->
-              </tr>
-              <tr>
-                <td>Ingreso clientes totales</td>
-                <td class="text-center"><?= $ict; ?></td>
-                <!-- <td class="text-center"><a href="informe-cliente.php" class="btn btn-dark btn-sm">Ver</a></td> -->
-              </tr>
-              <tr>
-                <td>Cantidad giros únicos</td>
-                <td class="text-center"><?= $cgu; ?></td>
-                <!-- <td class="text-center"><a href="informe-giro.php" class="btn btn-dark btn-sm">Ver</a></td> -->
-              </tr>
-              <tr>
-                <td>Cantidad giros totales</td>
-                <td class="text-center"><?= $igt; ?></td>
-                <!-- <td class="text-center"><a href="informe-giro.php" class="btn btn-dark btn-sm">Ver</a></td> -->
-              </tr>
-              
-              
-            </tbody>
-          </table>
-          <br>
-          <br>
-          <h4>Informe Vendedores</h4>
-          <table class="table table-striped" style="font-size: 12px;">
-            <tbody>
-              <tr>
-                <td>Mes Junio</td>
-                <td class="text-center"><a href="informe-giro-fecha-junio.php" class="btn btn-primary">Ver</a></td>
-              </tr>
-              <tr>
-                <td>Mes Julio</td>
-                <td class="text-center"><a href="informe-giro-fecha-julio.php" class="btn btn-primary">Ver</a></td>
-              </tr>
-              <tr>
-                <td>Ganadores</td>
-                <td class="text-center"><a href="informe-ganadores.php" class="btn btn-primary">Ver</a></td>
-              </tr>
-              
-              
-              
-            </tbody>
-          </table>
-          <br>
-          <br>
 
-          <h4>Distritos Totales <a href="#;" class="btn btn-primary float-end dt-vermas">Ver Más +</a></h4>
-          <br>
-          <div class="distritos-totales" style="display:none;">
-            <table class="table table-striped" style="font-size: 12px;">
-              <thead>
-                <tr>
-                  <th scope="col" style="width:60%;">Distrito</th>
-                  <th scope="col" style="width:20%;" class="text-center">Únicos</th>
-                  <th scope="col" style="width:20%;" class="text-center">Totales</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php 
-                  if($distritos){ 
-                  foreach($distritos as $distrito){ 
-                    $du = $objInforme->getIngresosUnicosByDistrito($distrito->clie_distrito);
-                    $dt = $objInforme->getIngresosTotalesByDistrito($distrito->clie_distrito);
-                    $dlabel[]   = substr($distrito->clie_distrito,0,10);
-                    $dunicos[] = $du;
-                    $dtotales[] = $dt;
-                      
-                ?>
-                <tr>
-                  <td><?php echo $distrito->clie_distrito; ?></td>
-                  <td class="text-center"><?= $du; ?></td>
-                  <td class="text-center"><?= $dt; ?></td>
+      <div class="row mt-4">
+        <div class="col-12 col-md-10 m-auto">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <div class="card text-center shadow-sm">
+                <div class="card-body">
+                  <div class="text-muted">Total Ingresos</div>
+                  <div class="fs-4 fw-bold"><?= numberFormat($totalIngresos) ?></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card text-center shadow-sm">
+                <div class="card-body">
+                  <div class="text-muted">Clientes Únicos</div>
+                  <div class="fs-4 fw-bold"><?= numberFormat($totalUnicos) ?></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card text-center shadow-sm">
+                <div class="card-body">
                   
-                </tr>
-                <?php 
-                  }
-                } ?>
-              </tbody>
-            </table>
-          </div>
-          <canvas id="myChartDistritos" width="600" height="400"></canvas>
-          <br>
-          <br>
-          <h4>Giros totales por día <a href="#;" class="btn btn-primary float-end gt-vermas">Ver Más +</a></h4>
-          <br>
-          <div class="giros-totales" style="display:none;">
-            <table class="table table-striped" style="font-size: 12px;">
-              <thead>
-                <tr>
-                  <th scope="col" style="width:60%;">Fecha</th>
-                  <th scope="col" style="width:20%;" class="text-center">Únicos</th>
-                  <th scope="col" style="width:20%;" class="text-center">Totales</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php 
-                foreach ($giros as $giro) { 
-                  $unico = $objInforme->getCantidadGirosUnicosByFecha($giro->inte_fecha);
-                  $totalU+= $unico;
-                  $totalT+= $giro->cantidad;
+                  <form class="row g-2 justify-content-end" method="post" action="informe.php" novalidate>
+                    <input type="hidden" name="opc" value="setFechas">
+                    <div class="col-12 col-sm-4">
+                      <label for="desde" class="form-label mb-1">Desde</label>
+                      <input type="date" class="form-control form-control-sm" id="desde" name="desde"
+                            value="<?= htmlspecialchars($desde ?? '', ENT_QUOTES,'UTF-8') ?>">
+                    </div>
+                    <div class="col-12 col-sm-4">
+                      <label for="hasta" class="form-label mb-1">Hasta</label>
+                      <input type="date" class="form-control form-control-sm" id="hasta" name="hasta"
+                            value="<?= htmlspecialchars($hasta ?? '', ENT_QUOTES,'UTF-8') ?>">
+                    </div>
+                    <div class="col-12 col-sm-4 d-flex align-items-end gap-2">
+                      <button type="submit" class="btn btn-primary btn-sm w-50">Filtrar</button>
+                      <a class="btn btn-outline-secondary btn-sm w-50" href="informe.php">Limpiar</a>
+                    </div>
+                  </form>
+                  
+                  
+                </div>
+              </div>
 
-                  $gnombre[]  = $giro->inte_fecha;
-                  $gunicos[]  = $unico;
-                  $gtotales[] = $giro->cantidad;
-                ?>
-                <tr>
-                  <td><?php echo sql2date($giro->inte_fecha); ?></td>
-                  <td class="text-center"><?= $unico; ?></td>
-                  <td class="text-center"><?= $giro->cantidad; ?></td>
-                </tr>
-                <?php } ?>
-                <tr>
-                  <td></td>
-                  <td class="text-center"><strong><?= $totalU; ?></strong></td>
-                  <td class="text-center"><strong><?= $totalT; ?></strong></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-           <canvas id="GirosTotalesDiarios" width="600" height="400"></canvas>
-          <br>
-          
+              
+            </div>
 
-          <br>
-          <br>
-          <!-- 
-          <h4>Cantidad de giros únicos por día</h4>
-          <table class="table table-striped" style="font-size: 12px;">
+            <!-- 
+            <div class="col-md-3 text-end">
+              <a href="xls-consolidado.php" class="btn btn-success mt-2">Exportar todos los ingresos</a>
+            </div>
+            -->
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="row">
+        <div class="col-12 col-md-10 m-auto pt-4">
+          <h4 class="mb-0">Ingresos x Concurso</h4>
+          <?php if($titleFecha){ ?>
+          <span class="badge bg-secondary"><?= $titleFecha; ?></span>
+          <?php } ?>
+          <table class="table table-striped table-sm" style="font-size:12px;">
             <thead>
               <tr>
-                <th scope="col" style="width:60%;">Fecha</th>
-                <th scope="col" style="width:20%;" class="text-center">Únicos</th>
-                <th scope="col" style="width:20%;" class="text-center">Totales</th>
+                <th>Nombre</th>
+                <th class="text-center" style="width:15%;">Totales</th>
+                <th class="text-center" style="width:15%;">Únicos</th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($ingresos as $ingreso) { 
-                $unico = $objInforme->getCantidadIngresosUnicosByFecha($ingreso->ingr_fecha);
-                $totalU+= $unico;
-                $totalT+= $ingreso->cantidad;
-
-                $inombre[]  = $ingreso->ingr_fecha;
-                $iunicos[]  = $unico;
-                $itotales[] = $ingreso->cantidad;
-              ?>
-              <tr>
-                <td><?php echo sql2date($ingreso->ingr_fecha); ?></td>
-                <td class="text-center"><?= $unico; ?></td>
-                <td class="text-center"><?= $ingreso->cantidad; ?></td>
-              </tr>
-              <?php } ?>
-              <tr>
-                <td></td>
-                <td class="text-center"><strong><?= $totalU; ?></strong></td>
-                <td class="text-center"><strong><?= $totalT; ?></strong></td>
-              </tr>
+              <?php if (!empty($concursos)): ?>
+                <?php foreach($concursos as $element):
+                  $grupo  = $element->grupo;
+                  $nombre = $campanasByGrupo[$grupo] ?? strtoupper($grupo);
+                  $lConcursos[] = $nombre;
+                  $iConcursos[] = (int)$element->ingresos;
+                  $uConcursos[] = (int)$element->unicos;
+                ?>
+                <tr>
+                  <td><?= htmlspecialchars($nombre, ENT_QUOTES,'UTF-8') ?></td>
+                  <td class="text-center"><?= numberFormat($element->ingresos) ?></td>
+                  <td class="text-center"><?= numberFormat($element->unicos) ?></td>
+                </tr>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <tr><td colspan="3" class="text-center text-muted">Sin datos</td></tr>
+              <?php endif; ?>
             </tbody>
           </table>
-          <canvas id="IngresosTotalesDiarios" width="600" height="400"></canvas>
-          <br>
-          -->
-
-          
+          <canvas id="ingresosPorConcurso" width="600" height="400"></canvas>
 
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-12 col-md-10 m-auto pt-4">
+          <h4 class="mb-0">Ingresos x Zona</h4>
+          <?php if($titleFecha){ ?>
+          <span class="badge bg-secondary"><?= $titleFecha; ?></span>
+          <?php } ?>
+          <table class="table table-striped" style="font-size: 12px;">
+            <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col" style="width:15%;" class="text-center">Totales</th>
+                  <th scope="col" style="width:15%;" class="text-center">Únicos</th>
+                </tr>
+              </thead>
+            <tbody>
+              <?php foreach($zonas as $element){ ?> 
+              <tr>
+                <td><?= $element->zona_codigo; ?></td>
+                <td class="text-center"><?= numberFormat($element->ingresos); ?></td>
+                <td class="text-center"><?= numberFormat($element->unicos); ?></td>
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-12 col-md-10 m-auto pt-4">
+          <h4 class="mb-0">Ingresos x Distrito</h4>
+          <?php if($titleFecha){ ?>
+          <span class="badge bg-secondary"><?= $titleFecha; ?></span>
+          <?php } ?>
+          <table class="table table-striped" style="font-size: 12px;">
+            <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col" style="width:15%;" class="text-center">Totales</th>
+                  <th scope="col" style="width:15%;" class="text-center">Únicos</th>
+                </tr>
+              </thead>
+            <tbody>
+              <?php foreach($distritos as $element){ ?> 
+              <tr>
+                <td><?= $element->dist_codigo; ?></td>
+                <td class="text-center"><?= numberFormat($element->ingresos); ?></td>
+                <td class="text-center"><?= numberFormat($element->unicos); ?></td>
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12 col-md-10 m-auto pt-4">
+          <h4 class="mb-0">Ingresos Diarios</h4>
+          <?php if($titleFecha){ ?>
+          <span class="badge bg-secondary"><?= $titleFecha; ?></span>
+          <?php } ?>
+          <table class="table table-striped table-sm" style="font-size:12px;">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th class="text-center" style="width:15%;">Totales</th>
+                <th class="text-center" style="width:15%;">Únicos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (!empty($dias)): ?>
+                <?php foreach($dias as $element):
+                  $fechaFmt = sql2date($element->ingr_fecha);
+                  $lDiarios[] = $fechaFmt;
+                  $iDiarios[] = (int)$element->ingresos;
+                  $uDiarios[] = (int)$element->unicos;
+                ?>
+                <tr>
+                  <td><?= htmlspecialchars($fechaFmt, ENT_QUOTES,'UTF-8') ?></td>
+                  <td class="text-center"><?= numberFormat($element->ingresos) ?></td>
+                  <td class="text-center"><?= numberFormat($element->unicos) ?></td>
+                </tr>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <tr><td colspan="3" class="text-center text-muted">Sin datos</td></tr>
+              <?php endif; ?>
+            </tbody>
+          </table>
+          <canvas id="ingresosDiarios" width="600" height="400"></canvas>
+
+        </div>
+      </div>
+
+
+
       
   
   </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
     <script>
-  	var chartColors = {
-      red: 'rgb(255, 99, 132)',
-      orange: 'rgb(255, 159, 64)',
-      yellow: 'rgb(255, 205, 86)',
-      green: 'rgb(75, 192, 192)',
-      blue: 'rgb(54, 162, 235)',
-      purple: 'rgb(153, 102, 255)',
-      grey: 'rgb(231,233,237)'
-    };
+      var chartColors = {
+        red:'rgb(255,99,132)', orange:'rgb(255,159,64)', yellow:'rgb(255,205,86)',
+        green:'rgb(75,192,192)', blue:'rgb(54,162,235)', purple:'rgb(153,102,255)', grey:'rgb(231,233,237)'
+      };
 
-    var ctx = document.getElementById("myChartDistritos").getContext("2d");
+      // Datos PHP -> JS (con flags para unicode y números)
+      var lConcursos = <?= json_encode($lConcursos, JSON_UNESCAPED_UNICODE) ?>;
+      var iConcursos = <?= json_encode($iConcursos, JSON_NUMERIC_CHECK) ?>;
+      var uConcursos = <?= json_encode($uConcursos, JSON_NUMERIC_CHECK) ?>;
 
-    var data = {
-        labels: <?php echo json_encode($dlabel); ?>,
-        datasets: [
-            {
-                label: "Únicos",
-                backgroundColor: chartColors.green,
-                data: <?php echo json_encode($dunicos); ?>
-            },
-            {
-                label: "Totales",
-                backgroundColor: chartColors.red,
-                data: <?php echo json_encode($dtotales); ?>
-            },
-               
-        ]
-    };
+      var lDiarios = <?= json_encode($lDiarios, JSON_UNESCAPED_UNICODE) ?>;
+      var iDiarios = <?= json_encode($iDiarios, JSON_NUMERIC_CHECK) ?>;
+      var uDiarios = <?= json_encode($uDiarios, JSON_NUMERIC_CHECK) ?>;
 
-    var myBarChart = new Chart(ctx, {
+      // Bar: Ingresos x Concurso
+      var ctx1 = document.getElementById("ingresosPorConcurso").getContext("2d");
+      new Chart(ctx1, {
         type: 'bar',
-        data: data,
+        data: {
+          labels: lConcursos,
+          datasets: [
+            { label: "Únicos",   backgroundColor: chartColors.green, data: uConcursos },
+            { label: "Totales", backgroundColor: chartColors.red,   data: iConcursos }
+          ]
+        },
         options: {
-            barValueSpacing: 20,
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        min: 0,
-                    }
-                }]
-            }
+          responsive: true,
+          scales: {
+            xAxes: [{ stacked: false }],
+            yAxes: [{
+              stacked: false,
+              ticks: { beginAtZero: true, precision: 0 }
+            }]
+          },
+          tooltips: { mode: 'index', intersect: false }
         }
-    });
-    
+      });
 
-
-    /* GIROS X DIA  */
-    var config = {
-      type: 'line',
-      data: {
-        labels: <?php echo json_encode($gnombre); ?>,
-        datasets: [{
-          label: "Únicos",
-          backgroundColor: chartColors.orange,
-          borderColor: chartColors.orange,
-          data: <?php echo json_encode($gunicos); ?>,
-          fill: false,
-        }, {
-          label: "Totales",
-          fill: false,
-          backgroundColor: chartColors.green,
-          borderColor: chartColors.green,
-          data: <?php echo json_encode($gtotales); ?>,
-        }]
-      },
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Resumen Giros Diarios'
+      // Line: Ingresos Diarios
+      var ctx2 = document.getElementById("ingresosDiarios").getContext("2d");
+      new Chart(ctx2, {
+        type: 'line',
+        data: {
+          labels: lDiarios,
+          datasets: [
+            { label: "Totales", backgroundColor: chartColors.orange, borderColor: chartColors.orange, data: iDiarios, fill: false },
+            { label: "Únicos",   backgroundColor: chartColors.green,  borderColor: chartColors.green,  data: uDiarios, fill: false }
+          ]
         },
-        tooltips: {
-          mode: 'label',
-        },
-        hover: {
-          mode: 'nearest',
-          intersect: true
-        },
-        scales: {
-          xAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'Fecha'
-            }
-          }],
-          yAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'Giros'
-            }
-          }]
+        options: {
+          responsive: true,
+          scales: {
+            xAxes: [{ display: true }],
+            yAxes: [{ display: true, ticks: { beginAtZero: true, precision: 0 } }]
+          },
+          tooltips: { mode: 'index', intersect: false }
         }
-      }
-    };
-
-
-    var ctx = document.getElementById("GirosTotalesDiarios").getContext("2d");
-    window.myLine = new Chart(ctx, config);
-
-
-
-    /* Ingresos X DIA  */
-    /*
-
-    var config = {
-      type: 'line',
-      data: {
-        labels: <?php echo json_encode($inombre); ?>,
-        datasets: [{
-          label: "Únicos",
-          backgroundColor: chartColors.orange,
-          borderColor: chartColors.orange,
-          data: <?php echo json_encode($iunicos); ?>,
-          fill: false,
-        }, {
-          label: "Totales",
-          fill: false,
-          backgroundColor: chartColors.green,
-          borderColor: chartColors.green,
-          data: <?php echo json_encode($itotales); ?>,
-        }]
-      },
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Resumen Ingresos Diarios'
-        },
-        tooltips: {
-          mode: 'label',
-        },
-        hover: {
-          mode: 'nearest',
-          intersect: true
-        },
-        scales: {
-          xAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'Fecha'
-            }
-          }],
-          yAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'Ingresos'
-            }
-          }]
-        }
-      }
-    };
-
-
-    var cti = document.getElementById("IngresosTotalesDiarios").getContext("2d");
-    window.myLine = new Chart(cti, config);
-    */
-
-    $(".dt-vermas").on('click', function(){
-      if($('.distritos-totales').is(':hidden')) {
-        $('.distritos-totales').css('display', 'block');
-        $(".dt-vermas").html('Ver Menos -');
-
-      }else{
-        $('.distritos-totales').css('display', 'none'); 
-        $(".dt-vermas").html('Ver Más +');
-        
-      }
-
-    })
-
-
-    $(".gt-vermas").on('click', function(){
-      if($('.giros-totales').is(':hidden')) {
-        $('.giros-totales').css('display', 'block');
-        $(".gt-vermas").html('Ver Menos -');
-
-      }else{
-        $('.giros-totales').css('display', 'none'); 
-        $(".gt-vermas").html('Ver Más +');
-        
-      }
-
-    })
+      });
     </script>
+
+    
 
   </body>
 </html>

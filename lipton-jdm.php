@@ -16,7 +16,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "bep";
+  $table = "lipton";
   $objRegistro = new registro();
 
   $objZona  = new zona();
@@ -97,15 +97,9 @@
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde">
-                        <div class="space-5"></div>
-                        <div class="text-small">CUMPLIMIENTO<br>BEP</div>
-                    </div>
-                  </th>
-                  <th scope="col" class="transparent">
                     <div class="titulo bg-celeste borde">
                         <div class="space-5"></div>
-                        <div class="text-small">VOLUMEN VS AA</div>
+                        <div class="text-small">CUMPLIMIENTO<br>COB SS</div>
                     </div>
                   </th>
                 </tr>
@@ -134,16 +128,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -179,16 +171,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -222,8 +212,7 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -231,8 +220,7 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -265,16 +253,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -309,16 +295,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -335,8 +319,7 @@
                     <td style="width: 180px;" class="text-start bg-verde-oscuro">Total General</td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_BEP; ?></td>
-                    <td style="width: 140px;" class="bg-celeste"><?= $totales->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td style="width: 140px;" class="bg-celeste"><?= $totales->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -368,13 +351,8 @@
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde">
-                      <div class="text-small">Cump<br>Bep</div>
-                    </div>
-                  </th>
-                  <th scope="col" class="transparent">
                     <div class="titulo bg-celeste borde">
-                      <div class="text-small">VOL<br>VS AA</div>
+                      <div class="text-small">Cump<br>Cob SS</div>
                     </div>
                   </th>
                 </tr>
@@ -405,16 +383,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
@@ -445,16 +421,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -484,8 +458,7 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -493,8 +466,7 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -523,16 +495,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -563,16 +533,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -584,8 +552,7 @@
                     <td class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td class="bg-azul"><?= $totales->CUMPLIMIENTO_BEP; ?></td>
-                    <td class="bg-celeste"><?= $totales->CUMPLIMIENTO_BEP_VOL; ?></td>
+                    <td class="bg-celeste"><?= $totales->CUMPLIMIENTO_LIPTON; ?></td>
                   </tr>
                 <?php } ?>
               </tbody>

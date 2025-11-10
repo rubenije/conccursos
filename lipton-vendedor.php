@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "bep";
+  $table = "lipton";
   $objIngreso = new ingreso();
   $objRegistro = new registro();
   if(isset($get['id']) && is_numeric($get['id'])){
@@ -92,15 +92,9 @@
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="space-15"></div>
-                            <div class="text-small">CUMPLIMIENTO<br>BEP</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
                         <div class="titulo bg-celeste borde" style="height: 60px;padding-top: 0px;"> 
                             <div class="space-15"></div>
-                            <div class="text-small">VOLUMEN<br>VS AA</div>
+                            <div class="text-small">CUMPLIMIENTO<br>COB SS</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
@@ -123,8 +117,7 @@
                       <td width="50" class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                       <td width="250" class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
                       <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
-                      <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_BEP; ?></td>
-                      <td width="150" class="txt-celeste"><?= $registro->CUMPLIMIENTO_BEP_VOL; ?></td>
+                      <td width="150" class="txt-celeste"><?= $registro->CUMPLIMIENTO_LIPTON; ?></td>
                       <td width="150"><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
                     </tr>
                     <?php 
@@ -135,8 +128,7 @@
                     <tr class="transparent">
                       <td colspan="2" class="text-start bg-verde-oscuro">Total General Distrito</td>
                       <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                      <td class="bg-azul"><?= $total->CUMPLIMIENTO_BEP; ?></td>
-                      <td class="bg-celeste"><?= $total->CUMPLIMIENTO_BEP_VOL; ?></td>
+                      <td class="bg-celeste"><?= $total->CUMPLIMIENTO_LIPTON; ?></td>
                       <td class="bg-rojo">&nbsp;</td>
                     </tr>
                     <?php } ?>
@@ -174,15 +166,9 @@
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;">
-                            <div class="space-15"></div>
-                            <div class="text-small">CUMPLIMIENTO BEP</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
                         <div class="titulo bg-celeste borde" style="height: 60px;">
                             <div class="space-15"></div>
-                            <div class="text-small">VOLUMEN VS AA</div>
+                            <div class="text-small">CUMPLIMIENTO COB SS</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent" >
@@ -204,8 +190,7 @@
                       <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                       <td class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
                       <td class="txt-amarillo"><?= $ingresos; ?></td>
-                      <td class="txt-azul"><?= $registro->CUMPLIMIENTO_BEP; ?></td>
-                      <td class="txt-celeste"><?= $registro->CUMPLIMIENTO_BEP_VOL; ?></td>
+                      <td class="txt-celeste"><?= $registro->CUMPLIMIENTO_LIPTON; ?></td>
                       <td ><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
                     </tr>
                     <?php 
@@ -216,8 +201,7 @@
                     <tr class="transparent">
                       <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                       <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                      <td class="bg-azul"><?= $total->CUMPLIMIENTO_BEP; ?></td>
-                      <td class="bg-celeste"><?= $total->CUMPLIMIENTO_BEP_VOL; ?></td>
+                      <td class="bg-celeste"><?= $total->CUMPLIMIENTO_LIPTON; ?></td>
                       <td class="bg-rojo">&nbsp;</td>
                     </tr>
                     <?php } ?>
