@@ -7,6 +7,8 @@
   require_once(INCLUDE_PATH.'class/class.master.php');
   require_once(INCLUDE_PATH.'class/class.ingreso.php');
   
+  
+
   session_start();
   if(!$_SESSION['LOGIN']){
     header('Location: index.php');
@@ -18,21 +20,18 @@
     $objIngreso = new ingreso();
     $distrito   = $objIngreso->getDistritoByCodigo($_SESSION['LOGIN_DISTRITO']);
 
-    $distrito_id = $distrito && isset($distrito->distrito_id) ? (int)$distrito->distrito_id : null;
-    $zona_id     = $distrito && isset($distrito->zona_id)     ? (int)$distrito->zona_id     : null;
-
-
     $page = strtolower($_SESSION['LOGIN_TIPO']);
     
     $tmp['grupo']             = (isset($get['grupo']) && !empty($get['grupo'])) ? $get['grupo'] : '';
     $tmp['tipo'] 		          = $_SESSION['LOGIN_TIPO'];
     $tmp['cliente_id'] 		    = $_SESSION['LOGIN_ID'];
-    $tmp['distrito_id'] 	    = $distrito_id;
-    $tmp['zona_id'] 		      = $zona_id;
+    $tmp['distrito_id'] 	    = isset($distrito->distrito_id) ? $distrito->distrito_id : 0;
+    $tmp['zona_id'] 		      = isset($distrito->zona_id) ? $distrito->zona_id : 0;
     $tmp['supervisor_id'] 	  = $_SESSION['LOGIN_SUPERVISOR_ID'];
 
     $_SESSION['LOGIN_GRUPO']  = $get['grupo'];
     $objIngreso->saveIngreso($tmp);
+
     header("Location: ".$get['grupo']."-".$page.".php");
     exit;
   }
@@ -85,13 +84,13 @@
                         <a href="?opc=ingreso&grupo=tirate"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Retornables"></a>
                       </div>
                       <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón Craft"></a>
-                      </div>
-                      <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=bep"><img src="assets/img/btn-bep.png" class="img-fluid btn-minions" alt="Botón BEP"></a>
+                        <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón RedBull"></a>
                       </div>
                       <div class="col-12 col-md-6 text-center">
                         <a href="?opc=ingreso&grupo=sabores"><img src="assets/img/btn-sabores.png" class="img-fluid btn-minions" alt="Botón Sabores"></a>
+                      </div>
+                      <div class="col-12 col-md-6 text-center">
+                        <a href="?opc=ingreso&grupo=lipton"><img src="assets/img/btn-lipton.png" class="img-fluid btn-minions" alt="Botón Lipton"></a>
                       </div>
                     </div>
                   </div>
@@ -113,18 +112,17 @@
               <img src="assets/img/txt-selecciona-el-concurso.png" class="img-fluid txt-selecciona-el-concurso" alt="Selecciona el concurso">
             </div>
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=tirate"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Minions"></a>
+              <a href="?opc=ingreso&grupo=tirate"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Tirate al Agua"></a>
             </div>
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón Redbull"></a>
-            </div>
-            <div class="col-12">
-              <a href="?opc=ingreso&grupo=bep"><img src="assets/img/btn-bep.png" class="img-fluid btn-minions" alt="Botón BEP"></a>
+              <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón Craft"></a>
             </div>
             <div class="col-12">
               <a href="?opc=ingreso&grupo=sabores"><img src="assets/img/btn-sabores.png" class="img-fluid btn-minions" alt="Botón Saboress"></a>
             </div>
-            
+            <div class="col-12">
+              <a href="?opc=ingreso&grupo=lipton"><img src="assets/img/btn-lipton.png" class="img-fluid btn-minions" alt="Botón Lipton"></a>
+            </div>
           </div>
         </div>
       </div> 
