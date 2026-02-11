@@ -9,6 +9,7 @@ require_once(INCLUDE_PATH.'class/inc.globals.php');
 require_once(INCLUDE_PATH.'class/class.informe.php');
 
 session_start();
+$titleFecha = '';
 if(!empty($_SESSION['FECHA_DESDE']) && !empty($_SESSION['FECHA_HASTA'])){
     $titleFecha = "Desde:".sql2date($_SESSION['FECHA_DESDE'])." Hasta:".sql2date($_SESSION['FECHA_HASTA']);
 }
@@ -57,6 +58,9 @@ $ingresos = $objInforme->getVendedoresSinIngresos($get['grupo']);
                     <a class="nav-link <?= $activo ?>" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
                   </li>
                   <?php } ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="informe-historico.php">HISTORICO</a>
+                  </li>
                 </ul>
               </div>
             </div>

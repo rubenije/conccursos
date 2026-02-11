@@ -3,17 +3,53 @@
 	if (!defined("INCLUDE_PATH")) {
 		define("INCLUDE_PATH", "");
 	}
-	include_once(INCLUDE_PATH.'class/class.DB.php');	
+	include_once(INCLUDE_PATH.'class/class.DB.php');
+	include_once(INCLUDE_PATH.'class/class.concurso.php');
 
 	class informe extends DB {
 
 		public function getCampanas(){
-			$campanas[] = ['grupo' => 'craft', 'nombre' => 'Craft', 'fecha_inicio' => '2024-06-01', 'fecha_fin' => '2024-07-31'];
-			$campanas[] = ['grupo' => 'lipton', 'nombre' => 'Lipton', 'fecha_inicio' => '2024-06-01', 'fecha_fin' => '2024-07-31'];
-			$campanas[] = ['grupo' => 'sabores', 'nombre' => 'Sabores', 'fecha_inicio' => '2024-06-01', 'fecha_fin' => '2024-07-31'];
-			$campanas[] = ['grupo' => 'tirate', 'nombre' => 'Tírate al agua', 'fecha_inicio' => '2024-06-01', 'fecha_fin' => '2024-07-31'];
+			$concurso = new concurso();
+			$concursos = $concurso->getConcursosVigentesHoy(); // <- ahora viene array de objetos
+
+			$campanas = [];
+
+			if (!empty($concursos)) {
+				foreach ($concursos as $c) {
+					$campanas[] = [
+						'grupo'        => $c->conc_grupo,
+						'nombre'       => $c->conc_nombre,
+						'fecha_inicio' => $c->conc_inicio,
+						'fecha_fin'    => $c->conc_termino,
+					];
+				}
+			}
+
 			return $campanas;
 		}
+
+
+
+		public function getCampanasInactivas(){
+			$concurso = new concurso();
+			$concursos = $concurso->getConcursoInactivo(); // <- ahora viene array de objetos
+
+			$campanas = [];
+
+			if (!empty($concursos)) {
+				foreach ($concursos as $c) {
+					$campanas[] = [
+						'grupo'        => $c->conc_grupo,
+						'nombre'       => $c->conc_nombre,
+						'fecha_inicio' => $c->conc_inicio,
+						'fecha_fin'    => $c->conc_termino,
+					];
+				}
+			}
+
+			return $campanas;
+		}
+
 
 		public function getConsolidadoPorConcurso($desde = '', $hasta = ''){
 
@@ -32,6 +68,11 @@
 			if(!empty($hasta)){
 				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
 			}
+
+			$grupos = array_column($this->getCampanas(), 'grupo');
+			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+			$whereGrupos = "AND I.grupo IN ($inGrupos)";
+			
 			$sql = "SELECT 
 						I.grupo,
 						COUNT(*) AS ingresos,
@@ -43,6 +84,7 @@
 						1 = 1
 						$whereDesde
 						$whereHasta
+						$whereGrupos
 					GROUP BY 
 						I.grupo
 					ORDER BY 
@@ -69,6 +111,11 @@
 			if(!empty($hasta)){
 				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
 			}
+
+			$grupos = array_column($this->getCampanas(), 'grupo');
+			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+			$whereGrupos = "AND I.grupo IN ($inGrupos)";
+
 			$sql = "SELECT 
 						Z.zona_codigo,
 						COUNT(*) AS ingresos,
@@ -79,6 +126,7 @@
 						1 = 1 
 						$whereDesde 
 						$whereHasta 
+						$whereGrupos
 					GROUP BY 
 						Z.zona_codigo
 					ORDER BY 
@@ -105,6 +153,11 @@
 			if(!empty($hasta)){
 				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
 			}
+
+			$grupos = array_column($this->getCampanas(), 'grupo');
+			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+			$whereGrupos = "AND I.grupo IN ($inGrupos)";
+
 			$sql = "SELECT 
 						D.dist_codigo,
 						COUNT(*) AS ingresos,
@@ -115,6 +168,7 @@
 						1 = 1 
 						$whereDesde 
 						$whereHasta 
+						$whereGrupos
 					GROUP BY 
 						D.dist_codigo
 					ORDER BY 
@@ -141,6 +195,10 @@
 			if(!empty($hasta)){
 				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
 			}
+			$grupos = array_column($this->getCampanas(), 'grupo');
+			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+			$whereGrupos = "AND I.grupo IN ($inGrupos)";
+
 			$sql = "SELECT 
 						I.ingr_fecha,
 						COUNT(*) AS ingresos,
@@ -151,6 +209,7 @@
 						1 = 1 
 						$whereDesde 
 						$whereHasta
+						$whereGrupos
 					GROUP BY 
 						I.ingr_fecha
 					ORDER BY 
@@ -159,6 +218,24 @@
 		}
 
 		public function getIngresosConsolidado(){
+			$desde = $_SESSION['FECHA_DESDE'] ?? null;
+			$hasta = $_SESSION['FECHA_HASTA'] ?? null;
+
+			// WHERE fechas para tabla I
+			$whereDesde = !empty($desde) ? "AND I.ingr_fecha >= '$desde' " : '';
+			$whereHasta = !empty($hasta) ? "AND I.ingr_fecha <= '$hasta' " : '';
+
+			// WHERE fechas para subquery I2 (IMPORTANTE)
+			$whereDesdeI2 = !empty($desde) ? "AND I2.ingr_fecha >= '$desde' " : '';
+			$whereHastaI2 = !empty($hasta) ? "AND I2.ingr_fecha <= '$hasta' " : '';
+
+			// Limitar a grupos válidos (opcional, si quieres acotar a los definidos en getCampanas)
+			$grupos = array_column($this->getCampanas(), 'grupo');
+			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+			$whereGrupos   = "AND I.grupo IN ($inGrupos)";
+			$whereGruposI2 = "AND I2.grupo IN ($inGrupos)";
+			
+
 			$sql = "SELECT 
 						I.cliente_id AS id,
 						M.nombre,
@@ -172,6 +249,9 @@
 							SELECT COUNT(*) 
 							FROM ingreso I2 
 							WHERE I2.grupo = I.grupo
+								$whereDesdeI2
+								$whereHastaI2
+								$whereGruposI2
 						) AS ingresos
 					FROM ingreso I 
 						INNER JOIN master M ON (I.cliente_id = M.id)
@@ -179,6 +259,9 @@
 						LEFT JOIN distrito D ON (D.distrito_id = I.distrito_id)
 					WHERE 
 						1 = 1
+						$whereDesde
+                  		$whereHasta
+                  		$whereGrupos
 					ORDER BY
 						I.ingr_fecha DESC, 
 						I.ingr_hora DESC";
@@ -191,6 +274,27 @@
 			if(!empty($grupo)){
 				$whereGrupo = "AND I.grupo = '$grupo' ";
 			}
+
+			if(!empty($_SESSION['FECHA_DESDE'])){
+				$desde = $_SESSION['FECHA_DESDE'];
+			}
+			if(!empty($_SESSION['FECHA_HASTA'])){
+				$hasta = $_SESSION['FECHA_HASTA'];
+			}
+
+			$whereDesde = '';
+			$whereHasta = '';
+
+			if(!empty($desde)){
+				$whereDesde = "AND I.ingr_fecha >= '$desde' ";
+			}
+			if(!empty($hasta)){
+				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
+			}
+			$grupos = array_column($this->getCampanas(), 'grupo');
+			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+			$whereGrupos = "AND I.grupo IN ($inGrupos)";
+
 			$sql = "SELECT 
 						I.cliente_id AS id,
 						M.nombre,
@@ -211,6 +315,9 @@
 					WHERE 
 						1 = 1
 						$whereGrupo 
+						$whereDesde
+						$whereHasta
+						$whereGrupos
 					ORDER BY
 						I.ingr_fecha DESC, 
 						I.ingr_hora DESC";

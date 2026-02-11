@@ -9,6 +9,7 @@ include_once(INCLUDE_PATH.'class/class.inputfilter.php');
 include_once(INCLUDE_PATH.'class/class.informe.php');
 
 // Obtén tus datos
+session_start();
 $objInforme = new informe();
 $elements   = $objInforme->getIngresosConsolidado(); // ajusta si usas $get
 $filename = date('Ymd') . '-consolidado-ingresos.xls';

@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "redbull";
+  $table = "heineken";
   $objIngreso = new ingreso();
   $objRegistro = new registro();
   if(isset($get['id']) && is_numeric($get['id'])){
@@ -58,7 +58,7 @@
       <div class="container tablitas">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="assets/img/redbull-titulo.png" class="img-fluid minions" alt="Minions">
+            <img src="assets/img/<?= $table; ?>-titulo.png" class="img-fluid minions" alt="Minions">
           </div>
         </div>
         <div class="row">
@@ -74,49 +74,27 @@
                 <thead>
                   <tr>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro">
+                        <div class="titulo bg-verde-oscuro borde">
                           <div class="space-10"></div>
-                          ID
+                          <div class="text-small">ID</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro">
+                        <div class="titulo bg-verde-oscuro borde">
                           <div class="space-10"></div>
-                          VENDEDOR
+                          <div class="text-small">VENDEDOR</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-amarillo borde" style="height: 60px;padding-top: 0px;"> 
-                          <div class="titulo">
+                        <div class="titulo bg-amarillo borde" style="height: 60px;padding-top: 0px;"> 
                             <div class="space-20"></div>
                             <div class="text-small">INGRESOS</div>
-                          </div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-celeste borde" style="height: 60px;padding-top: 0px;"> 
-                          <div class="titulo">
-                            <div class="space-10"></div>
-                            <div class="text-small">COB 250 REG, SF O ZERO</div>
-                          </div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="bg-redbull-rojo borde" style="height: 60px;padding-top: 0px;"> 
-                          <div class="titulo">
-                            <div class="space-10"></div>
-                            <div class="text-small">COB EDITIONS (3+)</div>
-                          </div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="bg-redbull-azul borde" style="height: 60px;padding-top: 10px;">
-
-                          <div class="titulo">
-                            <div class="space-10"></div>
-                            <div class="text-small">CUMP TOTAL</div>
-                          </div>
-
+                        <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
+                            <div class="space-15"></div>
+                            <div class="text-small">CUMP<br>VOLUMEN</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
@@ -136,14 +114,11 @@
                       $ingresos = $objIngreso->getIngresosByClienteId($registro->id);
                     ?>
                     <tr>
-                      <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
-                      <td width="200" class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
-                      <td width="100" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
-                      <td width="100" class="txt-redbull-celeste"><?= $registro->COB_250; ?></td>
-                      <td width="100" class="txt-redbull-rojo"><?= $registro->COB_EDITIONS; ?></td>
-                      <td width="100" class="txt-redbull-azul"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
-                      <td width="120"><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
-                    
+                      <td width="50" class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
+                      <td width="250" class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
+                      <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
+                      <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_VOLUMEN; ?></td>
+                      <td width="150"><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
                     </tr>
                     <?php 
                       $totIngresos += $ingresos;
@@ -152,10 +127,9 @@
                     <?php if($total){ ?>
                     <tr class="transparent">
                       <td colspan="2" class="text-start bg-verde-oscuro">Total General Distrito</td>
-                      <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
-                      <td class="bg-redbull-celeste"><?= $total->COB_250; ?></td>
-                      <td class="bg-redbull-rojo"><?= $total->COB_EDITIONS; ?></td>
-                      <td class="bg-redbull-azul"><?= $total->CUMPLIMIENTO_TOTAL; ?></td>
+                      <td class="bg-amarillo"><?= $totIngresos; ?></td>
+                      <td class="bg-azul"><?= $total->CUMPLIMIENTO_VOLUMEN; ?></td>
+                      <td class="bg-rojo">&nbsp;</td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -174,46 +148,32 @@
                 <thead>
                   <tr>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro" style="height: 60px;">
+                        <div class="titulo bg-verde-oscuro borde" style="height: 60px;">
                           <div class="space-15"></div>
-                          ID
+                          <div class="text-small">ID</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro" style="height: 60px;">
+                        <div class="titulo bg-verde-oscuro borde" style="height: 60px;">
                           <div class="space-15"></div>
-                          VENDEDOR
+                          <div class="text-small">VENDEDOR</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-amarillo borde" style="height: 60px;"> 
-                          <div class="space-20"></div>
+                        <div class="titulo bg-amarillo borde" style="height: 60px;"> 
+                          <div class="space-15"></div>
                           <div class="text-small">INGRESOS</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-celeste borde" style="height: 60px;">
-                          <div class="titulo">
-                            <div class="space-5"></div>
-                            <div class="text-small">COB 250 REG, SF O ZERO</div>
-                          </div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="bg-redbull-rojo borde" style="height: 60px;">
-                          <div class="space-5"></div>
-                          <div class="text-small">COB EDITIONS (3+)</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent" >
-                        <div class="bg-redbull-azul borde" style="height: 60px;"> 
-                          <div class="space-5"></div>
-                          <div class="text-small">CUMP TOTAL</div>
+                        <div class="titulo bg-azul borde" style="height: 60px;">
+                            <div class="space-15"></div>
+                            <div class="text-small">CUMP VOLUMEN</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent" >
                         <div class="titulo bg-rojo borde" style="height: 60px;"> 
-                          <div class="space-5"></div>
+                          <div class="space-15"></div>
                           <div class="text-small">FALTANTES</div>
                         </div>
                       </th>
@@ -229,12 +189,9 @@
                     <tr>
                       <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                       <td class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
-                      <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
-                      <td class="txt-redbull-celeste"><?= $registro->COB_250; ?></td>
-                      <td class="txt-redbull-rojo"><?= $registro->COB_EDITIONS; ?></td>
-                      <td class="txt-redbull-azul"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
+                      <td class="txt-amarillo"><?= $ingresos; ?></td>
+                      <td class="txt-azul"><?= $registro->CUMPLIMIENTO_VOLUMEN; ?></td>
                       <td ><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
-                    
                     </tr>
                     <?php 
                       $totIngresos += $ingresos;
@@ -242,22 +199,14 @@
                     
                     <?php if($total){ ?>
                     <tr class="transparent">
-                      <td class="transparent" style="border: none;"></td>
-                      <td class="text-start bg-verde-oscuro">Total General</td>
-                      <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
-                      <td class="bg-redbull-celeste"><?= $total->COB_250; ?></td>
-                      <td class="bg-redbull-rojo"><?= $total->COB_EDITIONS; ?></td>
-                      <td class="bg-redbull-azul"><?= $total->CUMPLIMIENTO_TOTAL; ?></td>
-                      <td class="bg-rojo"><!-- <?= $total->CUANTOS_FALTAN; ?>--></td>
+                      <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
+                      <td class="bg-amarillo"><?= $totIngresos; ?></td>
+                      <td class="bg-azul"><?= $total->CUMPLIMIENTO_VOLUMEN; ?></td>
+                      <td class="bg-rojo">&nbsp;</td>
                     </tr>
                     <?php } ?>
                     <tr class="transparent">
-                      <td class="transparent" style="border: none;"></td>
-                      <td class="transparent" style="border: none;"></td>
-                      <td class="transparent" style="border: none;"></td>
-                      <td class="transparent" style="border: none;"></td>
-                      <td class="transparent" style="border: none;"></td>
-                      <td class="transparent" style="border: none;"></td>
+                      <td colspan="7" class="transparent" style="border: none;"></td>
                       <td class="bg-rojo">
                         <div class="text-small">
                           Haz click y revisa el estado de tus clientes
@@ -274,7 +223,7 @@
 
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="premios.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="#" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
             <?php //include("include-derecha.php"); ?>

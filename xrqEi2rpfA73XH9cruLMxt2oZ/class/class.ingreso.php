@@ -84,7 +84,9 @@
 					WHERE 
 						I.zona_id = $zona_id 
 						AND I.distrito_id = $distrito_id 
-						AND I.grupo = '$table'";
+						AND I.grupo = '$table' 
+						AND YEAR(I.ingr_fecha) = YEAR(CURDATE())
+						AND MONTH(I.ingr_fecha) = MONTH(CURDATE())";
 			return (int) DB::getOne( $sql );
 		}
 
@@ -102,7 +104,9 @@
 					WHERE 
 						I.zona_id = $zona_id 
 						AND I.distrito_id = $distrito_id 
-						AND I.grupo = '$table'";
+						AND I.grupo = '$table'
+						AND YEAR(I.ingr_fecha) = YEAR(CURDATE())
+						AND MONTH(I.ingr_fecha) = MONTH(CURDATE())";
 			$elements = DB::getAll( $sql );
 			return count($elements);
 		}
@@ -119,7 +123,9 @@
 						INNER JOIN master M ON (M.id = R.id)
 					WHERE 
 						I.cliente_id = $cliente_id
-						AND I.grupo = '$table'";
+						AND I.grupo = '$table'
+						AND YEAR(I.ingr_fecha) = YEAR(CURDATE())
+						AND MONTH(I.ingr_fecha) = MONTH(CURDATE())";
 			return (int) DB::getOne( $sql );
 		}
 
@@ -137,7 +143,9 @@
 						INNER JOIN master M ON (M.id = R.id)
 					WHERE 
 						I.supervisor_id = $supervisor_id
-						AND I.grupo = '$table'";
+						AND I.grupo = '$table'
+						AND YEAR(I.ingr_fecha) = YEAR(CURDATE())
+						AND MONTH(I.ingr_fecha) = MONTH(CURDATE())";
 			return (int) DB::getOne( $sql );
 		}
 	}

@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "redbull";
+  $table = "mas";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
@@ -55,13 +55,10 @@
       <div class="container tablitas">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="assets/img/redbull-titulo.png" class="img-fluid minions" alt="Minions">
+            <img src="assets/img/<?= $table; ?>-titulo.png" class="img-fluid minions" alt="Minions">
           </div>
         </div>
         <div class="row">
-          <div class="col-12 col-lg-2 text-center is-desktop">
-            <?php //include("include-izquierda.php"); ?>
-          </div>
           <div class="col-12 text-center">
             <!-- <img src="assets/img/cliente-rojo.png" class="img-fluid cliente-rojo" alt="Cliente Rojo"> -->
             
@@ -87,39 +84,34 @@
               <table class="table table-spacing mx-auto tableDetalles pt-2 pb-3">
                 <thead>
                   <tr style="vertical-align: middle !important;">
-                      <th scope="col" class="bg-verde-oscuro" style="height: 30px;">ID</th>
-                      <th scope="col" class="bg-verde-oscuro">Sector</th>
-                      <th scope="col" class="bg-verde-oscuro">Razón Social</th>
-                      <th scope="col" class="bg-redbull-celeste borde text-center">COB 250 REG, SF O ZERO</th>
-                      <th scope="col" class="bg-redbull-azul borde text-center">NUMERO DE EDITIONS</th>
+                      <th scope="col" class="bg-verde-oscuro borde" style="height: 30px;">ID</th>
+                      <th scope="col" class="bg-verde-oscuro borde">Sector</th>
+                      <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
+                      <th scope="col" class="bg-amarillo borde text-center">Con Gas</th>
+                      <th scope="col" class="bg-verde-claro borde text-center">Sin Gas</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                      $class_250 = ($detalle->COB_250 == 'SI') ? 'txt-redbull-celeste' : 'txt-redbull-rojo';
-                      $class_003 = ($detalle->COB_EDITIONS == 'SI') ? 'txt-redbull-azul' : 'txt-redbull-rojo';
+                      $class_con = ($detalle->CON_GAS == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_sin = ($detalle->SIN_GAS == 'SI') ? 'txt-azul' : 'txt-azul';
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <td class="<?= $class_250; ?>"><?= $detalle->COB_250; ?></td>
-                      <td class="<?= $class_003; ?>"><?= $detalle->COB_EDITIONS; ?></td>
+                      <td class="<?= $class_con; ?>"><?= $detalle->CON_GAS; ?></td>
+                      <td class="<?= $class_sin; ?>"><?= $detalle->SIN_GAS; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
               </table>
             </div>
 
-            
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="premios.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/mas.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
-          <div class="col-12 col-lg-2 text-center is-desktop">
-            <?php //include("include-derecha.php"); ?>
-          </div>
-          
         </div>
       
       

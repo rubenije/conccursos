@@ -3,7 +3,7 @@
 	date_default_timezone_set("Chile/Continental");
 	$time = date('His');
 
-	error_reporting(0);
+	//error_reporting(0);
 
 	if (!defined('INCLUDE_PATH')) {
 	  define('INCLUDE_PATH', 'xrqEi2rpfA73XH9cruLMxt2oZ/');
@@ -12,48 +12,50 @@
 	include_once(INCLUDE_PATH . 'class/class.inputfilter.php');
 	include_once(INCLUDE_PATH . 'class/inc.globals.php');
 	include_once(INCLUDE_PATH . 'class/class.csv.php');
-	include_once(INCLUDE_PATH . 'class/class.registro.php');
+	include_once(INCLUDE_PATH . 'class/class.detalle.php');
 
 	include_once(INCLUDE_PATH . 'class/class.resumen.php');
 	
 
 	$resumen['resu_inicio'] = date('Y-m-d H:i:s');
 	
-	$objRegistro 	= new registro();
+	$objDetalle 	= new detalle();
 	$objResumen 	= new resumen();
-	$table 			= "redbull";
+	$table 			= "aguas";
 
 	$date = date('Ymd');
-	//$file_csv 	= 'RETORNABLE_'.$date.'.csv';
-	$file_csv 	= 'RED_BULL.csv';
+	//$file_csv 	= 'MINIONS_ENERGIA_DETALLE_'.$date.'.csv';
+	$file_csv 	= 'AGUAS_DETALLE.csv';
 
 	
 	if(file_exists($file_csv)){
 		$csv 		= new CsvImporter($file_csv,';', true);
 		$datas 		= $csv->get();
+
 		$count = 0;
 
 		if(is_array($datas) && !empty($datas)){
-			
-			$objRegistro->deleteRegistroByTable($table);
-
-
+			$objDetalle->truncateDetalleByTable($table);
+			//sleep(1000);
 			foreach ($datas as $data) { 
-				$post['tipo'] 					= $data['TIPO'] ?? "";
-				$post['id'] 					= $data['ID'] ?? "";
-				$post['nombre'] 				= $data['NOMBRE'] ?? "";
-				$post['canal'] 					= $data['CANAL'] ?? "";
 
-				$post['COB_250'] 				= $data['CUMPLIMIENTO_COB_250_TRADICIONAL'] ?? "";
-				$post['COB_EDITIONS'] 			= $data['CUMPLIMIENTO_COB_3_EDITIONS'] ?? "";
-				$post['CUMPLIMIENTO_TOTAL'] 	= $data['CUMP_TOTAL'] ?? "";
+				$post['vendedor_id'] 		= $data['ID_VENDEDOR'] ?? "";
+				$post['id'] 				= $data['ID_CLIENTE'] ?? "";
+				$post['sector'] 			= $data['SECTOR'] ?? "";
+				$post['razon'] 				= $data['RAZON_SOCIAL'] ?? "";
+
+				$post['CATUN_1_6'] 			= $data['CATUN_1_6'] ?? "";
+				$post['CATUN_2_5'] 		    = $data['CATUN_2_5'] ?? "";
+				$post['MANAN_3'] 			= $data['MANAN_3'] ?? "";
+				$post['MANAN_1_5'] 		    = $data['MANAN_1_5'] ?? "";
+				
 				
 				
 				if( !empty($post['id']) ){
-					$objRegistro->saveRegistroByTable($table, $post);
+					$objDetalle->saveDetalleByTable($table, $post);
 					$count++;
 				}
-			}	
+            }	
 		}
 		$resumen['resu_registros'] 	= $count;
 		$resumen['resu_termino'] 	= date('Y-m-d H:i:s');

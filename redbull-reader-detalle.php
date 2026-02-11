@@ -38,14 +38,13 @@
 			$objDetalle->truncateDetalleByTable($table);
 			//sleep(1000);
 			foreach ($datas as $data) { 
-
 				$post['vendedor_id'] 			= $data['ID_VENDEDOR'] ?? "";
 				$post['id'] 					= $data['ID_CLIENTE'] ?? "";
 				$post['sector'] 				= $data['SECTOR'] ?? "";
 				$post['razon'] 					= $data['RAZON_SOCIAL'] ?? "";
 
-				$post['cob_reg_250'] 			= $data['COB_REG_250'] ?? "";
-				$post['cob_3_skus'] 		    = $data['COB_3_SKUS'] ?? "";
+				$post['COB_250'] 				= $data['COB_250_TRADICIONAL'] ?? "";
+				$post['COB_EDITIONS'] 		    = $data['COB_EDITIONS'] ?? "";
 				
 				if( !empty($post['id']) ){
 					$objDetalle->saveDetalleByTable($table, $post);

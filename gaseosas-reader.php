@@ -21,12 +21,11 @@
 	
 	$objRegistro 	= new registro();
 	$objResumen 	= new resumen();
-	$table 			= "redbull";
+	$table 			= "gatorade";
 
 	$date = date('Ymd');
 	//$file_csv 	= 'RETORNABLE_'.$date.'.csv';
-	$file_csv 	= 'RED_BULL.csv';
-
+	$file_csv 	= 'GATORADE.csv';
 	
 	if(file_exists($file_csv)){
 		$csv 		= new CsvImporter($file_csv,';', true);
@@ -39,14 +38,18 @@
 
 
 			foreach ($datas as $data) { 
-				$post['tipo'] 					= $data['TIPO'] ?? "";
-				$post['id'] 					= $data['ID'] ?? "";
-				$post['nombre'] 				= $data['NOMBRE'] ?? "";
-				$post['canal'] 					= $data['CANAL'] ?? "";
 
-				$post['COB_250'] 				= $data['CUMPLIMIENTO_COB_250_TRADICIONAL'] ?? "";
-				$post['COB_EDITIONS'] 			= $data['CUMPLIMIENTO_COB_3_EDITIONS'] ?? "";
-				$post['CUMPLIMIENTO_TOTAL'] 	= $data['CUMP_TOTAL'] ?? "";
+				$post['tipo'] 						= $data['TIPO'] ?? "";
+				$post['id'] 						= $data['ID'] ?? "";
+				$post['nombre'] 					= $data['NOMBRE'] ?? "";
+				$post['canal'] 						= $data['CANAL'] ?? "";
+
+				$post['CUMPLIMIENTO_3_SKU'] 		= $data['CUMPLIMIENTO_3_SKU'] ?? "";
+				$post['CUMPLIMIENTO_COB_GATORADE'] 	= $data['CUMPLIMIENTO_COB_GATORADE'] ?? "";
+				$post['CUMP_VOL'] 					= $data['CUMP_VOL'] ?? "";
+				$post['CUMP_VOL_750'] 				= $data['CUMP_VOL_750'] ?? "";
+				$post['CUPONES'] 					= $data['CUPONES'] ?? "-";
+				
 				
 				
 				if( !empty($post['id']) ){

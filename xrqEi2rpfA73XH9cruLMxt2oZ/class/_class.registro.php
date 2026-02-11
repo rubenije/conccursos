@@ -247,46 +247,6 @@
 					$sql.= "('$tipo', $id, '$nombre', '$canal', '$COB_250', '$COB_EDITIONS', '$CUMPLIMIENTO_TOTAL', '$fecha')";
 				}
 			}
-
-			if($table == 'mas' ){
-				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
-				if (DB::getOne($sql)) {
-					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_G1 = '$CUMPLIMIENTO_G1', CUANTOS_FALTAN_G1 = '$CUANTOS_FALTAN_G1', CUMPLIMIENTO_G2 = '$CUMPLIMIENTO_G2', CUANTOS_FALTAN_G2 = '$CUANTOS_FALTAN_G2', CUMP_TOTAL = '$CUMP_TOTAL', fecha = '$fecha' WHERE id = $id";
-				} else {
-					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_G1, CUANTOS_FALTAN_G1, CUMPLIMIENTO_G2, CUANTOS_FALTAN_G2, CUMP_TOTAL, fecha) VALUES ";
-					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_G1', '$CUANTOS_FALTAN_G1', '$CUMPLIMIENTO_G2', '$CUANTOS_FALTAN_G2', '$CUMP_TOTAL', '$fecha')";
-				}
-			}
-
-			if($table == 'gatorade' ){
-				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
-				if (DB::getOne($sql)) {
-					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_3_SKU = '$CUMPLIMIENTO_3_SKU', CUMPLIMIENTO_COB_GATORADE = '$CUMPLIMIENTO_COB_GATORADE', CUMP_VOL = '$CUMP_VOL', CUMP_VOL_750 = '$CUMP_VOL_750', CUPONES = '$CUPONES', fecha = '$fecha' WHERE id = $id";
-				} else {
-					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_3_SKU, CUMPLIMIENTO_COB_GATORADE, CUMP_VOL, CUMP_VOL_750, CUPONES, fecha) VALUES ";
-					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_3_SKU', '$CUMPLIMIENTO_COB_GATORADE', '$CUMP_VOL', '$CUMP_VOL_750', '$CUPONES', '$fecha')";
-				}
-			}
-
-			if($table == 'aguas' ){
-				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
-				if (DB::getOne($sql)) {
-					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_DUO = '$CUMPLIMIENTO_DUO', FALTANTES_DUO = '$FALTANTES_DUO', CUMPLIMIENTO_MANANTIAL = '$CUMPLIMIENTO_MANANTIAL', FALTANTES_MANANTIAL = '$FALTANTES_MANANTIAL', CUMP_TOTAL = '$CUMP_TOTAL', fecha = '$fecha' WHERE id = $id";
-				} else {
-					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_DUO, FALTANTES_DUO, CUMPLIMIENTO_MANANTIAL, FALTANTES_MANANTIAL, CUMP_TOTAL, fecha) VALUES ";
-					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_DUO', '$FALTANTES_DUO', '$CUMPLIMIENTO_MANANTIAL', '$FALTANTES_MANANTIAL', '$CUMP_TOTAL', '$fecha')";
-				}
-			}
-
-			if($table == 'heineken' ){
-				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
-				if (DB::getOne($sql)) {
-					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_VOLUMEN = '$CUMPLIMIENTO_VOLUMEN', CUMP_TOTAL = '$CUMP_TOTAL', fecha = '$fecha' WHERE id = $id";
-				} else {
-					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_VOLUMEN, CUMP_TOTAL, fecha) VALUES ";
-					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_VOLUMEN', '$CUMP_TOTAL', '$fecha')";
-				}
-			}
 			
 			return DB::query($sql);
 	    }

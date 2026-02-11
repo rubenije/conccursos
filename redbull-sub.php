@@ -15,9 +15,9 @@
   $table = "redbull";
   $objRegistro = new registro();
   $z_norte      = $objRegistro->getZonaByCodigo('NORTE');
-  $z_costa      = $objRegistro->getZonaByCodigo('COSTA');
+  $z_costa      = $objRegistro->getZonaByCodigo('CENTRO COSTA');
   $z_santiago   = $objRegistro->getZonaByCodigo('SANTIAGO');
-  $z_centro_sur = $objRegistro->getZonaByCodigo('CENTRO_SUR');
+  $z_centro_sur = $objRegistro->getZonaByCodigo('CENTRO SUR');
   $z_sur        = $objRegistro->getZonaByCodigo('SUR');
   $totales      = $objRegistro->getTotalesByTable($table);
 
@@ -90,7 +90,7 @@
                     <div class="bg-redbull-celeste borde">
                       <div class="titulo">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMP 250 REGULAR</div>
+                        <div class="text-small">COB 250 REG, SF O ZERO</div>
                       </div>
                     </div>
                   </th>
@@ -98,7 +98,7 @@
                     <div class="bg-redbull-rojo borde">
                       <div class="titulo">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMP COB 3 SKU</div>
+                        <div class="text-small">COB EDITIONS (3+)</div>
                       </div>
                     </div>
                   </th>
@@ -136,18 +136,18 @@
                     </td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -183,18 +183,18 @@
                     </td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -228,9 +228,9 @@
                     </td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -238,9 +238,9 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -273,18 +273,18 @@
                     </td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -319,18 +319,18 @@
                     </td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 120px;" class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td style="width: 120px;" class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -346,9 +346,9 @@
                     <td style="width: 180px;" class="text-start bg-verde-oscuro">Total General</td>
                     <td style="width: 120px;" class="bg-redbull-amarillo"><?= $totFinalIngresos; ?></td>
                     <td style="width: 120px;" class="bg-redbull-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td style="width: 120px;" class="bg-redbull-celeste"><?= $totales->cumplimiento_250; ?></td>
-                    <td style="width: 120px;" class="bg-redbull-rojo"><?= $totales->cumplimiento_3_skus; ?></td>
-                    <td style="width: 120px;" class="bg-redbull-azul"><?= $totales->cumplimiento_total; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-celeste"><?= $totales->COB_250; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-rojo"><?= $totales->COB_EDITIONS; ?></td>
+                    <td style="width: 120px;" class="bg-redbull-azul"><?= $totales->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -379,12 +379,12 @@
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-redbull-celeste borde">
-                      <div class="text-small">CUMP 250</div>
+                      <div class="text-small">COB 250 REG, SF O ZERO</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-redbull-rojo borde">
-                      <div class="text-small">CUMP COB 3 SKU</div>
+                      <div class="text-small">COB EDITIONS (3+)</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
@@ -418,18 +418,18 @@
                     </td>
                     <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
@@ -460,18 +460,18 @@
                     </td>
                     <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -501,9 +501,9 @@
                     </td>
                     <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -511,9 +511,9 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -542,18 +542,18 @@
                     </td>
                     <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -584,18 +584,18 @@
                     </td>
                     <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-redbull-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-redbull-celeste"><?= $distrito->cumplimiento_250; ?></td>
-                    <td class="txt-redbull-rojo"><?= $distrito->cumplimiento_3_skus; ?></td>
-                    <td class="txt-redbull-azul"><?= $distrito->cumplimiento_total; ?></td>
+                    <td class="txt-redbull-celeste"><?= $distrito->COB_250; ?></td>
+                    <td class="txt-redbull-rojo"><?= $distrito->COB_EDITIONS; ?></td>
+                    <td class="txt-redbull-azul"><?= $distrito->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $subtotal->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $subtotal->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $subtotal->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $subtotal->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $subtotal->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $subtotal->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -607,9 +607,9 @@
                     <td class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-redbull-amarillo"><?= $totFinalIngresos; ?></td>
                     <td class="bg-redbull-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $totales->cumplimiento_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $totales->cumplimiento_3_skus; ?></td>
-                    <td class="bg-redbull-azul"><?= $totales->cumplimiento_total; ?></td>
+                    <td class="bg-redbull-celeste"><?= $totales->COB_250; ?></td>
+                    <td class="bg-redbull-rojo"><?= $totales->COB_EDITIONS; ?></td>
+                    <td class="bg-redbull-azul"><?= $totales->CUMPLIMIENTO_TOTAL; ?></td>
                   </tr>
               </tbody>
             </table>

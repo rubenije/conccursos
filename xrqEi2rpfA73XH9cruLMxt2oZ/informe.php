@@ -7,6 +7,7 @@ if (!defined('INCLUDE_PATH')) {
 require_once(INCLUDE_PATH.'class/class.inputfilter.php');
 require_once(INCLUDE_PATH.'class/inc.globals.php');
 require_once(INCLUDE_PATH.'class/class.informe.php');
+require_once(INCLUDE_PATH.'class/class.concurso.php');
 
 session_start();
 
@@ -22,7 +23,7 @@ if($opc == 'setFechas'){
     unset($_SESSION['FECHA_HASTA']);
   }
 }
-
+$titleFecha = '';
 if(!empty($_SESSION['FECHA_DESDE']) && !empty($_SESSION['FECHA_HASTA'])){
     $titleFecha = "Desde:".sql2date($_SESSION['FECHA_DESDE'])." Hasta:".sql2date($_SESSION['FECHA_HASTA']);
 }
@@ -51,6 +52,7 @@ foreach ($concursos as $row) {
   $totalIngresos += (int)$row->ingresos;
   $totalUnicos   += (int)$row->unicos;
 }
+$grupoActual = isset($get['grupo']) ? $get['grupo'] : ''; 
 
 ?>
 <!doctype html>
@@ -80,11 +82,16 @@ foreach ($concursos as $row) {
                   <li class="nav-item">
                     <a class="nav-link active" href="informe.php">INICIO</a>
                   </li>
-                  <?php foreach($campanas as $campana){ ?>
+                  <?php foreach($campanas as $campana){ 
+                    $activo = ($campana['grupo'] === $grupoActual) ? 'active' : '';
+                    ?>
                     <li class="nav-item">
-                    <a class="nav-link active" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
+                    <a class="nav-link <?= $activo ?>" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
                   </li>
                   <?php } ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="informe-historico.php">HISTORICO</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -98,6 +105,10 @@ foreach ($concursos as $row) {
       <div class="row mt-4">
         <div class="col-12 col-md-10 m-auto">
           <div class="row g-3">
+            <div class="col-md-12 text-end">
+              <a href="xls-consolidado.php" class="btn btn-success mt-2">Exportar todos los ingresos</a>
+            </div>
+            
             <div class="col-md-3">
               <div class="card text-center shadow-sm">
                 <div class="card-body">
@@ -123,16 +134,19 @@ foreach ($concursos as $row) {
                     <div class="col-12 col-sm-4">
                       <label for="desde" class="form-label mb-1">Desde</label>
                       <input type="date" class="form-control form-control-sm" id="desde" name="desde"
-                            value="<?= htmlspecialchars($desde ?? '', ENT_QUOTES,'UTF-8') ?>">
-                    </div>
-                    <div class="col-12 col-sm-4">
+                                value="<?= htmlspecialchars($_SESSION['FECHA_DESDE'] ?? '', ENT_QUOTES,'UTF-8') ?>">
+                        </div>
+                        <div class="col-12 col-sm-4">
                       <label for="hasta" class="form-label mb-1">Hasta</label>
                       <input type="date" class="form-control form-control-sm" id="hasta" name="hasta"
-                            value="<?= htmlspecialchars($hasta ?? '', ENT_QUOTES,'UTF-8') ?>">
+                            value="<?= htmlspecialchars($_SESSION['FECHA_HASTA'] ?? '', ENT_QUOTES,'UTF-8') ?>">
                     </div>
                     <div class="col-12 col-sm-4 d-flex align-items-end gap-2">
                       <button type="submit" class="btn btn-primary btn-sm w-50">Filtrar</button>
-                      <a class="btn btn-outline-secondary btn-sm w-50" href="informe.php">Limpiar</a>
+                      <button type="button" class="btn btn-outline-secondary btn-sm w-50"
+                              onclick="this.form.desde.value=''; this.form.hasta.value=''; this.form.submit();">
+                        Limpiar
+                      </button>
                     </div>
                   </form>
                   
@@ -143,11 +157,9 @@ foreach ($concursos as $row) {
               
             </div>
 
-            <!-- 
-            <div class="col-md-3 text-end">
-              <a href="xls-consolidado.php" class="btn btn-success mt-2">Exportar todos los ingresos</a>
-            </div>
-            -->
+            
+            
+            
           </div>
         </div>
       </div>

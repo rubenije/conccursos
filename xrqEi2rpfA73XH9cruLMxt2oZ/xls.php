@@ -9,6 +9,7 @@ include_once(INCLUDE_PATH.'class/class.inputfilter.php');
 include_once(INCLUDE_PATH.'class/class.informe.php');
 
 // Obtén tus datos
+session_start();
 $objInforme = new informe();
 $elements   = $objInforme->getIngresosByGrupo($get['grupo']); // ajusta si usas $get
 $grupo = !empty($get['grupo']) ? $get['grupo'] : 'consolidado';

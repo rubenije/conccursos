@@ -80,18 +80,19 @@
               <div class="col-8 m-auto col-auto">
                   <div class="container">
                     <div class="row">
+                      
                       <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=tirate"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Retornables"></a>
+                        <a href="?opc=ingreso&grupo=gatorade"><img src="assets/img/btn-gatorade.png" class="img-fluid btn-minions" alt="Botón Gatorade"></a>
                       </div>
+                      
                       <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón RedBull"></a>
+                        <a href="?opc=ingreso&grupo=aguas"><img src="assets/img/btn-aguas.png" class="img-fluid btn-minions" alt="Botón AGUAS"></a>
                       </div>
+
                       <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=sabores"><img src="assets/img/btn-sabores.png" class="img-fluid btn-minions" alt="Botón Sabores"></a>
+                        <a href="?opc=ingreso&grupo=heineken"><img src="assets/img/btn-heineken.png" class="img-fluid btn-minions" alt="Botón HEINEKEN"></a>
                       </div>
-                      <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=lipton"><img src="assets/img/btn-lipton.png" class="img-fluid btn-minions" alt="Botón Lipton"></a>
-                      </div>
+                      
                     </div>
                   </div>
               </div>
@@ -112,17 +113,21 @@
               <img src="assets/img/txt-selecciona-el-concurso.png" class="img-fluid txt-selecciona-el-concurso" alt="Selecciona el concurso">
             </div>
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=tirate"><img src="assets/img/btn-tirate.png" class="img-fluid btn-minions" alt="Botón Tirate al Agua"></a>
-            </div>
-            <div class="col-12">
-              <a href="?opc=ingreso&grupo=craft"><img src="assets/img/btn-craft.png" class="img-fluid btn-minions" alt="Botón Craft"></a>
-            </div>
-            <div class="col-12">
               <a href="?opc=ingreso&grupo=sabores"><img src="assets/img/btn-sabores.png" class="img-fluid btn-minions" alt="Botón Saboress"></a>
             </div>
+            
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=lipton"><img src="assets/img/btn-lipton.png" class="img-fluid btn-minions" alt="Botón Lipton"></a>
+              <a href="?opc=ingreso&grupo=redbull"><img src="assets/img/btn-redbull.png" class="img-fluid btn-minions" alt="Botón Redbull"></a>
             </div>
+
+            <div class="col-12">
+              <a href="?opc=ingreso&grupo=gatorade"><img src="assets/img/btn-gatorade.png" class="img-fluid btn-minions" alt="Botón Gatorade"></a>
+            </div>
+            
+            <div class="col-12">
+              <a href="?opc=ingreso&grupo=aguas"><img src="assets/img/btn-aguas.png" class="img-fluid btn-minions" alt="Botón AGUAS"></a>
+            </div>
+            
           </div>
         </div>
       </div> 

@@ -107,22 +107,6 @@
 					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, COB_250, COB_EDITIONS, fecha) VALUES ";
 					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$COB_250', '$COB_EDITIONS', '$fecha')";
 				}
-				if($table == 'mas'){
-					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, CON_GAS, SIN_GAS, fecha) VALUES ";
-					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$CON_GAS', '$SIN_GAS', '$fecha')";
-				}
-				if($table == 'gatorade'){
-					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, CANTIDAD_SKU, fecha) VALUES ";
-					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$CANTIDAD_SKU', '$fecha')";
-				}
-				if($table == 'aguas'){
-					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, CATUN_1_6, CATUN_2_5, MANAN_3, MANAN_1_5, fecha) VALUES ";
-					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$CATUN_1_6', '$CATUN_2_5', '$MANAN_3', '$MANAN_1_5', '$fecha')";
-				}
-				if($table == 'heineken'){
-					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, HL_AL_DIA_MES_EN_CURSO, HL_VS_AA_AL_DIA, HL_AA_AL_DIA_MES_EN_CURSO, HL_FALTANTE_PARA_100_AA_MES_EN_CURSO, fecha) VALUES ";
-					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$HL_AL_DIA_MES_EN_CURSO', '$HL_VS_AA_AL_DIA', '$HL_AA_AL_DIA_MES_EN_CURSO', '$HL_FALTANTE_PARA_100_AA_MES_EN_CURSO', '$fecha')";
-				}
 				return DB::query($sql);
 			}
 			return false;

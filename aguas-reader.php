@@ -13,19 +13,17 @@
 	include_once(INCLUDE_PATH . 'class/inc.globals.php');
 	include_once(INCLUDE_PATH . 'class/class.csv.php');
 	include_once(INCLUDE_PATH . 'class/class.registro.php');
-
+	include_once(INCLUDE_PATH . 'class/class.detalle.php');
 	include_once(INCLUDE_PATH . 'class/class.resumen.php');
 	
-
 	$resumen['resu_inicio'] = date('Y-m-d H:i:s');
 	
 	$objRegistro 	= new registro();
 	$objResumen 	= new resumen();
-	$table 			= "redbull";
+	$table 			= "aguas";
 
 	$date = date('Ymd');
-	//$file_csv 	= 'RETORNABLE_'.$date.'.csv';
-	$file_csv 	= 'RED_BULL.csv';
+	$file_csv 	= 'AGUAS.csv';
 
 	
 	if(file_exists($file_csv)){
@@ -39,16 +37,19 @@
 
 
 			foreach ($datas as $data) { 
-				$post['tipo'] 					= $data['TIPO'] ?? "";
-				$post['id'] 					= $data['ID'] ?? "";
-				$post['nombre'] 				= $data['NOMBRE'] ?? "";
-				$post['canal'] 					= $data['CANAL'] ?? "";
 
-				$post['COB_250'] 				= $data['CUMPLIMIENTO_COB_250_TRADICIONAL'] ?? "";
-				$post['COB_EDITIONS'] 			= $data['CUMPLIMIENTO_COB_3_EDITIONS'] ?? "";
-				$post['CUMPLIMIENTO_TOTAL'] 	= $data['CUMP_TOTAL'] ?? "";
+				$post['tipo'] 						= $data['TIPO'] ?? "";
+				$post['id'] 						= $data['ID'] ?? "";
+				$post['nombre'] 					= $data['NOMBRE'] ?? "";
+				$post['canal'] 						= $data['CANAL'] ?? "";
+
+				$post['CUMPLIMIENTO_DUO'] 			= $data['CUMPLIMIENTO_DUO'] ?? "";
+				$post['FALTANTES_DUO'] 				= $data['FALTANTES_DUO'] ?? "";
+				$post['CUMPLIMIENTO_MANANTIAL'] 	= $data['CUMPLIMIENTO_MANANTIAL'] ?? "";
+				$post['FALTANTES_MANANTIAL'] 		= $data['FALTANTES_MANANTIAL'] ?? "";
+				$post['CUMP_TOTAL'] 				= $data['CUMP_TOTAL'] ?? "";
 				
-				
+
 				if( !empty($post['id']) ){
 					$objRegistro->saveRegistroByTable($table, $post);
 					$count++;
