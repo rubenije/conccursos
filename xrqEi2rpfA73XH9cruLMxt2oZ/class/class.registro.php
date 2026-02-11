@@ -288,6 +288,16 @@
 				}
 			}
 			
+			if($table == 'gaseosas' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_PEPSI_MAS_2_SABORES = '$CUMPLIMIENTO_PEPSI_MAS_2_SABORES', CUMPLIMIENTO_PEPSI_MAS_3_SABORES = '$CUMPLIMIENTO_PEPSI_MAS_3_SABORES', CUMPLIMIENTO_TOTAL = '$CUMPLIMIENTO_TOTAL', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_PEPSI_MAS_2_SABORES, CUMPLIMIENTO_PEPSI_MAS_3_SABORES, CUMPLIMIENTO_TOTAL, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_PEPSI_MAS_2_SABORES', '$CUMPLIMIENTO_PEPSI_MAS_3_SABORES', '$CUMPLIMIENTO_TOTAL', '$fecha')";
+				}
+			}
+
 			return DB::query($sql);
 	    }
 

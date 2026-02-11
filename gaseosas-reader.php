@@ -21,11 +21,11 @@
 	
 	$objRegistro 	= new registro();
 	$objResumen 	= new resumen();
-	$table 			= "gatorade";
+	$table 			= "gaseosas";
 
 	$date = date('Ymd');
 	//$file_csv 	= 'RETORNABLE_'.$date.'.csv';
-	$file_csv 	= 'GATORADE.csv';
+	$file_csv 	= 'GASEOSAS.csv';
 	
 	if(file_exists($file_csv)){
 		$csv 		= new CsvImporter($file_csv,';', true);
@@ -39,18 +39,17 @@
 
 			foreach ($datas as $data) { 
 
+				pre($data);
+				exit;
+
 				$post['tipo'] 						= $data['TIPO'] ?? "";
 				$post['id'] 						= $data['ID'] ?? "";
 				$post['nombre'] 					= $data['NOMBRE'] ?? "";
 				$post['canal'] 						= $data['CANAL'] ?? "";
 
-				$post['CUMPLIMIENTO_3_SKU'] 		= $data['CUMPLIMIENTO_3_SKU'] ?? "";
-				$post['CUMPLIMIENTO_COB_GATORADE'] 	= $data['CUMPLIMIENTO_COB_GATORADE'] ?? "";
-				$post['CUMP_VOL'] 					= $data['CUMP_VOL'] ?? "";
-				$post['CUMP_VOL_750'] 				= $data['CUMP_VOL_750'] ?? "";
-				$post['CUPONES'] 					= $data['CUPONES'] ?? "-";
-				
-				
+				$post['CUMPLIMIENTO_PEPSI_MAS_2_SABORES'] 	= $data['CUMPLIMIENTO_PEPSI_MAS_2_SABORES'] ?? "";
+				$post['CUMPLIMIENTO_PEPSI_MAS_3_SABORES'] 	= $data['CUMPLIMIENTO_PEPSI_MAS_3_SABORES'] ?? "";
+				$post['CUMPLIMIENTO_TOTAL'] 				= $data['CUMPLIMIENTO_TOTAL'] ?? "";
 				
 				if( !empty($post['id']) ){
 					$objRegistro->saveRegistroByTable($table, $post);

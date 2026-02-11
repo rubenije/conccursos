@@ -123,6 +123,10 @@
 					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, HL_AL_DIA_MES_EN_CURSO, HL_VS_AA_AL_DIA, HL_AA_AL_DIA_MES_EN_CURSO, HL_FALTANTE_PARA_100_AA_MES_EN_CURSO, fecha) VALUES ";
 					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$HL_AL_DIA_MES_EN_CURSO', '$HL_VS_AA_AL_DIA', '$HL_AA_AL_DIA_MES_EN_CURSO', '$HL_FALTANTE_PARA_100_AA_MES_EN_CURSO', '$fecha')";
 				}
+				if($table == 'gaseosas'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, CONCRETADO_PEPSI, CONCRETADO_BILZ, CONCRETADO_PAP, CONCRETADO_LIMON, CONCRETADO_KEM, CONCRETADO_CRUSH, CONCRETADO_7UP, CONCRETADO_CDGA, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$CONCRETADO_PEPSI', '$CONCRETADO_BILZ', '$CONCRETADO_PAP', '$CONCRETADO_LIMON', '$CONCRETADO_KEM', '$CONCRETADO_CRUSH', '$CONCRETADO_7UP', '$CONCRETADO_CDGA', '$fecha')";
+				}
 				return DB::query($sql);
 			}
 			return false;
