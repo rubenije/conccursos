@@ -4,29 +4,31 @@
         define('INCLUDE_PATH', '');
     }
     include_once(INCLUDE_PATH.'class/class.home.php');
-    include_once(INCLUDE_PATH.'class/class.pregunta.php');
+    include_once(INCLUDE_PATH.'class/class.concurso.php');
 
 
 
     //Variables
-    $pregunta_id    = (int) $get['pregunta_id'];
-    $opc            = (!empty($get['pregunta_id'])) ? "editar" : "ingresar";
+    /*
+    $concurso_id    = (int) $get['concurso_id'];
+    $opc            = (!empty($get['concurso_id'])) ? "editar" : "ingresar";
 
     if($post['opc'] == "ingresar" || $post['opc'] == "editar"){
-        $pregunta = new pregunta();
-        $pregunta->savePregunta($post);
-        echo "<script>window.location='pregunta.php';</script>";
+        $concurso = new concurso();
+        $concurso->saveConcurso($post);
+        echo "<script>window.location='concurso.php';</script>";
         exit;
     }
 
-    $pregunta   = new pregunta();
-    $objeto     = $pregunta->getPreguntaId($get['pregunta_id']);
-
+    $concurso   = new concurso();
+    $objeto     = $concurso->getConcursoId($get['concurso_id']);
+    */
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <?php include("include_head.php"); ?>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <div id="wrapper">
@@ -36,16 +38,16 @@
 
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
-                    <h2>Preguntas</h2>
+                    <h2>Concursos</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="home.php">Home</a>
                         </li>
                         <li>
-                            <a href="pregunta.php">Preguntas</a>
+                            <a href="concurso.php">Concursos</a>
                         </li>
                         <li class="active">
-                            <strong>Agregar Preguntas</strong>
+                            <strong>Agregar Concursos</strong>
                         </li>
                     </ol>
                 </div>
@@ -55,33 +57,44 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Agregar Pregunta</h5>
+                        <h5>Agregar Concurso</h5>
                     </div>
                     <div class="ibox-content">
                         <form method="POST" class="form-horizontal" action="" enctype="multipart/form-data" onsubmit="return validaHorizontal(this);">
-                            <input type="hidden" name="pregunta_id" value="<?php echo $pregunta_id; ?>">
+                            <input type="hidden" name="concurso_id" value="<?php echo $concurso_id; ?>">
                             <input type="hidden" name="opc" value="<?php echo $opc; ?>">
 
-                            <div class="form-group"><label class="col-sm-2 control-label">Pregunta</label>
-                                <div class="col-md-6"><input type="text" name="preg_pregunta" class="form-control" value="<?php echo $objeto->preg_pregunta; ?>" required></div>
+                            <div class="form-group"><label class="col-sm-2 control-label">Grupo</label>
+                                <div class="col-md-6"><input type="text" name="conc_grupo" class="form-control" value="<?php echo $objeto->conc_grupo; ?>" required></div>
                             </div>
                             <div class="hr-line-dashed"></div>
 
-                            <div class="form-group"><label class="col-sm-2 control-label">Respuesta</label>
-                                <div class="col-md-6"><textarea name="preg_respuesta" rows="5" class="form-control"><?php echo $objeto->preg_respuesta; ?></textarea></div>
+                            <div class="form-group"><label class="col-sm-2 control-label">Nombre</label>
+                                <div class="col-md-6"><input type="text" name="conc_nombre" class="form-control" value="<?php echo $objeto->conc_nombre; ?>" required></div>
                             </div>
                             <div class="hr-line-dashed"></div>
-                            
+
+                            <div class="form-group"><label class="col-sm-2 control-label">Fecha Inicio</label>
+                                <div class="col-md-6"><input type="text" name="conc_inicio" class="form-control date" value="<?php echo $objeto->conc_inicio; ?>" required></div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group"><label class="col-sm-2 control-label">Fecha Termino</label>
+                                <div class="col-md-6"><input type="text" name="conc_termino" class="form-control date" value="<?php echo $objeto->conc_termino; ?>" required></div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+
                             <div class="form-group"><label class="col-sm-2 control-label">Estado</label>
                                 <div class="col-sm-10">
-                                    <div class="radio-inline"><label> <input type="radio" value="A" <?php if($objeto->preg_estado == 'A') { echo "checked"; } ?> name="preg_estado" required> Activo </label></div>
-                                    <div class="radio-inline"><label> <input type="radio" value="I" <?php if($objeto->preg_estado == 'I') { echo "checked"; } ?> name="preg_estado"> Inactivo </label></div>
+                                    <div class="radio-inline"><label> <input type="radio" value="A" <?php if($objeto->conc_estado == 'A') { echo "checked"; } ?> name="conc_estado" required> Activo </label></div>
+                                    <div class="radio-inline"><label> <input type="radio" value="I" <?php if($objeto->conc_estado == 'I') { echo "checked"; } ?> name="conc_estado"> Inactivo </label></div>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
 
                             <div class="form-group"><label class="col-sm-2 control-label">Orden</label>
-                                <div class="col-md-2"><input type="text" name="preg_orden" class="form-control" value="<?php echo $objeto->preg_orden; ?>" required></div>
+                                <div class="col-md-2"><input type="text" name="conc_orden" class="form-control" value="<?php echo $objeto->conc_orden; ?>" required></div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             
@@ -112,11 +125,19 @@
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
 
 
 
     <script>
+
+        $( function() {
+            $( ".date" ).datepicker({
+                dateFormat: 'dd/mm/yy',
+            });
+        } );
+        
     $(document).ready(function(){
 
             function bs_input_file() {
@@ -155,7 +176,7 @@
             });
 
             var postForm = function() {
-                var content = $('textarea[name="preg_descripcion"]').html($('.summernote').code());
+                var content = $('textarea[name="conc_descripcion"]').html($('.summernote').code());
             }
         });
     </script>

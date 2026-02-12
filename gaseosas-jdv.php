@@ -13,9 +13,8 @@
     header('Location: index.php');
     exit;
   }
-  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'mayorista') ? true : false;
 
-  $table = "gatorade";
+  $table = "gaseosas";
   $objIngreso = new ingreso();
   $objRegistro = new registro();
   if(isset($get['id']) && is_numeric($get['id'])){
@@ -87,33 +86,19 @@
                             <div class="text-small">INGRESOS</div>
                         </div>
                       </th>
-                      <?php if(!$isMayorista){ ?> 
                       <th scope="col" class="transparent">
                         <div class="titulo bg-azul borde"> 
                             <div class="space-5"></div>
-                            <div class="text-small">CUMPLIMIENTO<br>3 SKU</div>
+                            <div class="text-small">CUMPLIMIENTO<br>2 SABORES</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-rojo borde"> 
                             <div class="space-5"></div>
-                            <div class="text-small">CUMPLIMIENTO<br>COB GATORADE</div>
+                            <div class="text-small">CUMPLIMIENTO<br>3 SABORES</div>
                         </div>
                       </th>
-                      <?php }else{ ?>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde"> 
-                            <div class="space-5"></div>
-                            <div class="text-small">CUMPLIMIENTO<br>VOL</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-rojo borde"> 
-                            <div class="space-5"></div>
-                            <div class="text-small">CUMPLIMIENTO<br>VOL 750</div>
-                        </div>
-                      </th>
-                      <?php } ?>
+                
                 </tr>
               </thead>
               <tbody>
@@ -127,13 +112,8 @@
                     <td width="50" class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                     <td width="200" class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                     <td width="80" class="txt-amarillo"><?= $ingresos; ?></td>
-                    <?php if(!$isMayorista){ ?>
-                    <td width="100" class="txt-azul"><?= $registro->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td width="120" class="txt-rojo"><?= $registro->CUMPLIMIENTO_COB_GATORADE; ?></td>
-                    <?php }else{ ?>
-                    <td width="100" class="txt-azul"><?= $registro->CUMP_VOL; ?></td>
-                    <td width="100" class="txt-rojo"><?= $registro->CUMP_VOL_750; ?></td>
-                    <?php } ?>
+                    <td width="100" class="txt-azul"><?= $registro->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td width="100" class="txt-rojo"><?= $registro->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php 
                   $totIngresos += $ingresos;
@@ -143,13 +123,8 @@
                     <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     
-                    <?php if(!$isMayorista){ ?>
-                    <td class="bg-azul"><?= $total->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $total->CUMPLIMIENTO_COB_GATORADE; ?></td>
-                    <?php }else{ ?>
-                    <td class="bg-azul"><?= $total->CUMP_VOL; ?></td>
-                    <td class="bg-rojo"><?= $total->CUMP_VOL_750; ?></td>
-                    <?php } ?>
+                    <td class="bg-azul"><?= $total->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $total->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
               </tbody>
@@ -181,29 +156,17 @@
                     </div>
                   </th>
                   
-                  <?php if(!$isMayorista){ ?>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde"> 
-                      <div class="text-small">Cump<br>3 SKU</div>
+                      <div class="text-small">Cump<br>2 Sabores</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-rojo borde"> 
-                      <div class="text-small">Cump<br>COB GATORADE</div>
+                      <div class="text-small">Cump<br>3 Sabores</div>
                     </div>
                   </th>
-                  <?php }else{ ?>
-                  <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde"> 
-                      <div class="text-small">Cump<br>VOL</div>
-                    </div>
-                  </th>
-                  <th scope="col" class="transparent">
-                    <div class="titulo bg-rojo borde"> 
-                      <div class="text-small">Cump<br>VOL 750</div>
-                    </div>
-                  </th>
-                  <?php } ?>
+                  
               </tr>
             </thead>
             <tbody>
@@ -216,13 +179,8 @@
                   <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                   <td class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                   <td class="txt-amarillo"><?= $ingresos; ?></td>
-                  <?php if(!$isMayorista){ ?>
-                  <td class="txt-azul"><?= $registro->CUMPLIMIENTO_3_SKU; ?></td>
-                  <td class="txt-rojo"><?= $registro->CUMPLIMIENTO_COB_GATORADE; ?></td>
-                  <?php }else{ ?>
-                  <td class="txt-azul"><?= $registro->CUMP_VOL; ?></td>
-                  <td class="txt-rojo"><?= $registro->CUMP_VOL_750; ?></td>
-                  <?php } ?>
+                  <td class="txt-azul"><?= $registro->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                  <td class="txt-rojo"><?= $registro->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                 </tr>
                 <?php 
                 $totIngresos += $ingresos;
@@ -231,13 +189,8 @@
                 <tr class="transparent">
                   <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                   <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                  <?php if(!$isMayorista){ ?>
-                  <td class="bg-azul"><?= $total->CUMPLIMIENTO_3_SKU; ?></td>
-                  <td class="bg-rojo"><?= $total->CUMPLIMIENTO_COB_GATORADE; ?></td>
-                  <?php }else{ ?>
-                  <td class="bg-azul"><?= $total->CUMP_VOL; ?></td>
-                  <td class="bg-rojo"><?= $total->CUMP_VOL_750; ?></td>
-                  <?php } ?>
+                  <td class="bg-azul"><?= $total->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                  <td class="bg-rojo"><?= $total->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                 </tr>
                 <?php } ?>
             </tbody>
@@ -251,7 +204,7 @@
 
             
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/gatorade.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/gaseosas.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
             <?php //include("include-derecha.php"); ?>

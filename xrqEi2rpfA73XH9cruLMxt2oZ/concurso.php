@@ -1,18 +1,21 @@
 <?php
-    error_reporting(E_ALL & ~E_NOTICE); 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     if (!defined('INCLUDE_PATH')) {
         define('INCLUDE_PATH', '');
     }
     include_once(INCLUDE_PATH.'class/class.home.php');
-    include_once(INCLUDE_PATH.'class/class.pregunta.php');
-    
-    $pregunta  = new pregunta();
+    include_once(INCLUDE_PATH.'class/class.concurso.php');
+    $concurso  = new concurso();
 
+    /*
     if($get['opc'] == 'delete'){
-        $pregunta->deletePreguntaId($get['pregunta_id']);
+        $concurso->deleteConcursoId($get['concurso_id']);
     }
+    */
 
-    $elements   = $pregunta->getPreguntaAll();
+    $elements   = $concurso->getConcursoAll();
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,19 +36,19 @@
     <?php include("include_top.php"); ?>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
-                    <h2>Pregunta</h2>
+                    <h2>Concurso</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="home.php">Home</a>
                         </li>
                         <li class="active">
-                            <strong>Pregunta</strong>
+                            <strong>Concurso</strong>
                         </li>
                     </ol>
                 </div>
                 <div class="col-lg-3">
                     <p>&nbsp;</p>
-                    <a href="pregunta-add.php" class="btn btn-primary btn-lg">Agregar Pregunta</a>
+                    <a href="concurso-add.php" class="btn btn-primary btn-lg">Agregar Concurso</a>
                 </div>
             </div>
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -53,14 +56,16 @@
                 <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Pregunta</h5>
+                        <h5>Concurso</h5>
                     </div>
                     <div class="ibox-content">
                     <?php if($elements) { ?>
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                     <thead>
                     <tr>
-                        <th>Pregunta</th>
+                        <th>Nombre</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Termino</th>
                         <th>Estado</th>
                         <th>Orden</th>
                         <th>Editar</th>
@@ -69,17 +74,18 @@
                     <tbody>
                     <?php foreach ($elements as $element) { ?>
                     <tr>
-                        <td><?php echo $element->preg_pregunta; ?></td>
-                        <td>
-                            <?php if($element->preg_estado == 'A'){ ?>
+                        <td><?php echo $element->conc_nombre; ?></td>
+                        <td><?php echo $element->conc_inicio; ?></td>
+                        <td><?php echo $element->conc_termino; ?></td>
+                        <td>    
+                            <?php if($element->conc_estado == 'A'){ ?>
                             <span class="label label-info btn-sm">Activo</span>
                             <?php } else { ?>
                             <span class="label label-warning btn-sm">Inactivo</span>
                             <?php } ?>
-
                         </td>
-                        <td><?php echo $element->preg_orden; ?></td>
-                        <td><a href="pregunta-add.php?pregunta_id=<?php echo $element->pregunta_id; ?>"><button type="button" class="btn btn-info btn-sm">Editar</button></a></td>
+                        <td><?php echo $element->conc_orden; ?></td>
+                        <td><a href="concurso-add.php?concurso_id=<?php echo $element->concurso_id; ?>"><button type="button" class="btn btn-info btn-sm">Editar</button></a></td>
                     </tr>
                     <?php } ?>
                     </tfoot>

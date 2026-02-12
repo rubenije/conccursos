@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "gatorade";
+  $table = "gaseosas";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
@@ -58,15 +58,27 @@
         <div class="row">
           <div class="col-12 text-center">
             <img src="assets/img/<?= $table; ?>-titulo.png" class="img-fluid minions" alt="Minions">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <!-- <img src="assets/img/cliente-rojo.png" class="img-fluid cliente-rojo" alt="Cliente Rojo"> -->
-            
-            <!-- INI TABLA -->
             <div class="space-20"></div>
 
+          </div>
+        </div>
+        <div class="row justify-content-center text-center g-4">
+          <div class="col-12 col-md-4">
+            <div class="mb-3">
+              <label for="filtroGrupo" class="form-label text-white">Filtrar por grupo:</label>
+              <select id="filtroGrupo" class="form-select w-auto mx-auto">
+                <option value="">Todos</option>
+                <?php
+                  $grupos = array_unique(array_map(fn($d) => $d->GRUPO_CLIENTE, $detalles));
+                  sort($grupos);
+                  foreach ($grupos as $grupo) {
+                    echo "<option value=\"$grupo\">$grupo</option>";
+                  }
+                ?>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
             <div class="mb-3">
               <label for="filtroSector" class="form-label text-white">Filtrar por sector:</label>
               <select id="filtroSector" class="form-select w-auto mx-auto">
@@ -80,27 +92,50 @@
                 ?>
               </select>
             </div>
+          </div>
+          
+        </div>
 
+        <div class="row">
+          <div class="col-12 text-center">
+            <!-- <img src="assets/img/cliente-rojo.png" class="img-fluid cliente-rojo" alt="Cliente Rojo"> -->
             
-            <div class="table-responsive d-flex justify-content-center">
-              <table class="table table-spacing mx-auto tableDetalles pt-2 pb-3">
+            <!-- INI TABLA -->
+            
+
+            <div class="table-responsive">
+              <table class="table table-spacing mx-auto tableDetalles pt-2 pb-3 w-100">
                 <thead>
                   <tr style="vertical-align: middle !important;">
                       <th scope="col" class="bg-verde-oscuro borde" style="height: 30px;">ID</th>
+                      <th scope="col" class="bg-verde-oscuro borde">Grupo</th>
                       <th scope="col" class="bg-verde-oscuro borde">Sector</th>
                       <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
-                      <th scope="col" class="bg-azul borde text-center">CANTIDAD SKU</th>
+                      <th scope="col" class="bg-pepsi borde text-center">Pepsi</th>
+                      <th scope="col" class="bg-bilz borde text-center">Bilz</th>
+                      <th scope="col" class="bg-pap borde text-center">Pap</th>
+                      <th scope="col" class="bg-kem borde text-center">Kem</th>
+                      <th scope="col" class="bg-limon borde text-center">Limón</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                      $class_sku = ($detalle->CANTIDAD_SKU == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_pepsi = ($detalle->CONCRETADO_PEPSI == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_bilz = ($detalle->CONCRETADO_BILZ == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_pap = ($detalle->CONCRETADO_PAP == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_kem = ($detalle->CONCRETADO_KEM == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_limon = ($detalle->CONCRETADO_LIMON == 'SI') ? 'txt-azul' : 'txt-azul';
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
+                      <td class="txt-verde-oscuro"><?= $detalle->GRUPO_CLIENTE; ?></td>
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <td class="<?= $class_sku; ?>"><?= $detalle->CANTIDAD_SKU; ?></td>
+                      <td class="<?= $class_pepsi; ?>"><?= $detalle->CONCRETADO_PEPSI; ?></td>
+                      <td class="<?= $class_bilz; ?>"><?= $detalle->CONCRETADO_BILZ; ?></td>
+                      <td class="<?= $class_pap; ?>"><?= $detalle->CONCRETADO_PAP; ?></td>
+                      <td class="<?= $class_kem; ?>"><?= $detalle->CONCRETADO_KEM; ?></td>
+                      <td class="<?= $class_limon; ?>"><?= $detalle->CONCRETADO_LIMON; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -108,7 +143,7 @@
             </div>
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/craft-v2.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/gaseosas.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
         </div>
@@ -134,20 +169,29 @@
     <script src="assets/js/main.js?<?= $time; ?>"></script>
     <script>
       $(document).ready(function () {
+
         const tabla = $('.tableDetalles').DataTable({
-          paging: false,       // 🚫 sin paginación
-          info: false, 
+          paging: false,
+          info: false,
           ordering: false,
+          autoWidth: false,
           language: {
             url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
           }
         });
 
-        // Filtro personalizado por sector
+        // Filtro por Sector
         $('#filtroSector').on('change', function () {
-          const valor = $(this).val();
-          tabla.column(1).search(valor).draw(); // columna 1 = Sector
+          tabla.column(2).search($(this).val());
+          tabla.draw();
         });
+
+        // Filtro por Grupo
+        $('#filtroGrupo').on('change', function () {
+          tabla.column(1).search($(this).val());
+          tabla.draw();
+        });
+
       });
     </script>
 

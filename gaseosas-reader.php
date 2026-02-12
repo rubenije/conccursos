@@ -39,9 +39,6 @@
 
 			foreach ($datas as $data) { 
 
-				pre($data);
-				exit;
-
 				$post['tipo'] 						= $data['TIPO'] ?? "";
 				$post['id'] 						= $data['ID'] ?? "";
 				$post['nombre'] 					= $data['NOMBRE'] ?? "";

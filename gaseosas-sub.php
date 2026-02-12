@@ -12,7 +12,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "gatorade";
+  $table = "gaseosas";
   $objRegistro = new registro();
   $z_norte      = $objRegistro->getZonaByCodigo('NORTE');
   $z_costa      = $objRegistro->getZonaByCodigo('CENTRO COSTA');
@@ -89,13 +89,13 @@
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMPLIMIENTO<br>3 SKU</div>
+                        <div class="text-small">CUMPLIMIENTO<br>2 SABORES</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-rojo borde">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMPLIMIENTO<br>COB GATORADE</div>
+                        <div class="text-small">CUMPLIMIENTO<br>3 SABORES</div>
                     </div>
                   </th>
                 </tr>
@@ -124,16 +124,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                     </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -169,16 +169,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -212,8 +212,8 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
 
                   </tr>
                   <?php } ?>
@@ -222,8 +222,8 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -256,16 +256,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -300,16 +300,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td style="width: 120px;" class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -325,8 +325,8 @@
                     <td style="width: 180px;" class="text-start bg-verde-oscuro">Total General</td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td style="width: 120px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td style="width: 120px;" class="bg-rojo"><?= $totales->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td style="width: 120px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td style="width: 120px;" class="bg-rojo"><?= $totales->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -357,12 +357,12 @@
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
-                      <div class="text-small">Cump<br>3 SKU</div>
+                      <div class="text-small">Cump<br>2 Sabores</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-rojo borde">
-                      <div class="text-small">Cump<br>Gatorade</div>
+                      <div class="text-small">Cump<br>3 Sabores</div>
                     </div>
                   </th>
                 </tr>
@@ -391,16 +391,16 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
@@ -431,16 +431,16 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -470,8 +470,8 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -479,8 +479,8 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -509,16 +509,16 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -549,16 +549,16 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="txt-rojo"><?= $distrito->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $subtotal->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -570,8 +570,8 @@
                     <td class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td class="bg-azul"><?= $totales->CUMPLIMIENTO_3_SKU; ?></td>
-                    <td class="bg-rojo"><?= $totales->CUMPLIMIENTO_COB_GATORADE; ?></td>
+                    <td class="bg-azul"><?= $totales->CUMPLIMIENTO_PEPSI_MAS_2_SABORES; ?></td>
+                    <td class="bg-rojo"><?= $totales->CUMPLIMIENTO_PEPSI_MAS_3_SABORES; ?></td>
                   </tr>
             <?php } ?>
               </tbody>
@@ -580,7 +580,7 @@
             <!-- SM -->
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/craft-v2.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/gaseosas.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
 
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
