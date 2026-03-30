@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "gaseosas";
+  $table = "redbull";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
@@ -26,8 +26,6 @@
     $vendedores_ids = $objRegistro->getIdsVendedorByTableBySupervisorId($table, $get['id']);
     $detalles       = $objDetalle->getDetalleByTableByVendedoresByIds($table, $vendedores_ids);
   }
-  //pre($detalles);
-  //exit;
 ?>
 <!doctype html>
 <html lang="en">
@@ -57,28 +55,19 @@
       <div class="container tablitas">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="assets/img/<?= $table; ?>-titulo.png" class="img-fluid minions" alt="Minions">
-            <div class="space-20"></div>
-
+            <img src="assets/img/redbull-titulo.png" class="img-fluid minions" alt="Minions">
           </div>
         </div>
-        <div class="row justify-content-center text-center g-4">
-          <div class="col-12 col-md-4">
-            <div class="mb-3">
-              <label for="filtroGrupo" class="form-label text-white">Filtrar por grupo:</label>
-              <select id="filtroGrupo" class="form-select w-auto mx-auto">
-                <option value="">Todos</option>
-                <?php
-                  $grupos = array_unique(array_map(fn($d) => $d->GRUPO_CLIENTE, $detalles));
-                  sort($grupos);
-                  foreach ($grupos as $grupo) {
-                    echo "<option value=\"$grupo\">$grupo</option>";
-                  }
-                ?>
-              </select>
-            </div>
+        <div class="row">
+          <div class="col-12 col-lg-2 text-center is-desktop">
+            <?php //include("include-izquierda.php"); ?>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 text-center">
+            <!-- <img src="assets/img/cliente-rojo.png" class="img-fluid cliente-rojo" alt="Cliente Rojo"> -->
+            
+            <!-- INI TABLA -->
+            <div class="space-20"></div>
+
             <div class="mb-3">
               <label for="filtroSector" class="form-label text-white">Filtrar por sector:</label>
               <select id="filtroSector" class="form-select w-auto mx-auto">
@@ -92,71 +81,45 @@
                 ?>
               </select>
             </div>
-          </div>
-          
-        </div>
 
-        <div class="row">
-          <div class="col-12 text-center">
-            <!-- <img src="assets/img/cliente-rojo.png" class="img-fluid cliente-rojo" alt="Cliente Rojo"> -->
             
-            <!-- INI TABLA -->
-            
-
-            <div class="table-responsive">
-              <table class="table table-spacing mx-auto tableDetalles pt-2 pb-3 w-100">
+            <div class="table-responsive d-flex justify-content-center">
+              <table class="table table-spacing mx-auto tableDetalles pt-2 pb-3">
                 <thead>
                   <tr style="vertical-align: middle !important;">
-                      <th scope="col" class="bg-verde-oscuro borde" style="height: 30px;">ID</th>
-                      <th scope="col" class="bg-verde-oscuro borde">Grupo</th>
-                      <th scope="col" class="bg-verde-oscuro borde">Sector</th>
-                      <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
-                      <th scope="col" class="bg-pepsi borde text-center">Pepsi</th>
-                      <th scope="col" class="bg-bilz borde text-center">Bilz</th>
-                      <th scope="col" class="bg-pap borde text-center">Pap</th>
-                      <th scope="col" class="bg-kem borde text-center">Kem</th>
-                      <th scope="col" class="bg-limon borde text-center">Limón</th>
-                      <th scope="col" class="bg-verde-claro borde text-center">Crush</th>
-                      <th scope="col" class="bg-verde-oscuro borde text-center">7Up</th>
-                      <th scope="col" class="bg-celeste borde text-center">CDGA</th>
-                      
-
+                      <th scope="col" class="bg-verde-oscuro" style="height: 30px;">ID</th>
+                      <th scope="col" class="bg-verde-oscuro">Sector</th>
+                      <th scope="col" class="bg-verde-oscuro">Razón Social</th>
+                      <th scope="col" class="bg-redbull-celeste borde text-center">COB 250 REG, SF O ZERO</th>
+                      <th scope="col" class="bg-redbull-azul borde text-center">NUMERO DE EDITIONS</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                      $class_pepsi = ($detalle->CONCRETADO_PEPSI == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_bilz = ($detalle->CONCRETADO_BILZ == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_pap = ($detalle->CONCRETADO_PAP == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_kem = ($detalle->CONCRETADO_KEM == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_limon = ($detalle->CONCRETADO_LIMON == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_crush = ($detalle->CONCRETADO_CRUSH == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_7up = ($detalle->CONCRETADO_7UP == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_cdga = ($detalle->CONCRETADO_CDGA == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_250 = ($detalle->COB_250 == 'SI') ? 'txt-redbull-celeste' : 'txt-redbull-rojo';
+                      $class_003 = ($detalle->COB_EDITIONS == 'SI') ? 'txt-redbull-azul' : 'txt-redbull-rojo';
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
-                      <td class="txt-verde-oscuro"><?= $detalle->GRUPO_CLIENTE; ?></td>
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <td class="<?= $class_pepsi; ?>"><?= $detalle->CONCRETADO_PEPSI; ?></td>
-                      <td class="<?= $class_bilz; ?>"><?= $detalle->CONCRETADO_BILZ; ?></td>
-                      <td class="<?= $class_pap; ?>"><?= $detalle->CONCRETADO_PAP; ?></td>
-                      <td class="<?= $class_kem; ?>"><?= $detalle->CONCRETADO_KEM; ?></td>
-                      <td class="<?= $class_limon; ?>"><?= $detalle->CONCRETADO_LIMON; ?></td>
-                      <td class="<?= $class_crush; ?>"><?= $detalle->CONCRETADO_CRUSH; ?></td>
-                      <td class="<?= $class_7up; ?>"><?= $detalle->CONCRETADO_7UP; ?></td>
-                      <td class="<?= $class_cdga; ?>"><?= $detalle->CONCRETADO_CDGA; ?></td>
+                      <td class="<?= $class_250; ?>"><?= $detalle->COB_250; ?></td>
+                      <td class="<?= $class_003; ?>"><?= $detalle->COB_EDITIONS; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
               </table>
             </div>
 
+            
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/gaseosas.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="premios.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
+          <div class="col-12 col-lg-2 text-center is-desktop">
+            <?php //include("include-derecha.php"); ?>
+          </div>
+          
         </div>
       
       
@@ -180,29 +143,20 @@
     <script src="assets/js/main.js?<?= $time; ?>"></script>
     <script>
       $(document).ready(function () {
-
         const tabla = $('.tableDetalles').DataTable({
-          paging: false,
-          info: false,
+          paging: false,       // 🚫 sin paginación
+          info: false, 
           ordering: false,
-          autoWidth: false,
           language: {
             url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
           }
         });
 
-        // Filtro por Sector
+        // Filtro personalizado por sector
         $('#filtroSector').on('change', function () {
-          tabla.column(2).search($(this).val());
-          tabla.draw();
+          const valor = $(this).val();
+          tabla.column(1).search(valor).draw(); // columna 1 = Sector
         });
-
-        // Filtro por Grupo
-        $('#filtroGrupo').on('change', function () {
-          tabla.column(1).search($(this).val());
-          tabla.draw();
-        });
-
       });
     </script>
 

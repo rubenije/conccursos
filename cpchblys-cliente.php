@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "gaseosas";
+  $table = "cpchblys";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
@@ -111,42 +111,25 @@
                       <th scope="col" class="bg-verde-oscuro borde">Grupo</th>
                       <th scope="col" class="bg-verde-oscuro borde">Sector</th>
                       <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
-                      <th scope="col" class="bg-pepsi borde text-center">Pepsi</th>
-                      <th scope="col" class="bg-bilz borde text-center">Bilz</th>
-                      <th scope="col" class="bg-pap borde text-center">Pap</th>
-                      <th scope="col" class="bg-kem borde text-center">Kem</th>
-                      <th scope="col" class="bg-limon borde text-center">Limón</th>
-                      <th scope="col" class="bg-verde-claro borde text-center">Crush</th>
-                      <th scope="col" class="bg-verde-oscuro borde text-center">7Up</th>
-                      <th scope="col" class="bg-celeste borde text-center">CDGA</th>
-                      
-
+                      <th scope="col" class="bg-verde-oscuro borde">Cantidad Mistral Ice</th>
+                      <th scope="col" class="bg-pepsi borde text-center">Concretado 3R Ice</th>
+                      <th scope="col" class="bg-bilz borde text-center">Concretado Mistral Low</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                      $class_pepsi = ($detalle->CONCRETADO_PEPSI == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_bilz = ($detalle->CONCRETADO_BILZ == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_pap = ($detalle->CONCRETADO_PAP == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_kem = ($detalle->CONCRETADO_KEM == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_limon = ($detalle->CONCRETADO_LIMON == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_crush = ($detalle->CONCRETADO_CRUSH == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_7up = ($detalle->CONCRETADO_7UP == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_cdga = ($detalle->CONCRETADO_CDGA == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_3r = ($detalle->CONCRETADO_3R_ICE == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_mistral = ($detalle->CONCRETADO_MISTRAL_ICE_LOW == 'SI') ? 'txt-azul' : 'txt-azul';
+                    
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
                       <td class="txt-verde-oscuro"><?= $detalle->GRUPO_CLIENTE; ?></td>
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <td class="<?= $class_pepsi; ?>"><?= $detalle->CONCRETADO_PEPSI; ?></td>
-                      <td class="<?= $class_bilz; ?>"><?= $detalle->CONCRETADO_BILZ; ?></td>
-                      <td class="<?= $class_pap; ?>"><?= $detalle->CONCRETADO_PAP; ?></td>
-                      <td class="<?= $class_kem; ?>"><?= $detalle->CONCRETADO_KEM; ?></td>
-                      <td class="<?= $class_limon; ?>"><?= $detalle->CONCRETADO_LIMON; ?></td>
-                      <td class="<?= $class_crush; ?>"><?= $detalle->CONCRETADO_CRUSH; ?></td>
-                      <td class="<?= $class_7up; ?>"><?= $detalle->CONCRETADO_7UP; ?></td>
-                      <td class="<?= $class_cdga; ?>"><?= $detalle->CONCRETADO_CDGA; ?></td>
+                      <td class="<?= $class_mistral; ?>"><?= $detalle->CANTIDAD_MISTRAL_ICE; ?></td>
+                      <td class="<?= $class_3r; ?>"><?= $detalle->CONCRETADO_3R_ICE; ?></td>
+                      <td class="<?= $class_mistral; ?>"><?= $detalle->CONCRETADO_MISTRAL_ICE_LOW; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -154,7 +137,7 @@
             </div>
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/gaseosas.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/<?= $$table; ?>.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
         </div>

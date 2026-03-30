@@ -127,6 +127,11 @@
 					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, CONCRETADO_PEPSI, CONCRETADO_BILZ, CONCRETADO_PAP, CONCRETADO_LIMON, CONCRETADO_KEM, CONCRETADO_CRUSH, CONCRETADO_7UP, CONCRETADO_CDGA, fecha) VALUES ";
 					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$CONCRETADO_PEPSI', '$CONCRETADO_BILZ', '$CONCRETADO_PAP', '$CONCRETADO_LIMON', '$CONCRETADO_KEM', '$CONCRETADO_CRUSH', '$CONCRETADO_7UP', '$CONCRETADO_CDGA', '$fecha')";
 				}
+				if($table == 'cpchblys'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, CANTIDAD_MISTRAL_ICE, CONCRETADO_3R_ICE, CONCRETADO_MISTRAL_ICE_LOW, CONCRETADO_MISTRAL_ICE_LOW_FALTANTES, CONCRETADO_TOTAL, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$CANTIDAD_MISTRAL_ICE', '$CONCRETADO_3R_ICE', '$CONCRETADO_MISTRAL_ICE_LOW', '$CONCRETADO_MISTRAL_ICE_LOW_FALTANTES', '$CONCRETADO_TOTAL', '$fecha')";
+				}
+				
 				return DB::query($sql);
 			}
 			return false;

@@ -298,6 +298,16 @@
 				}
 			}
 
+			if($table == 'cpchblys' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMP_MISTRAL_3R_ICE = '$CUMP_MISTRAL_3R_ICE', CUMP_MISTRAL_3R_ICE_FALTANTES = '$CUMP_MISTRAL_3R_ICE_FALTANTES', CUMP_MISTRAL_ICE_LOW = '$CUMP_MISTRAL_ICE_LOW', CUMP_MISTRAL_ICE_LOW_FALTANTES = '$CUMP_MISTRAL_ICE_LOW_FALTANTES', CUMP_TOTAL = '$CUMP_TOTAL', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMP_MISTRAL_3R_ICE, CUMP_MISTRAL_3R_ICE_FALTANTES, CUMP_MISTRAL_ICE_LOW, CUMP_MISTRAL_ICE_LOW_FALTANTES, CUMP_TOTAL, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMP_MISTRAL_3R_ICE', '$CUMP_MISTRAL_3R_ICE_FALTANTES', '$CUMP_MISTRAL_ICE_LOW', '$CUMP_MISTRAL_ICE_LOW_FALTANTES', '$CUMP_TOTAL', '$fecha')";
+				}
+			}
+			
 			return DB::query($sql);
 	    }
 
