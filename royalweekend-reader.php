@@ -13,18 +13,19 @@
 	include_once(INCLUDE_PATH . 'class/inc.globals.php');
 	include_once(INCLUDE_PATH . 'class/class.csv.php');
 	include_once(INCLUDE_PATH . 'class/class.registro.php');
-	include_once(INCLUDE_PATH . 'class/class.detalle.php');
+
 	include_once(INCLUDE_PATH . 'class/class.resumen.php');
 	
+
 	$resumen['resu_inicio'] = date('Y-m-d H:i:s');
 	
 	$objRegistro 	= new registro();
 	$objResumen 	= new resumen();
-	$table 			= "cpchblys";
+	$table 			= "royalweekend";
 
 	$date = date('Ymd');
-	$file_csv 	= 'CPCHBLYS.csv';
-
+	//$file_csv 	= 'RETORNABLE_'.$date.'.csv';
+	$file_csv 	= 'ROYALWEEKEND.csv';
 	
 	if(file_exists($file_csv)){
 		$csv 		= new CsvImporter($file_csv,';', true);
@@ -38,17 +39,13 @@
 
 			foreach ($datas as $data) { 
 
-				$post['tipo'] 						= $data['TIPO'] ?? "";
-				$post['id'] 						= $data['ID'] ?? "";
-				$post['nombre'] 					= $data['NOMBRE'] ?? "";
-				$post['canal'] 						= $data['CANAL'] ?? "";
+				$post['tipo'] 					= $data['TIPO'] ?? "";
+				$post['id'] 					= $data['ID'] ?? "";
+				$post['nombre'] 				= $data['NOMBRE'] ?? "";
+				$post['canal'] 					= $data['CANAL'] ?? "";
 
-				$post['CUMP_MISTRAL_3R_ICE'] 			= $data['CUMP_MISTRAL_3R_ICE'] ?? "";
-				$post['CUMP_MISTRAL_3R_ICE_FALTANTES'] 	= $data['CUMP_MISTRAL_3R_ICE_FALTANTES'] ?? "";
-				$post['CUMP_MISTRAL_ICE_LOW'] 			= $data['CUMP_MISTRAL_ICE_LOW'] ?? "";
-				$post['CUMP_MISTRAL_ICE_LOW_FALTANTES'] = $data['CUMP_MISTRAL_ICE_LOW_FALTANTES'] ?? "";
-				$post['CUMP_TOTAL'] 					= $data['CUMP_TOTAL'] ?? "";
-				
+				$post['CUMPLIMIENTO_VOLUMEN'] 	= $data['CUMPLIMIENTO_VOLUMEN'] ?? "";
+				$post['FALTANTES_VOLUMEN'] 		= $data['FALTANTES_VOLUMEN'] ?? "";
 				
 				if( !empty($post['id']) ){
 					$objRegistro->saveRegistroByTable($table, $post);

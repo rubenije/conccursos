@@ -127,11 +127,18 @@
 					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, CONCRETADO_PEPSI, CONCRETADO_BILZ, CONCRETADO_PAP, CONCRETADO_LIMON, CONCRETADO_KEM, CONCRETADO_CRUSH, CONCRETADO_7UP, CONCRETADO_CDGA, fecha) VALUES ";
 					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$CONCRETADO_PEPSI', '$CONCRETADO_BILZ', '$CONCRETADO_PAP', '$CONCRETADO_LIMON', '$CONCRETADO_KEM', '$CONCRETADO_CRUSH', '$CONCRETADO_7UP', '$CONCRETADO_CDGA', '$fecha')";
 				}
-				if($table == 'cpchblys'){
-					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, CANTIDAD_MISTRAL_ICE, CONCRETADO_3R_ICE, CONCRETADO_MISTRAL_ICE_LOW, CONCRETADO_MISTRAL_ICE_LOW_FALTANTES, CONCRETADO_TOTAL, fecha) VALUES ";
-					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$CANTIDAD_MISTRAL_ICE', '$CONCRETADO_3R_ICE', '$CONCRETADO_MISTRAL_ICE_LOW', '$CONCRETADO_MISTRAL_ICE_LOW_FALTANTES', '$CONCRETADO_TOTAL', '$fecha')";
+				if($table == 'energia'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, CONCRETADO_REDBULL, CONCRETADO_ROCKSTAR, REDBULL_HL_2026, REDBULL_HL_2025, ROCKSTAR_HL_2026, ROCKSTAR_HL_2025, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$CONCRETADO_REDBULL', '$CONCRETADO_ROCKSTAR', '$REDBULL_HL_2026', '$REDBULL_HL_2025', '$ROCKSTAR_HL_2026', '$ROCKSTAR_HL_2025', '$fecha')";
 				}
-				
+				if($table == 'cpch'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, CANTIDAD_MISTRAL_ICE, CONCRETADO_3R_ICE, CONCRETADO_MISTRAL_ICE_LOW, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$CANTIDAD_MISTRAL_ICE', '$CONCRETADO_3R_ICE', '$CONCRETADO_MISTRAL_ICE_LOW', '$fecha')";
+				}
+				if($table == 'royalweekend'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, HL_VSD_TOTAL_AA, HL_ABRIL_2026, HL_ABRIL_2025_AL_DIA, HL_ABRIL_2025_TOTAL, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$HL_VSD_TOTAL_AA', '$HL_ABRIL_2026', '$HL_ABRIL_2025_AL_DIA', '$HL_ABRIL_2025_TOTAL', '$fecha')";
+				}
 				return DB::query($sql);
 			}
 			return false;

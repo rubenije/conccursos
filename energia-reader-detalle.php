@@ -21,11 +21,11 @@
 	
 	$objDetalle 	= new detalle();
 	$objResumen 	= new resumen();
-	$table 			= "redbull";
+	$table 			= "energia";
 
 	$date = date('Ymd');
 	//$file_csv 	= 'MINIONS_ENERGIA_DETALLE_'.$date.'.csv';
-	$file_csv 	= 'RED_BULL_DETALLE.csv';
+	$file_csv 	= 'ENERGIA_DETALLE.csv';
 
 	
 	if(file_exists($file_csv)){
@@ -42,9 +42,15 @@
 				$post['id'] 					= $data['ID_CLIENTE'] ?? "";
 				$post['sector'] 				= $data['SECTOR'] ?? "";
 				$post['razon'] 					= $data['RAZON_SOCIAL'] ?? "";
+				$post['GRUPO_CLIENTE'] 			= $data['GRUPO_CLIENTE'] ?? "";
 
-				$post['COB_250'] 				= $data['COB_250_TRADICIONAL'] ?? "";
-				$post['COB_EDITIONS'] 		    = $data['COB_EDITIONS'] ?? "";
+				$post['CONCRETADO_REDBULL'] 	= $data['CONCRETADO_REDBULL'] ?? "";
+				$post['CONCRETADO_ROCKSTAR'] 	= $data['CONCRETADO_ROCKSTAR'] ?? "";
+				$post['REDBULL_HL_2026'] 		= $data['REDBULL_HL_2026'] ?? "";
+				$post['REDBULL_HL_2025'] 		= $data['REDBULL_HL_2025'] ?? "";
+				$post['ROCKSTAR_HL_2026'] 		= $data['ROCKSTAR_HL_2026'] ?? "";
+				$post['ROCKSTAR_HL_2025'] 		= $data['ROCKSTAR_HL_2025'] ?? "";
+				
 				
 				if( !empty($post['id']) ){
 					$objDetalle->saveDetalleByTable($table, $post);

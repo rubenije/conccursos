@@ -13,7 +13,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "cpchblys";
+  $table = "cpch";
   $objIngreso = new ingreso();
   $objRegistro = new registro();
   if(isset($get['id']) && is_numeric($get['id'])){
@@ -88,13 +88,13 @@
                       <th scope="col" class="transparent">
                         <div class="titulo bg-azul borde"> 
                             <div class="space-5"></div>
-                            <div class="text-small">CUMP<br>3R ICE</div>
+                            <div class="text-small">CUMP 2 MISTRAL ICE<br> + 1 3R ICE</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-azul borde"> 
                             <div class="space-5"></div>
-                            <div class="text-small">CUMP<br>ICE LOW</div>
+                            <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                         </div>
                       </th>
                 </tr>
@@ -110,8 +110,8 @@
                     <td width="50" class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                     <td width="250" class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                     <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
-                    <td width="150" class="txt-azul"><?= $registro->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td width="150" class="txt-azul"><?= $registro->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php 
                   $totIngresos += $ingresos;
@@ -120,8 +120,8 @@
                   <tr class="transparent">
                     <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-azul"><?= $total->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $total->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
               </tbody>
@@ -154,12 +154,12 @@
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                        <div class="text-small">CUMP<br>3R ICE</div>
+                        <div class="text-small">CUMP 2 MISTRAL ICE<br>+ 1 3R ICE</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                        <div class="text-small">CUMP<br>ICE LOW</div>
+                        <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                     </div>
                   </th>
               </tr>
@@ -174,8 +174,8 @@
                   <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                   <td class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                   <td class="txt-amarillo"><?= $ingresos; ?></td>
-                  <td class="txt-azul"><?= $registro->CUMP_MISTRAL_3R_ICE; ?></td>
-                  <td class="txt-azul"><?= $registro->CUMP_MISTRAL_ICE_LOW; ?></td>
+                  <td class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                  <td class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                 </tr>
                 <?php 
                 $totIngresos += $ingresos;
@@ -184,8 +184,8 @@
                 <tr class="transparent">
                   <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                   <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                  <td class="bg-azul"><?= $total->CUMP_MISTRAL_3R_ICE; ?></td>
-                  <td class="bg-azul"><?= $total->CUMP_MISTRAL_ICE_LOW; ?></td>
+                  <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                  <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                 </tr>
                 <?php } ?>
             </tbody>

@@ -21,11 +21,11 @@
 	
 	$objDetalle 	= new detalle();
 	$objResumen 	= new resumen();
-	$table 			= "cpchblys";
+	$table 			= "cpch";
 
 	$date = date('Ymd');
 	//$file_csv 	= 'MINIONS_ENERGIA_DETALLE_'.$date.'.csv';
-	$file_csv 	= 'CPCHBLYS_DETALLE.csv';
+	$file_csv 	= 'CPCH_DETALLE.csv';
 	
 	if(file_exists($file_csv)){
 		$csv 		= new CsvImporter($file_csv,';', true);

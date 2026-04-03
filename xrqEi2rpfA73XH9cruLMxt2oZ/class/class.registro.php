@@ -298,13 +298,33 @@
 				}
 			}
 
-			if($table == 'cpchblys' ){
+			if($table == 'energia' ){
 				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
 				if (DB::getOne($sql)) {
-					$sql = "UPDATE registro_$table SET CUMP_MISTRAL_3R_ICE = '$CUMP_MISTRAL_3R_ICE', CUMP_MISTRAL_3R_ICE_FALTANTES = '$CUMP_MISTRAL_3R_ICE_FALTANTES', CUMP_MISTRAL_ICE_LOW = '$CUMP_MISTRAL_ICE_LOW', CUMP_MISTRAL_ICE_LOW_FALTANTES = '$CUMP_MISTRAL_ICE_LOW_FALTANTES', CUMP_TOTAL = '$CUMP_TOTAL', fecha = '$fecha' WHERE id = $id";
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_REDBULL = '$CUMPLIMIENTO_REDBULL', CUMPLIMIENTO_ROCKSTAR = '$CUMPLIMIENTO_ROCKSTAR', FALTANTES_REDBULL = '$FALTANTES_REDBULL', FALTANTES_ROCKSTAR = '$FALTANTES_ROCKSTAR', CUMPL_VOL_REDBULL = '$CUMPL_VOL_REDBULL', CUMPL_VOL_ROCKSTAR = '$CUMPL_VOL_ROCKSTAR', fecha = '$fecha' WHERE id = $id";
 				} else {
-					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMP_MISTRAL_3R_ICE, CUMP_MISTRAL_3R_ICE_FALTANTES, CUMP_MISTRAL_ICE_LOW, CUMP_MISTRAL_ICE_LOW_FALTANTES, CUMP_TOTAL, fecha) VALUES ";
-					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMP_MISTRAL_3R_ICE', '$CUMP_MISTRAL_3R_ICE_FALTANTES', '$CUMP_MISTRAL_ICE_LOW', '$CUMP_MISTRAL_ICE_LOW_FALTANTES', '$CUMP_TOTAL', '$fecha')";
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_REDBULL, CUMPLIMIENTO_ROCKSTAR, FALTANTES_REDBULL, FALTANTES_ROCKSTAR, CUMPL_VOL_REDBULL, CUMPL_VOL_ROCKSTAR, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_REDBULL', '$CUMPLIMIENTO_ROCKSTAR', '$FALTANTES_REDBULL', '$FALTANTES_ROCKSTAR', '$CUMPL_VOL_REDBULL', '$CUMPL_VOL_ROCKSTAR', '$fecha')";
+				}
+			}
+
+			if($table == 'cpch' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_MISTRAL_ICE_3R = '$CUMPLIMIENTO_MISTRAL_ICE_3R', CUMPLIMIENTO_MISTRAL_ICE_LOW = '$CUMPLIMIENTO_MISTRAL_ICE_LOW', FALTANTES_MISTRAL_ICE_3R = '$FALTANTES_MISTRAL_ICE_3R', FALTANTES_MISTRAL_ICE_LOW = '$FALTANTES_MISTRAL_ICE_LOW', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_MISTRAL_ICE_3R, CUMPLIMIENTO_MISTRAL_ICE_LOW, FALTANTES_MISTRAL_ICE_3R, FALTANTES_MISTRAL_ICE_LOW, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_MISTRAL_ICE_3R', '$CUMPLIMIENTO_MISTRAL_ICE_LOW', '$FALTANTES_MISTRAL_ICE_3R', '$FALTANTES_MISTRAL_ICE_LOW', '$fecha')";
+				}
+			}
+
+			if($table == 'royalweekend' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_VOLUMEN = '$CUMPLIMIENTO_VOLUMEN', FALTANTES_VOLUMEN = '$FALTANTES_VOLUMEN', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_VOLUMEN, FALTANTES_VOLUMEN, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_VOLUMEN', '$FALTANTES_VOLUMEN', '$fecha')";
 				}
 			}
 			
@@ -424,7 +444,12 @@
 		}
 
 
-		public function getDistritoByTableByZonaId($table, $zona_id){
+		public function getDistritoByTableByZonaId($table, $zona_id, $dist_mayorista = false){
+			$sqlWhere = '';
+			if($dist_mayorista){
+				$sqlWhere	= "AND D.dist_mayorista = 'S'";
+			}
+
 			if(!empty($zona_id) && is_numeric($zona_id)){
 				$sql	= "SELECT 
 								D.zona_id,
@@ -436,6 +461,7 @@
 							WHERE 
 								D.zona_id = $zona_id  
 								AND D.dist_estado = 'A'
+								$sqlWhere
 							ORDER BY D.dist_orden";
 				
 				return 	DB::getAll( $sql );

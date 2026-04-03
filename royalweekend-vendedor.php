@@ -14,7 +14,9 @@
     header('Location: index.php');
     exit;
   }
-  $table = "cpchblys";
+  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'mayorista') ? true : false;
+  
+  $table = "royalweekend";
   $objIngreso = new ingreso();
   $objRegistro = new registro();
   if(isset($get['id']) && is_numeric($get['id'])){
@@ -70,53 +72,41 @@
             <div class="space-20"></div>
             <?php if($registros){ ?>
             <div class="is-desktop">
-              <table class="table table-spacing mx-auto">
+              <table class="table table-spacing mx-auto" style="vertical-align: middle !important;">
                 <thead>
                   <tr>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro borde">
-                          <div class="space-10"></div>
-                          <div class="text-small">ID</div>
+                        <div class="titulo bg-verde-oscuro borde" style="height: 60px;">
+                          <div class="space-15"></div>
+                          ID
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro borde">
-                          <div class="space-10"></div>
-                          <div class="text-small">VENDEDOR</div>
+                        <div class="titulo bg-verde-oscuro borde" style="height: 60px;">
+                          <div class="space-15"></div>
+                          VENDEDOR
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-amarillo borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="space-20"></div>
+                        <div class="titulo bg-amarillo borde" style="height: 60px;"> 
+                            <div class="space-15"></div>
                             <div class="text-small">INGRESOS</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="space-15"></div>
-                            <div class="text-small">CUMP<br>3R ICE</div>
+                        <div class="titulo bg-azul borde" style="height: 60px;"> 
+                            <div class="space-10"></div>
+                            <div class="text-small">CUMPLIMIENTO<br>VOLUMEN</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="space-15"></div>
-                            <div class="text-small">FALTANTES<br>3R ICE</div>
+                        <div class="titulo bg-rojo borde" style="height: 60px;"> 
+                            <div class="space-10"></div>
+                            <div class="text-small">FALTANTES<br>VOLUMEN</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="space-15"></div>
-                            <div class="text-small">CUMP<br>ICE LOW</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
-                            <div class="space-15"></div>
-                            <div class="text-small">FALTANTES<br>ICE LOW</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-rojo borde" style="height: 60px;padding-top: 10px;">
+                        <div class="titulo bg-verde-oscuro borde" style="height: 60px;padding-top: 10px;">
 
                           <div class="text-small">
                             FALTANTES<br>
@@ -133,13 +123,11 @@
                     ?>
                     <tr>
                       <td width="50" class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
-                      <td width="250" class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
-                      <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
-                      <td width="150" class="txt-azul"><?= $registro->CUMP_MISTRAL_3R_ICE; ?></td>
-                      <td width="150" class="txt-azul"><?= $registro->CUMP_MISTRAL_3R_ICE_FALTANTES; ?></td>
-                      <td width="150" class="txt-azul"><?= $registro->CUMP_MISTRAL_ICE_LOW; ?></td>
-                      <td width="150" class="txt-azul"><?= $registro->CUMP_MISTRAL_ICE_LOW_FALTANTES; ?></td>
-                      <td width="150"><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
+                      <td width="200" class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
+                      <td width="80" class="txt-amarillo"><?= $ingresos; ?></td>
+                      <td width="120" class="txt-azul"><?= $registro->CUMPLIMIENTO_VOLUMEN; ?></td>
+                      <td width="120" class="txt-rojo"><?= $registro->FALTANTES_VOLUMEN; ?></td>
+                      <td width="120"><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-verde-oscuro"><span class="badge bg-verde-oscuro">Click Aquí</span></a></td>
                     </tr>
                     <?php 
                       $totIngresos += $ingresos;
@@ -149,10 +137,9 @@
                     <tr class="transparent">
                       <td colspan="2" class="text-start bg-verde-oscuro">Total General Distrito</td>
                       <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_3R_ICE; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_3R_ICE_FALTANTES; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_ICE_LOW; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_ICE_LOW_FALTANTES; ?></td>
+                      <td class="bg-azul"><?= $total->CUMPLIMIENTO_VOLUMEN; ?></td>
+                      <td class="bg-rojo"><?= $total->FALTANTES_VOLUMEN; ?></td>
+                      <td class="transparent" style="border-bottom: none;">&nbsp;</td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -171,52 +158,37 @@
                 <thead>
                   <tr>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro borde" style="height: 60px;">
-                          <div class="space-15"></div>
+                        <div class="titulo bg-verde-oscuro borde">
+                          <div class="space-5"></div>
                           <div class="text-small">ID</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-verde-oscuro borde" style="height: 60px;">
-                          <div class="space-15"></div>
+                        <div class="titulo bg-verde-oscuro borde">
+                          <div class="space-5"></div>
                           <div class="text-small">VENDEDOR</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-amarillo borde" style="height: 60px;"> 
-                          <div class="space-15"></div>
-                          <div class="text-small">INGRESOS</div>
+                        <div class="titulo bg-amarillo borde"> 
+                          <div class="space-5"></div>
+                          <div class="text-small">Ingresos</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;">
-                            <div class="space-15"></div>
-                            <div class="text-small">CUMP 3R ICE</div>
+                        <div class="titulo bg-azul borde">
+                            <div class="text-small">Cumplimiento<br>Volumen</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;">
-                            <div class="space-15"></div>
-                            <div class="text-small">FALTANTES 3R ICE</div>
+                        <div class="titulo bg-rojo borde">
+                          <div class="text-small">Faltantes<br>Volumen</div>
                         </div>
                       </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;">
-                            <div class="space-15"></div>
-                            <div class="text-small">CUMP ICE LOW</div>
-                        </div>
-                      </th>
-                      <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde" style="height: 60px;">
-                            <div class="space-15"></div>
-                            <div class="text-small">FALTANTES ICE LOW</div>
-                        </div>
-                      </th>
-                      
                       <th scope="col" class="transparent" >
-                        <div class="titulo bg-rojo borde" style="height: 60px;"> 
-                          <div class="space-15"></div>
-                          <div class="text-small">FALTANTES</div>
+                        <div class="titulo bg-verde-oscuro borde"> 
+                          <div class="space-5"></div>
+                          <div class="text-small">Faltantes</div>
                         </div>
                       </th>
                       
@@ -232,11 +204,9 @@
                       <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                       <td class="text-start txt-verde-oscuro"><?= $registro->nombre; ?></td>
                       <td class="txt-amarillo"><?= $ingresos; ?></td>
-                      <td class="txt-azul"><?= $registro->CUMP_MISTRAL_3R_ICE; ?></td>
-                      <td class="txt-azul"><?= $registro->CUMP_MISTRAL_3R_ICE_FALTANTES; ?></td>
-                      <td class="txt-azul"><?= $registro->CUMP_MISTRAL_ICE_LOW; ?></td>
-                      <td class="txt-azul"><?= $registro->CUMP_MISTRAL_ICE_LOW_FALTANTES; ?></td>
-                      <td ><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-rojo"><span class="badge bg-danger">Click Aquí</span></a></td>
+                      <td class="txt-azul"><?= $registro->CUMPLIMIENTO_VOLUMEN; ?></td>
+                      <td class="txt-rojo"><?= $registro->FALTANTES_VOLUMEN; ?></td>
+                      <td ><a href="<?= $table; ?>-cliente.php?id=<?= $registro->id; ?>&tipo=vendedor" class="txt-verde-oscuro"><span class="badge bg-verde-oscuro">Click Aquí</span></a></td>
                     </tr>
                     <?php 
                       $totIngresos += $ingresos;
@@ -246,21 +216,16 @@
                     <tr class="transparent">
                       <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                       <td class="bg-amarillo"><?= $totIngresos; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_3R_ICE; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_3R_ICE_FALTANTES; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_ICE_LOW; ?></td>
-                      <td class="bg-azul"><?= $total->CUMP_MISTRAL_ICE_LOW_FALTANTES; ?></td>
-                    </tr>
-                    <?php } ?>
-                    <tr class="transparent">
-                      <td colspan="7" class="transparent" style="border: none;"></td>
-                      <td class="bg-rojo">
+                      <td class="bg-azul"><?= $total->CUMPLIMIENTO_VOLUMEN; ?></td>
+                      <td class="bg-rojo"><?= $total->FALTANTES_VOLUMEN; ?></td>
+                      <td class="bg-verde-oscuro">
                         <div class="text-small">
                           Haz click y revisa el estado de tus clientes
                         </div>
                       </td>
-                      
                     </tr>
+                    <?php } ?>
+                    
                 </tbody>
               </table>
               </div>
@@ -270,7 +235,7 @@
 
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/<?= $$table; ?>.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/royalweekend.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
             <?php //include("include-derecha.php"); ?>

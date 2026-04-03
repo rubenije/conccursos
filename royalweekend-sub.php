@@ -12,7 +12,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "cpchblys";
+  $table = "royalweekend";
   $objRegistro = new registro();
   $z_norte      = $objRegistro->getZonaByCodigo('NORTE');
   $z_costa      = $objRegistro->getZonaByCodigo('CENTRO COSTA');
@@ -21,8 +21,6 @@
   $z_sur        = $objRegistro->getZonaByCodigo('SUR');
   $totales      = $objRegistro->getTotalesByTable($table);
 
-  $totUnicos = 0;
-  $totIngresos = 0;
   $totFinalIngresos = 0;
   $totFinalUnicos = 0;
   
@@ -91,16 +89,9 @@
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMP<br>3R ICE</div>
+                        <div class="text-small">CUMPLIMIENTO<br>VOLUMEN</div>
                     </div>
                   </th>
-                  <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde">
-                        <div class="space-5"></div>
-                        <div class="text-small">CUMP<br>ICE LOW</div>
-                    </div>
-                  </th>
-
                 </tr>
               </thead>
               <?php if($z_norte){ 
@@ -127,16 +118,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
-                  </tr>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
+                    </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -172,16 +161,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -215,8 +202,7 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -224,8 +210,7 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -258,16 +243,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -302,16 +285,14 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 120px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -327,8 +308,7 @@
                     <td style="width: 180px;" class="text-start bg-verde-oscuro">Total General</td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 120px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -359,12 +339,7 @@
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
-                      <div class="text-small">Cump<br>MISTRAL 3R ICE</div>
-                    </div>
-                  </th>
-                  <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde">
-                      <div class="text-small">Cump<br>MISTRAL ICE LOW</div>
+                      <div class="text-small">Cump<br>Volumen</div>
                     </div>
                   </th>
                 </tr>
@@ -393,16 +368,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
@@ -433,16 +406,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -472,8 +443,7 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -481,8 +451,7 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -511,16 +480,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -551,16 +518,14 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -572,8 +537,7 @@
                     <td class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td class="bg-azul"><?= $totales->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $totales->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $totales->CUMPLIMIENTO_VOLUMEN; ?></td>
                   </tr>
             <?php } ?>
               </tbody>
@@ -582,7 +546,7 @@
             <!-- SM -->
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/<?= $$table; ?>.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/royalweekend.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
 
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">

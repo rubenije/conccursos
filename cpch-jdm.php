@@ -12,11 +12,11 @@
     header('Location: index.php');
     exit;
   }
-  $table = "cpchblys";
+  $table = "cpch";
   $objRegistro = new registro();
   $z_norte      = $objRegistro->getZonaByCodigo('NORTE');
-  $z_costa      = $objRegistro->getZonaByCodigo('CENTRO COSTA');
-  $z_santiago   = $objRegistro->getZonaByCodigo('SANTIAGO');
+  //$z_costa      = $objRegistro->getZonaByCodigo('CENTRO COSTA');
+  //$z_santiago   = $objRegistro->getZonaByCodigo('SANTIAGO');
   $z_centro_sur = $objRegistro->getZonaByCodigo('CENTRO SUR');
   $z_sur        = $objRegistro->getZonaByCodigo('SUR');
   $totales      = $objRegistro->getTotalesByTable($table);
@@ -91,19 +91,19 @@
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMP<br>3R ICE</div>
+                        <div class="text-small">CUMP 2 MISTRAL ICE<br> + 1 3R ICE</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMP<br>ICE LOW</div>
+                        <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                     </div>
                   </th>
                 </tr>
               </thead>
-              <?php if($z_norte){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_norte->zona_id);
+              <?php if(isset($z_norte)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_norte->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_norte->zona_codigo);
               ?>  
               <tbody>
@@ -126,16 +126,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -145,8 +145,8 @@
               ?>
             </table>
 
-            <?php if($z_costa){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_costa->zona_id);
+            <?php if(isset($z_costa)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_costa->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_costa->zona_codigo);
               
             ?> 
@@ -171,16 +171,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -189,8 +189,8 @@
               $totFinalUnicos+= $totUnicos;
             ?>
 
-            <?php if($z_santiago){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_santiago->zona_id);
+            <?php if(isset($z_santiago)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_santiago->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_santiago->zona_codigo);
 
             ?> 
@@ -214,8 +214,8 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -223,8 +223,8 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -233,8 +233,8 @@
               $totFinalUnicos+= $totUnicos;
             ?>
 
-            <?php if($z_centro_sur){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_centro_sur->zona_id);
+            <?php if(isset($z_centro_sur)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_centro_sur->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_centro_sur->zona_codigo);
             ?> 
             <table class="table table-spacing mx-auto">
@@ -257,16 +257,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -275,8 +275,8 @@
               $totFinalUnicos+= $totUnicos;
             ?>
 
-            <?php if($z_sur){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_sur->zona_id);
+            <?php if(isset($z_sur)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_sur->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_sur->zona_codigo);
 
             ?> 
@@ -301,16 +301,16 @@
                     </td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -320,15 +320,15 @@
            
             ?>
 
-            <?php if($totales){ ?>
+            <?php if(isset($totales)){ ?>
             <table class="table table-spacing totales mx-auto">
               <tbody>
                   <tr class="bg-verde-oscuro">
                     <td style="width: 180px;" class="text-start bg-verde-oscuro">Total General</td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -361,18 +361,18 @@
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
-                      <div class="text-small">Cump<br>3R ICE</div>
+                      <div class="text-small">CUMP 2 MISTRAL ICE<br>+ 1 3R ICE</div>
                     </div>
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-azul borde">
-                      <div class="text-small">Cump<br>ICE LOW</div>
+                      <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                     </div>
                   </th>
                 </tr>
               </thead>
-              <?php if($z_norte){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_norte->zona_id);
+              <?php if(isset($z_norte)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_norte->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_norte->zona_codigo);
               ?>  
               <tbody>
@@ -397,24 +397,24 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Zona Norte</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
                 $totFinalUnicos+= $totUnicos;
 
               ?>
-            <?php if($z_costa){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_costa->zona_id);
+            <?php if(isset($z_costa)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_costa->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_costa->zona_codigo);
               
             ?> 
@@ -437,24 +437,24 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Costa</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
               $totFinalUnicos+= $totUnicos;
             ?>
 
-            <?php if($z_santiago){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_santiago->zona_id);
+            <?php if(isset($z_santiago)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_santiago->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_santiago->zona_codigo);
 
             ?> 
@@ -476,8 +476,8 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -485,16 +485,16 @@
                     <td class="text-start bg-verde-oscuro">Total Stgo/Rcgua</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
               $totFinalUnicos+= $totUnicos;
             ?>
 
-            <?php if($z_centro_sur){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_centro_sur->zona_id);
+            <?php if(isset($z_centro_sur)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_centro_sur->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_centro_sur->zona_codigo);
             ?> 
                   <?php 
@@ -515,24 +515,24 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Centro Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
               $totFinalUnicos+= $totUnicos;
             ?>
 
-            <?php if($z_sur){ 
-                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_sur->zona_id);
+            <?php if(isset($z_sur)){ 
+                    $distritos = $objRegistro->getDistritoByTableByZonaId($table, $z_sur->zona_id, true);
                     $subtotal = $objRegistro->getSubTotalByTableByTipo($table, $z_sur->zona_codigo);
 
             ?> 
@@ -555,29 +555,29 @@
                     </td>
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
                     <td class="text-start bg-verde-oscuro">Total Sur</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
               $totFinalUnicos+= $totUnicos;
 
             ?>
-                <?php if($totales){ ?>
+                <?php if(isset($totales)){ ?>
                   <tr class="bg-verde-oscuro">
                     <td class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
-                    <td class="bg-azul"><?= $totales->CUMP_MISTRAL_3R_ICE; ?></td>
-                    <td class="bg-azul"><?= $totales->CUMP_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
+                    <td class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                 <?php } ?>
               </tbody>

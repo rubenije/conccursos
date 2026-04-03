@@ -3,7 +3,7 @@
 	date_default_timezone_set("Chile/Continental");
 	$time = date('His');
 
-	error_reporting(0);
+	//error_reporting(0);
 
 	if (!defined('INCLUDE_PATH')) {
 	  define('INCLUDE_PATH', 'xrqEi2rpfA73XH9cruLMxt2oZ/');
@@ -12,51 +12,50 @@
 	include_once(INCLUDE_PATH . 'class/class.inputfilter.php');
 	include_once(INCLUDE_PATH . 'class/inc.globals.php');
 	include_once(INCLUDE_PATH . 'class/class.csv.php');
-	include_once(INCLUDE_PATH . 'class/class.registro.php');
+	include_once(INCLUDE_PATH . 'class/class.detalle.php');
 
 	include_once(INCLUDE_PATH . 'class/class.resumen.php');
 	
 
 	$resumen['resu_inicio'] = date('Y-m-d H:i:s');
 	
-	$objRegistro 	= new registro();
+	$objDetalle 	= new detalle();
 	$objResumen 	= new resumen();
-	$table 			= "energia";
+	$table 			= "royalweekend";
 
 	$date = date('Ymd');
-	$file_csv 	= 'ENERGIA.csv';
-
+	//$file_csv 	= 'MINIONS_ENERGIA_DETALLE_'.$date.'.csv';
+	$file_csv 	= 'ROYALWEEKEND_DETALLE.csv';
 	
 	if(file_exists($file_csv)){
 		$csv 		= new CsvImporter($file_csv,';', true);
 		$datas 		= $csv->get();
+
 		$count = 0;
 
 		if(is_array($datas) && !empty($datas)){
-			
-			$objRegistro->deleteRegistroByTable($table);
-
-
+			$objDetalle->truncateDetalleByTable($table);
+			//sleep(1000);
 			foreach ($datas as $data) { 
-				$post['tipo'] 					= $data['TIPO'] ?? "";
-				$post['id'] 					= $data['ID'] ?? "";
-				$post['nombre'] 				= $data['NOMBRE'] ?? "";
-				$post['canal'] 					= $data['CANAL'] ?? "";
 
-				$post['CUMPLIMIENTO_REDBULL'] 	= $data['CUMPLIMIENTO_REDBULL'] ?? "";
-				$post['CUMPLIMIENTO_ROCKSTAR'] 	= $data['CUMPLIMIENTO_ROCKSTAR'] ?? "";
-				$post['FALTANTES_REDBULL'] 		= $data['FALTANTES_REDBULL'] ?? "";
-				$post['FALTANTES_ROCKSTAR'] 	= $data['FALTANTES_ROCKSTAR'] ?? "";
-				$post['CUMPL_VOL_REDBULL'] 		= $data['CUMPL_VOL_REDBULL'] ?? "";
-				$post['CUMPL_VOL_ROCKSTAR'] 	= $data['CUMPL_VOL_ROCKSTAR'] ?? "";
-				
+				$post['vendedor_id'] 			= $data['ID_VENDEDOR'] ?? "";
+				$post['id'] 					= $data['ID_CLIENTE'] ?? "";
+				$post['sector'] 				= $data['SECTOR'] ?? "";
+				$post['razon'] 					= $data['RAZON_SOCIAL'] ?? "";
+
+				$post['GRUPO_CLIENTE'] 			= $data['GRUPO_CLIENTE'] ?? "";
+				$post['HL_VSD_TOTAL_AA'] 		= $data['HL_VSD_TOTAL_AA'] ?? "";
+				$post['HL_ABRIL_2026'] 			= $data['HL_ABRIL_2026'] ?? "";
+				$post['HL_ABRIL_2025_AL_DIA'] 	= $data['HL_ABRIL_2025_AL_DIA'] ?? "";
+				$post['HL_ABRIL_2025_TOTAL'] 	= $data['HL_ABRIL_2025_TOTAL'] ?? "";
+			
 				
 				
 				if( !empty($post['id']) ){
-					$objRegistro->saveRegistroByTable($table, $post);
+					$objDetalle->saveDetalleByTable($table, $post);
 					$count++;
 				}
-			}	
+            }	
 		}
 		$resumen['resu_registros'] 	= $count;
 		$resumen['resu_termino'] 	= date('Y-m-d H:i:s');

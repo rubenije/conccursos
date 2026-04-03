@@ -82,17 +82,13 @@
                     <div class="row">
                       
                       <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=gatorade"><img src="assets/img/btn-gatorade.png" class="img-fluid btn-minions" alt="Botón GATORADE"></a>
+                        <a href="?opc=ingreso&grupo=royalweekend"><img src="assets/img/btn-royalweekend.png" class="img-fluid btn-minions" alt="Botón ROYAL WEEKEND"></a>
                       </div>
                       <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=aguas"><img src="assets/img/btn-aguas.png" class="img-fluid btn-minions" alt="Botón AGUAS"></a>
+                        <a href="?opc=ingreso&grupo=energia"><img src="assets/img/btn-energia.png" class="img-fluid btn-minions" alt="Botón ENERGIA"></a>
                       </div>
-
-                      <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=heineken"><img src="assets/img/btn-heineken.png" class="img-fluid btn-minions" alt="Botón HEINEKEN"></a>
-                      </div>
-                      <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=gaseosas"><img src="assets/img/btn-gaseosas.png" class="img-fluid btn-minions" alt="Botón GASEOSAS"></a>
+                      <div class="col-12 col-md-12 text-center p-4">
+                        <a href="?opc=ingreso&grupo=cpch"><img src="assets/img/btn-cpch.png" class="img-fluid btn-minions" alt="Botón CPCH"></a>
                       </div>
                       
                     </div>
@@ -115,13 +111,13 @@
               <img src="assets/img/txt-selecciona-el-concurso.png" class="img-fluid txt-selecciona-el-concurso" alt="Selecciona el concurso">
             </div>
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=gatorade"><img src="assets/img/btn-gatorade.png" class="img-fluid btn-minions" alt="Botón GATORADE"></a>
+              <a href="?opc=ingreso&grupo=royalweekend"><img src="assets/img/btn-royalweekend.png" class="img-fluid btn-minions" alt="Botón ROYAL WEEKEND"></a>
             </div>
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=aguas"><img src="assets/img/btn-aguas.png" class="img-fluid btn-minions" alt="Botón AGUAS"></a>
+              <a href="?opc=ingreso&grupo=energia"><img src="assets/img/btn-energia.png" class="img-fluid btn-minions" alt="Botón ENERGIA"></a>
             </div>
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=gaseosas"><img src="assets/img/btn-gaseosas.png" class="img-fluid btn-minions" alt="Botón GASEOSAS"></a>
+              <a href="?opc=ingreso&grupo=cpch"><img src="assets/img/btn-cpch.png" class="img-fluid btn-minions" alt="Botón CPCH"></a>
             </div>
 
             

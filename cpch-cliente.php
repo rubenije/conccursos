@@ -14,10 +14,7 @@
     header('Location: index.php');
     exit;
   }
-
-  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'mayorista') ? true : false;
-  
-  $table = "energia";
+  $table = "cpch";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
@@ -29,8 +26,6 @@
     $vendedores_ids = $objRegistro->getIdsVendedorByTableBySupervisorId($table, $get['id']);
     $detalles       = $objDetalle->getDetalleByTableByVendedoresByIds($table, $vendedores_ids);
   }
-  //pre($detalles);
-  //exit;
 ?>
 <!doctype html>
 <html lang="en">
@@ -113,38 +108,28 @@
                 <thead>
                   <tr style="vertical-align: middle !important;">
                       <th scope="col" class="bg-verde-oscuro borde" style="height: 30px;">ID</th>
+                      <!-- <th scope="col" class="bg-verde-oscuro borde">Grupo</th> -->
                       <th scope="col" class="bg-verde-oscuro borde">Sector</th>
                       <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
-                      <?php if($isMayorista){ ?>
-                      <th scope="col" class="bg-redbull-azul borde text-center">REDBULL HL ABRIL<br>2026 AL DÍA</th>
-                      <th scope="col" class="bg-redbull-rojo borde text-center">ROCKSTAR HL ABRIL<br>2026 AL DÍA</th>
-
-                      <th scope="col" class="bg-redbull-azul borde text-center">REDBULL HL ABRIL<br>2025 TOTAL MES</th>
-                      <th scope="col" class="bg-redbull-rojo borde text-center">ROCKSTAR HL ABRIL<br>2025 TOTAL MES</th>
-                      <?php }else{ ?>
-                      <th scope="col" class="bg-redbull-azul borde text-center">CONCRETADO<br>REDBULL</th>
-                      <th scope="col" class="bg-redbull-rojo borde text-center">CONCRETADO<br>ROCKSTAR</th>
-                      <?php } ?>
+                      <th scope="col" class="bg-verde-oscuro borde">Cantidad Mistral Ice</th>
+                      <th scope="col" class="bg-pepsi borde text-center">Concretado 3R Ice</th>
+                      <th scope="col" class="bg-bilz borde text-center">Concretado Mistral Low</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                      $class_01 = ($detalle->CONCRETADO_REDBULL == 'SI') ? 'txt-azul' : 'txt-rojo';
-                      $class_02 = ($detalle->CONCRETADO_ROCKSTAR == 'SI') ? 'txt-azul' : 'txt-rojo';
+                      $class_3r = ($detalle->CONCRETADO_3R_ICE == 'SI') ? 'txt-azul' : 'txt-rojo';
+                      $class_mistral = ($detalle->CONCRETADO_MISTRAL_ICE_LOW == 'SI') ? 'txt-azul' : 'txt-rojo';
+                    
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
+                      <!-- <td class="txt-verde-oscuro"><?= $detalle->GRUPO_CLIENTE; ?></td> -->
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <?php if($isMayorista){ ?>
-                      <td class="<?= $class; ?>"><?= $detalle->REDBULL_HL_2026; ?></td>
-                      <td class="<?= $class; ?>"><?= $detalle->ROCKSTAR_HL_2026; ?></td>
-                      <td class="<?= $class; ?>"><?= $detalle->REDBULL_HL_2025; ?></td>
-                      <td class="<?= $class; ?>"><?= $detalle->ROCKSTAR_HL_2025; ?></td>
-                      <?php }else{ ?>
-                      <td class="<?= $class_01; ?>"><?= $detalle->CONCRETADO_REDBULL; ?></td>
-                      <td class="<?= $class_02; ?>"><?= $detalle->CONCRETADO_ROCKSTAR; ?></td>
-                      <?php } ?>
+                      <td class="txt-verde-oscuro"><?= $detalle->CANTIDAD_MISTRAL_ICE; ?></td>
+                      <td class="<?= $class_3r; ?>"><?= $detalle->CONCRETADO_3R_ICE; ?></td>
+                      <td class="<?= $class_mistral; ?>"><?= $detalle->CONCRETADO_MISTRAL_ICE_LOW; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -152,7 +137,7 @@
             </div>
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/energia.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/<?= $$table; ?>.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
         </div>

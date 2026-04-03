@@ -13,7 +13,10 @@
     header('Location: index.php');
     exit;
   }
-  $table = "redbull";
+
+  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'mayorista') ? true : false;
+
+  $table = "energia";
   $objIngreso = new ingreso();
   $objRegistro = new registro();
   if(isset($get['id']) && is_numeric($get['id'])){
@@ -52,7 +55,7 @@
       <div class="container tablitas">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="assets/img/redbull-titulo.png" class="img-fluid minions" alt="Minions">
+            <img src="assets/img/<?= $table; ?>-titulo.png" class="img-fluid minions" alt="Minions">
           </div>
         </div>
         <div class="row">
@@ -87,11 +90,12 @@
                           </div>
                         </div>
                       </th>
+                      <?php if($isMayorista){ ?>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-celeste borde" style="height: 60px;padding-top: 0px;"> 
+                        <div class="bg-redbull-azul borde" style="height: 60px;padding-top: 0px;"> 
                           <div class="titulo">
                             <div class="space-10"></div>
-                            <div class="text-small">COB 250 REG, SF O ZERO</div>
+                            <div class="text-small">CUMPL VOL<br>REDBULL</div>
                           </div>
                         </div>
                       </th>
@@ -99,19 +103,28 @@
                         <div class="bg-redbull-rojo borde" style="height: 60px;padding-top: 0px;"> 
                           <div class="titulo">
                             <div class="space-10"></div>
-                            <div class="text-small">COB EDITIONS (3+)</div>
+                            <div class="text-small">CUMPL VOL<br>ROCKSTAR</div>
+                          </div>
+                        </div>
+                      </th>
+                      <?php }else{ ?>
+                      <th scope="col" class="transparent">
+                        <div class="bg-redbull-azul borde" style="height: 60px;padding-top: 0px;"> 
+                          <div class="titulo">
+                            <div class="space-10"></div>
+                            <div class="text-small">CUMPLIMIENTO<br>REDBULL</div>
                           </div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-azul borde" style="height: 60px;padding-top: 0px;">
+                        <div class="bg-redbull-rojo borde" style="height: 60px;padding-top: 0px;"> 
                           <div class="titulo">
                             <div class="space-10"></div>
-                              <div class="text-small">CUMP TOTAL</div>
-                            </div>
+                            <div class="text-small">CUMPLIMIENTO<br>ROCKSTAR</div>
                           </div>
                         </div>
                       </th>
+                      <?php } ?>
                 </tr>
               </thead>
               <tbody>
@@ -124,9 +137,13 @@
                     <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                     <td width="200" class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                     <td width="130" class="txt-redbull-amarillo"><?= $ingresos; ?></td>
-                    <td width="150" class="txt-redbull-celeste"><?= $registro->COB_250; ?></td>
-                    <td width="150" class="txt-redbull-rojo"><?= $registro->COB_EDITIONS; ?></td>
-                    <td width="150" class="txt-redbull-azul"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
+                    <?php if($isMayorista){ ?>
+                    <td width="150" class="txt-redbull-azul"><?= $registro->CUMPL_VOL_REDBULL; ?></td>
+                    <td width="150" class="txt-redbull-rojo"><?= $registro->CUMPL_VOL_ROCKSTAR; ?></td>
+                    <?php }else{ ?>
+                    <td width="150" class="txt-redbull-azul"><?= $registro->CUMPLIMIENTO_REDBULL; ?></td>
+                    <td width="150" class="txt-redbull-rojo"><?= $registro->CUMPLIMIENTO_ROCKSTAR; ?></td>
+                    <?php } ?>
                   </tr>
                   <?php 
                   $totIngresos += $ingresos;
@@ -135,9 +152,13 @@
                   <tr class="transparent">
                     <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
-                    <td class="bg-redbull-celeste"><?= $total->COB_250; ?></td>
-                    <td class="bg-redbull-rojo"><?= $total->COB_EDITIONS; ?></td>
-                    <td class="bg-redbull-azul"><?= $total->CUMPLIMIENTO_TOTAL; ?></td>
+                    <?php if($isMayorista){ ?>
+                    <td class="bg-redbull-azul"><?= $total->CUMPL_VOL_REDBULL; ?></td>
+                    <td class="bg-redbull-rojo"><?= $total->CUMPL_VOL_ROCKSTAR; ?></td>
+                    <?php }else{ ?>
+                    <td class="bg-redbull-azul"><?= $total->CUMPLIMIENTO_REDBULL; ?></td>
+                    <td class="bg-redbull-rojo"><?= $total->CUMPLIMIENTO_ROCKSTAR; ?></td>
+                    <?php } ?>
                   </tr>
                   <?php } ?>
               </tbody>
@@ -170,28 +191,37 @@
                           </div>
                         </div>
                       </th>
+                      <?php if($isMayorista){ ?>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-celeste borde" style="height: 60px;padding-top: 0px;"> 
+                        <div class="bg-redbull-azul borde" style="height: 60px;padding-top: 0px;"> 
                           <div class="titulo">
-                            <div class="text-small">COB 250 REG, SF O ZERO</div>
+                            <div class="text-small">CUMP VOL<br>REDBULL</div>
                           </div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="bg-redbull-rojo borde" style="height: 60px;padding-top: 0px;"> 
                           <div class="titulo">
-                            <div class="text-small">COB EDITIONS (3+)</div>
+                            <div class="text-small">CUMP VOL<br>ROCKSTAR</div>
+                          </div>
+                        </div>
+                      </th>
+                      <?php }else{ ?>
+                      <th scope="col" class="transparent">
+                        <div class="bg-redbull-azul borde" style="height: 60px;padding-top: 0px;"> 
+                          <div class="titulo">
+                            <div class="text-small">CUMP<br>REDBULL</div>
                           </div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="bg-redbull-azul borde" style="height: 60px;padding-top: 0px;">
+                        <div class="bg-redbull-rojo borde" style="height: 60px;padding-top: 0px;"> 
                           <div class="titulo">
-                            <div class="text-small">CUMP TOTAL</div>
+                            <div class="text-small">CUMP<br>ROCKSTAR</div>
                           </div>
                         </div>
                       </th>
-                  
+                      <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -204,9 +234,13 @@
                   <td class="text-start txt-verde-oscuro"><?= $registro->id; ?></td>
                   <td class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                   <td class="txt-redbull-amarillo"><?= $ingresos; ?></td>
-                  <td class="txt-redbull-celeste"><?= $registro->COB_250; ?></td>
-                  <td class="txt-redbull-rojo"><?= $registro->COB_EDITIONS; ?></td>
-                  <td class="txt-redbull-azul"><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
+                  <?php if($isMayorista){ ?>
+                  <td class="txt-redbull-azul"><?= $registro->CUMPL_VOL_REDBULL; ?></td>
+                  <td class="txt-redbull-rojo"><?= $registro->CUMPL_VOL_ROCKSTAR; ?></td>
+                  <?php }else{ ?>
+                  <td class="txt-redbull-azul"><?= $registro->CUMPLIMIENTO_REDBULL; ?></td>
+                  <td class="txt-redbull-rojo"><?= $registro->CUMPLIMIENTO_ROCKSTAR; ?></td>
+                  <?php } ?>
                 </tr>
                 <?php 
                 $totIngresos += $ingresos;
@@ -216,9 +250,13 @@
                   <td class="transparent" style="border: none;"></td>
                   <td class="text-start bg-verde-oscuro">Total General</td>
                   <td class="bg-redbull-amarillo"><?= $totIngresos; ?></td>
-                  <td class="bg-redbull-celeste"><?= $total->COB_250; ?></td>
-                  <td class="bg-redbull-rojo"><?= $total->COB_EDITIONS; ?></td>
-                  <td class="bg-redbull-azul"><?= $total->CUMPLIMIENTO_TOTAL; ?></td>
+                  <?php if($isMayorista){ ?>
+                    <td class="bg-redbull-azul"><?= $total->CUMPL_VOL_REDBULL; ?></td>
+                    <td class="bg-redbull-rojo"><?= $total->CUMPL_VOL_ROCKSTAR; ?></td>
+                  <?php }else{ ?>
+                    <td class="bg-redbull-azul"><?= $total->CUMPL_VOL_REDBULL; ?></td>
+                    <td class="bg-redbull-rojo"><?= $total->CUMPL_VOL_ROCKSTAR; ?></td>
+                  <?php } ?>
                 </tr>
                 <?php } ?>
             </tbody>
@@ -232,7 +270,7 @@
 
             
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="premios.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="energia.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
             <?php //include("include-derecha.php"); ?>

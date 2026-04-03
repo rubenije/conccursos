@@ -14,7 +14,7 @@
     header('Location: index.php');
     exit;
   }
-  $table = "cpchblys";
+  $table = "royalweekend";
   $objMaster = new master();
   $objRegistro = new registro();  
   $objDetalle = new detalle();
@@ -63,6 +63,7 @@
           </div>
         </div>
         <div class="row justify-content-center text-center g-4">
+          <!--
           <div class="col-12 col-md-4">
             <div class="mb-3">
               <label for="filtroGrupo" class="form-label text-white">Filtrar por grupo:</label>
@@ -78,6 +79,7 @@
               </select>
             </div>
           </div>
+          -->
           <div class="col-12 col-md-4">
             <div class="mb-3">
               <label for="filtroSector" class="form-label text-white">Filtrar por sector:</label>
@@ -108,28 +110,31 @@
                 <thead>
                   <tr style="vertical-align: middle !important;">
                       <th scope="col" class="bg-verde-oscuro borde" style="height: 30px;">ID</th>
-                      <th scope="col" class="bg-verde-oscuro borde">Grupo</th>
+                      <!-- <th scope="col" class="bg-verde-oscuro borde">Grupo</th>-->
                       <th scope="col" class="bg-verde-oscuro borde">Sector</th>
                       <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
-                      <th scope="col" class="bg-verde-oscuro borde">Cantidad Mistral Ice</th>
-                      <th scope="col" class="bg-pepsi borde text-center">Concretado 3R Ice</th>
-                      <th scope="col" class="bg-bilz borde text-center">Concretado Mistral Low</th>
+                      <th scope="col" class="bg-pepsi borde text-center">HL VS<br>TOTAL AA</th>
+                      <th scope="col" class="bg-bilz borde text-center">HL ABRIL<br>2026 AL DÍA</th>
+                      <th scope="col" class="bg-pap borde text-center">HL ABRIL<br>2025 AL DIA</th>
+                      <th scope="col" class="bg-kem borde text-center">HL ABRIL 2025<br>TOTAL MES</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
                   <?php foreach($detalles as $detalle){ 
-                      $class_3r = ($detalle->CONCRETADO_3R_ICE == 'SI') ? 'txt-azul' : 'txt-azul';
-                      $class_mistral = ($detalle->CONCRETADO_MISTRAL_ICE_LOW == 'SI') ? 'txt-azul' : 'txt-azul';
-                    
+                      $class_uno = ($detalle->HL_VSD_TOTAL_AA == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_dos = ($detalle->HL_ABRIL_2026 == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_tres = ($detalle->HL_ABRIL_2025_AL_DIA == 'SI') ? 'txt-azul' : 'txt-azul';
+                      $class_cuatro = ($detalle->HL_ABRIL_2025_TOTAL == 'SI') ? 'txt-azul' : 'txt-azul';
                   ?>
                   <tr>
                       <td class="text-start txt-verde-oscuro"><?= $detalle->id; ?></td>
-                      <td class="txt-verde-oscuro"><?= $detalle->GRUPO_CLIENTE; ?></td>
+                      <!-- <td class="txt-verde-oscuro"><?= $detalle->GRUPO_CLIENTE; ?></td>-->
                       <td class="txt-verde-oscuro"><?= $detalle->sector; ?></td>
                       <td class="txt-verde-oscuro text-start"><?= $detalle->razon; ?></td>
-                      <td class="<?= $class_mistral; ?>"><?= $detalle->CANTIDAD_MISTRAL_ICE; ?></td>
-                      <td class="<?= $class_3r; ?>"><?= $detalle->CONCRETADO_3R_ICE; ?></td>
-                      <td class="<?= $class_mistral; ?>"><?= $detalle->CONCRETADO_MISTRAL_ICE_LOW; ?></td>
+                      <td class="<?= $class_uno; ?>"><?= $detalle->HL_VSD_TOTAL_AA; ?></td>
+                      <td class="<?= $class_dos; ?>"><?= $detalle->HL_ABRIL_2026; ?></td>
+                      <td class="<?= $class_tres; ?>"><?= $detalle->HL_ABRIL_2025_AL_DIA; ?></td>
+                      <td class="<?= $class_cuatro; ?>"><?= $detalle->HL_ABRIL_2025_TOTAL; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -137,7 +142,7 @@
             </div>
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/<?= $$table; ?>.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/royalweekend.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
         </div>

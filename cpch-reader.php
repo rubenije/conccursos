@@ -13,18 +13,17 @@
 	include_once(INCLUDE_PATH . 'class/inc.globals.php');
 	include_once(INCLUDE_PATH . 'class/class.csv.php');
 	include_once(INCLUDE_PATH . 'class/class.registro.php');
-
+	include_once(INCLUDE_PATH . 'class/class.detalle.php');
 	include_once(INCLUDE_PATH . 'class/class.resumen.php');
 	
-
 	$resumen['resu_inicio'] = date('Y-m-d H:i:s');
 	
 	$objRegistro 	= new registro();
 	$objResumen 	= new resumen();
-	$table 			= "energia";
+	$table 			= "cpch";
 
 	$date = date('Ymd');
-	$file_csv 	= 'ENERGIA.csv';
+	$file_csv 	= 'CPCH.csv';
 
 	
 	if(file_exists($file_csv)){
@@ -38,19 +37,16 @@
 
 
 			foreach ($datas as $data) { 
-				$post['tipo'] 					= $data['TIPO'] ?? "";
-				$post['id'] 					= $data['ID'] ?? "";
-				$post['nombre'] 				= $data['NOMBRE'] ?? "";
-				$post['canal'] 					= $data['CANAL'] ?? "";
 
-				$post['CUMPLIMIENTO_REDBULL'] 	= $data['CUMPLIMIENTO_REDBULL'] ?? "";
-				$post['CUMPLIMIENTO_ROCKSTAR'] 	= $data['CUMPLIMIENTO_ROCKSTAR'] ?? "";
-				$post['FALTANTES_REDBULL'] 		= $data['FALTANTES_REDBULL'] ?? "";
-				$post['FALTANTES_ROCKSTAR'] 	= $data['FALTANTES_ROCKSTAR'] ?? "";
-				$post['CUMPL_VOL_REDBULL'] 		= $data['CUMPL_VOL_REDBULL'] ?? "";
-				$post['CUMPL_VOL_ROCKSTAR'] 	= $data['CUMPL_VOL_ROCKSTAR'] ?? "";
-				
-				
+				$post['tipo'] 						= $data['TIPO'] ?? "";
+				$post['id'] 						= $data['ID'] ?? "";
+				$post['nombre'] 					= $data['NOMBRE'] ?? "";
+				$post['canal'] 						= $data['CANAL'] ?? "";
+
+				$post['CUMPLIMIENTO_MISTRAL_ICE_3R'] 	= $data['CUMPLIMIENTO_MISTRAL_ICE_3R'] ?? "";
+				$post['CUMPLIMIENTO_MISTRAL_ICE_LOW'] 	= $data['CUMPLIMIENTO_MISTRAL_ICE_NOW'] ?? "";
+				$post['FALTANTES_MISTRAL_ICE_3R'] 		= $data['FALTANTES_MISTRAL_ICE_3R'] ?? "";
+				$post['FALTANTES_MISTRAL_ICE_LOW'] 		= $data['FALTANTES_MISTRAL_ICE_NOW'] ?? "";
 				
 				if( !empty($post['id']) ){
 					$objRegistro->saveRegistroByTable($table, $post);
