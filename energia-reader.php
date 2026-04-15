@@ -38,6 +38,7 @@
 
 
 			foreach ($datas as $data) { 
+
 				$post['tipo'] 					= $data['TIPO'] ?? "";
 				$post['id'] 					= $data['ID'] ?? "";
 				$post['nombre'] 				= $data['NOMBRE'] ?? "";
@@ -45,12 +46,10 @@
 
 				$post['CUMPLIMIENTO_REDBULL'] 	= $data['CUMPLIMIENTO_REDBULL'] ?? "";
 				$post['CUMPLIMIENTO_ROCKSTAR'] 	= $data['CUMPLIMIENTO_ROCKSTAR'] ?? "";
-				$post['FALTANTES_REDBULL'] 		= $data['FALTANTES_REDBULL'] ?? "";
-				$post['FALTANTES_ROCKSTAR'] 	= $data['FALTANTES_ROCKSTAR'] ?? "";
-				$post['CUMPL_VOL_REDBULL'] 		= $data['CUMPL_VOL_REDBULL'] ?? "";
-				$post['CUMPL_VOL_ROCKSTAR'] 	= $data['CUMPL_VOL_ROCKSTAR'] ?? "";
-				
-				
+				$post['FALTANTES_REDBULL'] 		= $data['FALTANTE_REDBULL'] ?? "";
+				$post['FALTANTES_ROCKSTAR'] 	= $data['FALTANTE_ROCKSTAR'] ?? "";
+				$post['CUMPL_VOL_REDBULL'] 		= $data['CUMPLIMIENTO_VOL_REDBULL'] ?? "";
+				$post['CUMPL_VOL_ROCKSTAR'] 	= $data['CUMPLIMIENTO_VOL_ROCKSTAR'] ?? "";
 				
 				if( !empty($post['id']) ){
 					$objRegistro->saveRegistroByTable($table, $post);

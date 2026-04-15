@@ -46,7 +46,7 @@
 				$post['GRUPO_CLIENTE'] 				= $data['GRUPO_CLIENTE'] ?? "";	
 				$post['CANTIDAD_MISTRAL_ICE'] 		= $data['CANTIDAD_MISTRAL_ICE'] ?? "";
 				$post['CONCRETADO_3R_ICE'] 			= $data['CONCRETADO_3R_ICE'] ?? "";
-				$post['CONCRETADO_MISTRAL_ICE_LOW'] = $data['CONCRETADO_MISTRAL_ICE_LOW'] ?? "";
+				$post['CONCRETADO_MISTRAL_ICE_LOW'] = $data['CONCRETADO_MISTRAL_ICE_ENERGY'] ?? "";
 				
 				if( !empty($post['id']) ){
 					$objDetalle->saveDetalleByTable($table, $post);

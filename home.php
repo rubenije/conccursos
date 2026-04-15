@@ -84,9 +84,11 @@
                       <div class="col-12 col-md-6 text-center">
                         <a href="?opc=ingreso&grupo=royalweekend"><img src="assets/img/btn-royalweekend.png" class="img-fluid btn-minions" alt="Botón ROYAL WEEKEND"></a>
                       </div>
+                      
                       <div class="col-12 col-md-6 text-center">
                         <a href="?opc=ingreso&grupo=energia"><img src="assets/img/btn-energia.png" class="img-fluid btn-minions" alt="Botón ENERGIA"></a>
                       </div>
+                      
                       <div class="col-12 col-md-12 text-center p-4">
                         <a href="?opc=ingreso&grupo=cpch"><img src="assets/img/btn-cpch.png" class="img-fluid btn-minions" alt="Botón CPCH"></a>
                       </div>
@@ -113,14 +115,14 @@
             <div class="col-12">
               <a href="?opc=ingreso&grupo=royalweekend"><img src="assets/img/btn-royalweekend.png" class="img-fluid btn-minions" alt="Botón ROYAL WEEKEND"></a>
             </div>
+            
             <div class="col-12">
               <a href="?opc=ingreso&grupo=energia"><img src="assets/img/btn-energia.png" class="img-fluid btn-minions" alt="Botón ENERGIA"></a>
             </div>
+            
             <div class="col-12">
               <a href="?opc=ingreso&grupo=cpch"><img src="assets/img/btn-cpch.png" class="img-fluid btn-minions" alt="Botón CPCH"></a>
             </div>
-
-            
             
           </div>
         </div>

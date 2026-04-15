@@ -95,7 +95,7 @@
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde">
+                    <div class="titulo bg-celeste borde">
                         <div class="space-5"></div>
                         <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                     </div>
@@ -128,7 +128,7 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -136,7 +136,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
               <?php } 
@@ -173,7 +173,7 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -181,7 +181,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -216,7 +216,7 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -225,7 +225,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -259,7 +259,7 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -267,7 +267,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -303,7 +303,7 @@
                     <td style="width: 80px;" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td style="width: 80px;" class="txt-amarillo"><?= $unicos; ?></td>
                     <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td style="width: 140px;" class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -311,7 +311,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -328,7 +328,7 @@
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td style="width: 80px;" class="bg-amarillo"><?= $totFinalUnicos; ?></td>
                     <td style="width: 140px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td style="width: 140px;" class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td style="width: 140px;" class="bg-celeste"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               </tbody>
             </table>
@@ -363,7 +363,7 @@
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde">
+                    <div class="titulo bg-celeste borde">
                       <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                     </div>
                   </th>
@@ -394,7 +394,7 @@
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                 <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -402,7 +402,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
               <?php } 
                 $totFinalIngresos+= $totIngresos;
@@ -434,7 +434,7 @@
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -442,7 +442,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -473,7 +473,7 @@
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   
@@ -482,7 +482,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -512,7 +512,7 @@
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -520,7 +520,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -552,7 +552,7 @@
                     <td class="txt-amarillo"><?= $ingresos; ?></td>
                     <td class="txt-amarillo"><?= $unicos; ?></td>
                     <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="txt-azul"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="txt-celeste"><?= $distrito->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
                   <tr class="bg-verde-oscuro fw-bold">
@@ -560,7 +560,7 @@
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totUnicos; ?></td>
                     <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $subtotal->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } 
               $totFinalIngresos+= $totIngresos;
@@ -573,7 +573,7 @@
                     <td class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
                     <td class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
             <?php } ?>
               </tbody>

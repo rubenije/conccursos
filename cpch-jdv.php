@@ -92,7 +92,7 @@
                         </div>
                       </th>
                       <th scope="col" class="transparent">
-                        <div class="titulo bg-azul borde"> 
+                        <div class="titulo bg-celeste borde"> 
                             <div class="space-5"></div>
                             <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                         </div>
@@ -111,7 +111,7 @@
                     <td width="250" class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                     <td width="100" class="txt-amarillo"><?= $ingresos; ?></td>
                     <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td width="150" class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td width="150" class="txt-celeste"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php 
                   $totIngresos += $ingresos;
@@ -121,7 +121,7 @@
                     <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                     <td class="bg-amarillo"><?= $totIngresos; ?></td>
                     <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                   <?php } ?>
               </tbody>
@@ -158,7 +158,7 @@
                     </div>
                   </th>
                   <th scope="col" class="transparent">
-                    <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
+                    <div class="titulo bg-celeste borde" style="height: 60px;padding-top: 0px;"> 
                         <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
                     </div>
                   </th>
@@ -175,7 +175,7 @@
                   <td class="text-start"><a href="<?= $table; ?>-vendedor.php?id=<?= $registro->id; ?>" class="txt-verde-oscuro"><?= $registro->nombre; ?></a></td>
                   <td class="txt-amarillo"><?= $ingresos; ?></td>
                   <td class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                  <td class="txt-azul"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                  <td class="txt-celeste"><?= $registro->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                 </tr>
                 <?php 
                 $totIngresos += $ingresos;
@@ -185,7 +185,7 @@
                   <td colspan="2" class="text-start bg-verde-oscuro">Total General</td>
                   <td class="bg-amarillo"><?= $totIngresos; ?></td>
                   <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                  <td class="bg-azul"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                  <td class="bg-celeste"><?= $total->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                 </tr>
                 <?php } ?>
             </tbody>

@@ -139,6 +139,7 @@
 					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, HL_VSD_TOTAL_AA, HL_ABRIL_2026, HL_ABRIL_2025_AL_DIA, HL_ABRIL_2025_TOTAL, fecha) VALUES ";
 					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$HL_VSD_TOTAL_AA', '$HL_ABRIL_2026', '$HL_ABRIL_2025_AL_DIA', '$HL_ABRIL_2025_TOTAL', '$fecha')";
 				}
+				echo $sql."<br>";
 				return DB::query($sql);
 			}
 			return false;

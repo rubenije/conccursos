@@ -327,7 +327,7 @@
 					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_VOLUMEN', '$FALTANTES_VOLUMEN', '$fecha')";
 				}
 			}
-			
+			echo $sql."<br>";
 			return DB::query($sql);
 	    }
 

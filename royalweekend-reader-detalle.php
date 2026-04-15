@@ -49,8 +49,6 @@
 				$post['HL_ABRIL_2025_AL_DIA'] 	= $data['HL_ABRIL_2025_AL_DIA'] ?? "";
 				$post['HL_ABRIL_2025_TOTAL'] 	= $data['HL_ABRIL_2025_TOTAL'] ?? "";
 			
-				
-				
 				if( !empty($post['id']) ){
 					$objDetalle->saveDetalleByTable($table, $post);
 					$count++;

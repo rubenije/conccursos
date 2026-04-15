@@ -28,9 +28,13 @@ class CsvImporter
 
         if ($this->parse_header) { 
             $this->header = fgetcsv($this->fp, $this->length, $this->delimiter); 
-            $this->header = array_map('trim',$this->header ); // // $array=array_map('trim',$array); fait un trim sur chaque val du tableau
-            }
-        } 
+            $this->header = array_map(function($header) {
+                // eliminar BOM si existe
+                $header = preg_replace('/^\xEF\xBB\xBF/', '', $header);
+                return trim($header);
+            }, $this->header);
+        }
+    } 
 
     function __destruct() { 
         if ($this->fp) { 

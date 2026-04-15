@@ -38,6 +38,7 @@
 			$objDetalle->truncateDetalleByTable($table);
 			//sleep(1000);
 			foreach ($datas as $data) { 
+				
 				$post['vendedor_id'] 			= $data['ID_VENDEDOR'] ?? "";
 				$post['id'] 					= $data['ID_CLIENTE'] ?? "";
 				$post['sector'] 				= $data['SECTOR'] ?? "";
