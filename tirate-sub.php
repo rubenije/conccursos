@@ -9,7 +9,7 @@
   
   session_start();
   if(!$_SESSION['LOGIN']){
-    header('Location: index.php');
+    header('Location: index-php');
     exit;
   }
   $table = "tirate";
@@ -313,7 +313,7 @@
                   ?>
                  <tr>
                     <td style="width: 180px;" class="text-start">
-                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>" class="txt-verde-oscuro">
+                      <a href="<?= $table; ?>-jdv.php?id=<?= $distrito->id; ?>&zona_codigo=<?= $z_sur->zona_codigo; ?>" class="txt-verde-oscuro">
                         <?= $distrito->dist_nombre; ?>
                       </a>
                     </td>
@@ -618,7 +618,7 @@
             <!-- SM -->
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="premios.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/tirate.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
 
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">

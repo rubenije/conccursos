@@ -23,6 +23,15 @@ $distritos = $objInforme->getRankingPorDistrito($get['grupo']);
 $actividades = $objInforme->getRankingActividadPorDia($get['grupo']);
 $participaciones = $objInforme->getPorcentajeDeParticipacionPorZona($get['grupo']);
 $ingresos = $objInforme->getVendedoresSinIngresos($get['grupo']);
+
+$campanaSeleccionada = null;
+
+foreach($campanas as $campana){
+    if($campana['grupo'] === $grupoActual){
+        $campanaSeleccionada = $campana;
+        break;
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,7 +42,44 @@ $ingresos = $objInforme->getVendedoresSinIngresos($get['grupo']);
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
 
+        body{
+            background:#f4f6f9;
+        }
+
+        .card-dashboard{
+            border:none;
+            border-radius:14px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .title-small{
+            font-size:13px;
+            color:#6c757d;
+            margin-bottom:6px;
+        }
+
+        .kpi-number{
+            font-size:34px;
+            font-weight:700;
+        }
+
+        .navbar-custom{
+            background:#fff;
+            box-shadow:0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .table-dashboard thead{
+            background:#f1f3f5;
+        }
+
+        .badge-status{
+            font-size:11px;
+            padding:6px 10px;
+        }
+
+    </style>
     <title>Informe ONLINE</title>
   </head>
   <body>
@@ -72,11 +118,128 @@ $ingresos = $objInforme->getVendedoresSinIngresos($get['grupo']);
     
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-10 m-auto pt-4 text-end">
-                <a href="xls.php?grupo=<?= $get['grupo']; ?>" class="btn btn-success btn-sm"><i class="bi bi-file-earmark-excel"></i> Exportar a Excel</a>
+
+            <div class="col-12 col-md-10 m-auto pt-4">
+
+                <div class="d-flex justify-content-end flex-wrap gap-2">
+
+                    <a
+                        href="xls-consolidado.php?grupo=<?= urlencode($get['grupo']); ?>"
+                        class="btn btn-success btn-sm"
+                    >
+                        Exportar Ingresos Totales
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+      <?php 
+      $diasOnline = 0;
+      $diasRestantes = 0;
+
+        if($campanaSeleccionada){ 
+            $hoy = new DateTime('today');
+
+            $fechaInicio = new DateTime($campanaSeleccionada['fecha_inicio']);
+            $fechaFin = new DateTime($campanaSeleccionada['fecha_fin']);
+
+            if($hoy >= $fechaInicio){
+
+                $diasOnline = $fechaInicio->diff($hoy)->days;
+            }
+
+            if($hoy <= $fechaFin){
+
+                $diasRestantes = $hoy->diff($fechaFin)->days - 1;
+            }
+          ?>
+<div class="row">
+    <div class="col-12 col-md-10 m-auto pt-4">
+        <div class="card card-dashboard">
+            <div class="card-body">
+
+                <div class="row align-items-center">
+
+    <div class="col-12 col-md-8">
+
+        <div class="title-small">
+            Concurso Activo
+        </div>
+
+        <h2 class="mb-2 fw-bold">
+            <?= htmlspecialchars($campanaSeleccionada['nombre']); ?>
+        </h2>
+
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+
+            <span class="badge bg-primary">
+                <?= strtoupper($campanaSeleccionada['grupo']); ?>
+            </span>
+
+            <span class="text-muted small">
+                Inicio:
+                <strong><?= sql2date($campanaSeleccionada['fecha_inicio']); ?></strong>
+            </span>
+
+            <span class="text-muted small">
+                Término:
+                <strong><?= sql2date($campanaSeleccionada['fecha_fin']); ?></strong>
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="col-12 col-md-4 mt-4 mt-md-0">
+
+        <div class="row g-3">
+
+            <div class="col-6">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center">
+
+                        <div class="title-small">
+                            Días Online
+                        </div>
+
+                        <div class="kpi-number">
+                            <?= $diasOnline; ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center">
+
+                        <div class="title-small">
+                            Restantes
+                        </div>
+
+                        <div class="kpi-number">
+                            <?= $diasRestantes; ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
             </div>
         </div>
-      
+    </div>
+</div>
+<?php } ?>
       <?php if($diarios){ ?>
       <div class="row">
         <div class="col-12 col-md-10 m-auto pt-4">

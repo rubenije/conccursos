@@ -218,18 +218,13 @@
                       <td class="bg-amarillo"><?= $totIngresos; ?></td>
                       <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_2_SABORES_3L; ?></td>
                       <td class="bg-azul"><?= $total->CUMPLIMIENTO_COB_3_SABORES_3L; ?></td>
-                      <td class="bg-rojo">&nbsp;</td>
-                    </tr>
-                    <?php } ?>
-                    <tr class="transparent">
-                      <td colspan="5" class="transparent" style="border: none;"></td>
                       <td class="bg-rojo">
                         <div class="text-small">
                           Haz click y revisa el estado de tus clientes
                         </div>
                       </td>
-                      
                     </tr>
+                    <?php } ?>
                 </tbody>
               </table>
               </div>

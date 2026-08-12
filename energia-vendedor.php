@@ -15,7 +15,7 @@
     exit;
   }
 
-  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'mayorista') ? true : false;
+  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'MAYORISTA') ? true : false;
 
   $table = "energia";
   $objIngreso = new ingreso();

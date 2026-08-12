@@ -8,10 +8,7 @@
     require_once(INCLUDE_PATH.'class/class.inputfilter.php');
     require_once(INCLUDE_PATH.'class/class.usuario.php');
     session_start();
-
-    $opc = $get['opc'] ?? null;
-
-    if($opc == 'logout'){
+    if($get['opc'] == 'logout'){
         unset($_SESSION['PANEL']);
         unset($_SESSION['PANEL_USUARIO_ID']);
         unset($_SESSION['PANEL_USUA_NOMBRE']);
@@ -26,7 +23,7 @@
     }
 
     $error = false;
-    if(($post['opc'] ?? null) == 'autenticateBack' && !empty($post['usua_user']) && !empty($post['usua_pass'])){
+    if($post['opc'] == 'autenticateBack' && !empty($post['usua_user']) && !empty($post['usua_pass'])){
         $usuario        = new usuario();
         $autenticate    = $usuario->autenticateBack($post['usua_user'], $post['usua_pass']);
         if($autenticate){

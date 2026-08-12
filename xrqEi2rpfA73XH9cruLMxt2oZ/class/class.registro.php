@@ -219,15 +219,7 @@
 				}
 			}
 			
-			if($table == 'bep' ){
-				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
-				if (DB::getOne($sql)) {
-					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_BEP = '$CUMPLIMIENTO_BEP', fecha = '$fecha' WHERE id = $id";
-				} else {
-					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_BEP, fecha) VALUES ";
-					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_BEP', '$fecha')";
-				}
-			}
+			
 			if($table == 'lipton' ){
 				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
 				if (DB::getOne($sql)) {
@@ -327,15 +319,84 @@
 					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_VOLUMEN', '$FALTANTES_VOLUMEN', '$fecha')";
 				}
 			}
-			echo $sql."<br>";
+
+			if($table == 'bep2026' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_CONC_BEP = '$CUMPLIMIENTO_CONC_BEP', CUMPLIMIENTO_VOL_BEP = '$CUMPLIMIENTO_VOL_BEP', FALTANTE_CONC_BEP = '$FALTANTE_CONC_BEP', FALTANTE_VOL_BEP = '$FALTANTE_VOL_BEP', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_CONC_BEP, CUMPLIMIENTO_VOL_BEP, FALTANTE_CONC_BEP, FALTANTE_VOL_BEP, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_CONC_BEP', '$CUMPLIMIENTO_VOL_BEP', '$FALTANTE_CONC_BEP', '$FALTANTE_VOL_BEP', '$fecha')";
+				}
+			}
+			if($table == 'gatorade2026' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_HORIZONTAL = '$CUMPLIMIENTO_HORIZONTAL', CUMPLIMIENTO_ACELERADOR_750_1LT = '$CUMPLIMIENTO_ACELERADOR_750_1LT', CUMPLIMIENTO_VOL_GATORADE = '$CUMPLIMIENTO_VOL_GATORADE', CUMPLIMIENTO_VOL_ACELERADOR = '$CUMPLIMIENTO_VOL_ACELERADOR', FALTANTE_HORIZONTAL = '$FALTANTE_HORIZONTAL', FALTANTE_ACELERADOR = '$FALTANTE_ACELERADOR', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_HORIZONTAL, CUMPLIMIENTO_ACELERADOR_750_1LT, CUMPLIMIENTO_VOL_GATORADE, CUMPLIMIENTO_VOL_ACELERADOR, FALTANTE_HORIZONTAL, FALTANTE_ACELERADOR, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_HORIZONTAL', '$CUMPLIMIENTO_ACELERADOR_750_1LT', '$CUMPLIMIENTO_VOL_GATORADE', '$CUMPLIMIENTO_VOL_ACELERADOR', '$FALTANTE_HORIZONTAL', '$FALTANTE_ACELERADOR', '$fecha')";
+				}
+			}
+			if($table == 'watts' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_3_SABORES = '$CUMPLIMIENTO_3_SABORES', CUMPLIMIENTO_LIGHT = '$CUMPLIMIENTO_LIGHT', CUMPLIMIENTO_VOL_R = '$CUMPLIMIENTO_VOL_R', CUMPLIMIENTO_VOL_LIGHT = '$CUMPLIMIENTO_VOL_LIGHT', FALTANTE_3_SABORES_R = '$FALTANTE_3_SABORES_R', FALTANTE_LIGHT = '$FALTANTE_LIGHT', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_3_SABORES, CUMPLIMIENTO_LIGHT, CUMPLIMIENTO_VOL_R, CUMPLIMIENTO_VOL_LIGHT, FALTANTE_3_SABORES_R, FALTANTE_LIGHT, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_3_SABORES', '$CUMPLIMIENTO_LIGHT', '$CUMPLIMIENTO_VOL_R', '$CUMPLIMIENTO_VOL_LIGHT', '$FALTANTE_3_SABORES_R', '$FALTANTE_LIGHT', '$fecha')";
+				}
+			}
+			if($table == 'kunstmann' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_VOL_KUNSTMANN = '$CUMPLIMIENTO_VOL_KUNSTMANN', HL_FALTANTES = '$HL_FALTANTES', CUPONES = '$CUPONES', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_VOL_KUNSTMANN, HL_FALTANTES, CUPONES, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_VOL_KUNSTMANN', '$HL_FALTANTES', '$CUPONES', '$fecha')";
+				}
+			}
+
+			if($table == 'cervezas' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_VOLUMEN_CRIS_ESC = '$CUMPLIMIENTO_VOLUMEN_CRIS_ESC', HL_FALTANTE = '$HL_FALTANTE', CUPONES = '$CUPONES', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_VOLUMEN_CRIS_ESC, HL_FALTANTE, CUPONES, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_VOLUMEN_CRIS_ESC', '$HL_FALTANTE', '$CUPONES', '$fecha')";
+				}
+			}
+			if($table == 'gaseosas_sabores' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_SABORES_COBERTURA = '$CUMPLIMIENTO_SABORES_COBERTURA', CLIENTES_FALTANTE = '$CLIENTES_FALTANTE', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_SABORES_COBERTURA, CLIENTES_FALTANTE, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_SABORES_COBERTURA', '$CLIENTES_FALTANTE', '$fecha')";
+				}
+			}
+			if($table == 'redbull2026' ){
+				$sql = "SELECT COUNT(*) FROM registro_$table WHERE id = $id";
+				if (DB::getOne($sql)) {
+					$sql = "UPDATE registro_$table SET CUMPLIMIENTO_250_ROMBO = '$CUMPLIMIENTO_250_ROMBO', CUMPLIMIENTO_EDITIONS = '$CUMPLIMIENTO_EDITIONS', CUMPLIMIENTO_PONDERADO = '$CUMPLIMIENTO_PONDERADO', CUPONES = '$CUPONES', fecha = '$fecha' WHERE id = $id";
+				} else {
+					$sql = "INSERT INTO registro_$table (tipo, id, nombre, canal, CUMPLIMIENTO_250_ROMBO, CUMPLIMIENTO_EDITIONS, CUMPLIMIENTO_PONDERADO, CUPONES, fecha) VALUES ";
+					$sql.= "('$tipo', $id, '$nombre', '$canal', '$CUMPLIMIENTO_250_ROMBO', '$CUMPLIMIENTO_EDITIONS', '$CUMPLIMIENTO_PONDERADO', '$CUPONES', '$fecha')";
+				}
+			}
+			
 			return DB::query($sql);
 	    }
 
 		public function getRegistroDataAllNewByTable($table){
 			$sql	= "SELECT 
-							R.*,
+							M.id,
+							M.tipo,
+							M.nombre,
+							M.canal as 'canal_master',
 							M.supervisor_id,
-							M.distrito
+							M.distrito,
+							R.canal as 'canal_registro'
 						FROM registro_$table R 
 						INNER JOIN master M ON (M.id = R.id)
 						ORDER BY 
@@ -482,6 +543,14 @@
 			}
 			return false;		
 		}
+
+		public function getCanalByGrupoId($grupo, $id){
+			if(!empty($grupo) && is_numeric($id)){
+				$sql 	= "SELECT canal FROM registro_$grupo WHERE id = $id";
+	        	return DB::getOne( $sql );
+			}
+			return false;		
+	    }
 		/**	
 		 * END funciones por tabla
 		 */

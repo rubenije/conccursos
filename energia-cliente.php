@@ -14,8 +14,8 @@
     header('Location: index.php');
     exit;
   }
-
-  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'mayorista') ? true : false;
+    
+  $isMayorista = ($_SESSION['LOGIN_CANAL'] == 'MAYORISTA') ? true : false;
   
   $table = "energia";
   $objMaster = new master();
@@ -191,7 +191,7 @@
 
         // Filtro por Sector
         $('#filtroSector').on('change', function () {
-          tabla.column(2).search($(this).val());
+          tabla.column(1).search($(this).val());
           tabla.draw();
         });
 

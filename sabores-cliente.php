@@ -87,11 +87,11 @@
                       <th scope="col" class="bg-verde-oscuro borde" style="height: 30px;">ID</th>
                       <th scope="col" class="bg-verde-oscuro borde">Sector</th>
                       <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
-                      <th scope="col" class="bg-azul borde text-center">BILZ</th>
-                      <th scope="col" class="bg-azul borde text-center">PAP</th>
-                      <th scope="col" class="bg-azul borde text-center">KEM</th>
-                      <th scope="col" class="bg-azul borde text-center">LIMON</th>
-                      
+                      <th scope="col" class="bg-bilz borde text-center">BILZ</th>
+                      <th scope="col" class="bg-pap borde text-center">PAP</th>
+                      <th scope="col" class="bg-kem txt-rojo borde text-center">KEM</th>
+                      <th scope="col" class="bg-limon borde text-center">LIMON</th>
+
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">

@@ -139,7 +139,34 @@
 					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO_CLIENTE, HL_VSD_TOTAL_AA, HL_ABRIL_2026, HL_ABRIL_2025_AL_DIA, HL_ABRIL_2025_TOTAL, fecha) VALUES ";
 					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO_CLIENTE', '$HL_VSD_TOTAL_AA', '$HL_ABRIL_2026', '$HL_ABRIL_2025_AL_DIA', '$HL_ABRIL_2025_TOTAL', '$fecha')";
 				}
-				echo $sql."<br>";
+				if($table == 'bep2026'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, CONC_BEP, VOL_VS_AA_BEP, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$CONC_BEP', '$VOL_VS_AA_BEP', '$fecha')";
+				}
+				if($table == 'gatorade2026'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, COMPRA_GATORADE, CONCRETADO_750, CANTIDAD_CONC_1LT, VOL_VS_AA_GATORADE, VOL_VS_AA_750, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$COMPRA_GATORADE', '$CONCRETADO_750', '$CANTIDAD_CONC_1LT', '$VOL_VS_AA_GATORADE', '$VOL_VS_AA_750', '$fecha')";
+				}
+				if($table == 'watts'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, CONCRETADO_NARANJA, CONCRETADO_PINA, CONCRETADO_DURAZNO, CONCRETADO_TUTIFRUTILLA, CONCRETADO_LIGHT, VOL_VS_AA_NARANJA, VOL_VS_AA_PINA, VOL_VS_AA_DURAZNO, VOL_VS_AA_TUTIFRUTILLA, VOL_VS_AA_LIGHT, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$CONCRETADO_NARANJA', '$CONCRETADO_PINA', '$CONCRETADO_DURAZNO', '$CONCRETADO_TUTIFRUTILLA', '$CONCRETADO_LIGHT', '$VOL_VS_AA_NARANJA', '$VOL_VS_AA_PINA', '$VOL_VS_AA_DURAZNO', '$VOL_VS_AA_TUTIFRUTILLA', '$VOL_VS_AA_LIGHT', '$fecha')";
+				}
+				if($table == 'kunstmann'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, VOL, VOL_AA, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$VOL', '$VOL_AA', '$fecha')";
+				}
+				if($table == 'cervezas'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO, VOLUMEN_AL_DIA_CRI_ESC, VOLUMEN_AL_DIA_AGOSTO_2025, VOLUMEN_MES_COMPLETO_AGOSTO_2025, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO', '$VOLUMEN_AL_DIA_CRI_ESC', '$VOLUMEN_AL_DIA_AGOSTO_2025', '$VOLUMEN_MES_COMPLETO_AGOSTO_2025', '$fecha')";
+				}
+				if($table == 'gaseosas_sabores'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, GRUPO, BILZ, PAP, KEM, LIMON_SODA, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$GRUPO', '$BILZ', '$PAP', '$KEM', '$LIMON_SODA', '$fecha')";
+				}
+				if($table == 'redbull2026'){
+					$sql = "INSERT INTO detalle_".$table." (vendedor_id, id, sector, razon, ROMBO_250, CANTIDAD_SABORES, fecha) VALUES ";
+					$sql.= "($vendedor_id, $id, '$sector', '$razon', '$ROMBO_250', '$CANTIDAD_SABORES', '$fecha')";
+				}
 				return DB::query($sql);
 			}
 			return false;

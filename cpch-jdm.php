@@ -97,7 +97,7 @@
                   <th scope="col" class="transparent">
                     <div class="titulo bg-celeste borde">
                         <div class="space-5"></div>
-                        <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
+                        <div class="text-small">CUMP ACELERADOR<br>MISTRAL ENERGY</div>
                     </div>
                   </th>
                 </tr>
@@ -366,7 +366,7 @@
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-celeste borde">
-                      <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
+                      <div class="text-small">CUMP ACELERADOR<br>MISTRAL ENERGY</div>
                     </div>
                   </th>
                 </tr>
@@ -577,7 +577,7 @@
                     <td class="bg-amarillo"><?= $totFinalIngresos; ?></td>
                     <td class="bg-amarillo"><?= $totFinalUnicos; ?></td>
                     <td class="bg-azul"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_3R; ?></td>
-                    <td class="bg-celeste"><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
+                    <td class="bg-celeste "><?= $totales->CUMPLIMIENTO_MISTRAL_ICE_LOW; ?></td>
                   </tr>
                 <?php } ?>
               </tbody>

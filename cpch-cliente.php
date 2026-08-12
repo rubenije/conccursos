@@ -113,7 +113,7 @@
                       <th scope="col" class="bg-verde-oscuro borde">Razón Social</th>
                       <th scope="col" class="bg-verde-oscuro borde">Cantidad Mistral Ice</th>
                       <th scope="col" class="bg-pepsi borde text-center">Concretado 3R Ice</th>
-                      <th scope="col" class="bg-bilz borde text-center">Concretado Mistral Low</th>
+                      <th scope="col" class="bg-bilz borde text-center">Concretado Mistral Energy</th>
                   </tr>
                 </thead>
                 <tbody style="vertical-align: middle !important;">
@@ -176,7 +176,7 @@
 
         // Filtro por Sector
         $('#filtroSector').on('change', function () {
-          tabla.column(2).search($(this).val());
+          tabla.column(1).search($(this).val());
           tabla.draw();
         });
 

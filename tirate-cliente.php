@@ -11,7 +11,7 @@
   
   session_start();
   if(!$_SESSION['LOGIN']){
-    header('Location: index.php');
+    header('Location: index-php');
     exit;
   }
   $table = "tirate";
@@ -115,7 +115,7 @@
             </div>
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="premios.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/tirate.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
             
           </div>
         </div>

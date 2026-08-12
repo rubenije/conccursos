@@ -38,8 +38,8 @@
 
 
 			foreach ($datas as $data) { 
-
-				$post['tipo'] 						= $data['TIPO'] ?? "";
+			    
+			    $post['tipo'] 						= $data['TIPO_duplicate'] ?? "";
 				$post['id'] 						= $data['ID'] ?? "";
 				$post['nombre'] 					= $data['NOMBRE'] ?? "";
 				$post['canal'] 						= $data['CANAL'] ?? "";

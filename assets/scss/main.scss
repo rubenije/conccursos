@@ -1,7 +1,6 @@
-@import "variables";
-@import "menu";
-@import "build";
-@import "footer";
-@import "modals";
+@use "./variables" as *;
+@use "./build" as *;
+@use "./footer" as *;
+@use "./modals" as *;
 
-@import "responsive";
+@use "responsive" as *;

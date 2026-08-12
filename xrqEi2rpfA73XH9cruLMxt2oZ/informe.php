@@ -7,7 +7,6 @@ if (!defined('INCLUDE_PATH')) {
 require_once(INCLUDE_PATH.'class/class.inputfilter.php');
 require_once(INCLUDE_PATH.'class/inc.globals.php');
 require_once(INCLUDE_PATH.'class/class.informe.php');
-require_once(INCLUDE_PATH.'class/class.concurso.php');
 
 session_start();
 
@@ -35,12 +34,12 @@ $zonas = $objInforme->getConsolidadoPorZona();
 $distritos = $objInforme->getConsolidadoPorDistrito();
 $dias = $objInforme->getConsolidadoPorDia();
 
+
 // 1) mapa para búsqueda O(1)
 $campanasByGrupo = [];
 foreach ($campanas as $c) {
-  $campanasByGrupo[$c['grupo']] = $c['nombre'];
+  $campanasByGrupo[$c['grupo']] = $c;
 }
-
 // 2) inicializar arrays para charts
 $lConcursos = $iConcursos = $uConcursos = [];
 $lDiarios   = $iDiarios   = $uDiarios   = [];
@@ -52,7 +51,6 @@ foreach ($concursos as $row) {
   $totalIngresos += (int)$row->ingresos;
   $totalUnicos   += (int)$row->unicos;
 }
-$grupoActual = isset($get['grupo']) ? $get['grupo'] : ''; 
 
 ?>
 <!doctype html>
@@ -64,7 +62,44 @@ $grupoActual = isset($get['grupo']) ? $get['grupo'] : '';
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
 
+        body{
+            background:#f4f6f9;
+        }
+
+        .card-dashboard{
+            border:none;
+            border-radius:14px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .title-small{
+            font-size:13px;
+            color:#6c757d;
+            margin-bottom:6px;
+        }
+
+        .kpi-number{
+            font-size:34px;
+            font-weight:700;
+        }
+
+        .navbar-custom{
+            background:#fff;
+            box-shadow:0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .table-dashboard thead{
+            background:#f1f3f5;
+        }
+
+        .badge-status{
+            font-size:11px;
+            padding:6px 10px;
+        }
+
+    </style>
     <title>Informe ONLINE</title>
   </head>
   <body>
@@ -82,15 +117,13 @@ $grupoActual = isset($get['grupo']) ? $get['grupo'] : '';
                   <li class="nav-item">
                     <a class="nav-link active" href="informe.php">INICIO</a>
                   </li>
-                  <?php foreach($campanas as $campana){ 
-                    $activo = ($campana['grupo'] === $grupoActual) ? 'active' : '';
-                    ?>
+                  <?php foreach($campanas as $campana){ ?>
                     <li class="nav-item">
-                    <a class="nav-link <?= $activo ?>" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
+                    <a class="nav-link active" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
                   </li>
                   <?php } ?>
                   <li class="nav-item">
-                    <a class="nav-link" href="informe-historico.php">HISTORICO</a>
+                    <a class="nav-link active" href="informe-historico.php">HISTORICO</a>
                   </li>
                 </ul>
               </div>
@@ -102,72 +135,397 @@ $grupoActual = isset($get['grupo']) ? $get['grupo'] : '';
 
     <div class="container-fluid pt-5">
 
-      <div class="row mt-4">
+    <div class="row">
+
         <div class="col-12 col-md-10 m-auto">
-          <div class="row g-3">
-            <div class="col-md-12 text-end">
-              <a href="xls-consolidado.php" class="btn btn-success mt-2">Exportar todos los ingresos</a>
-            </div>
-            
-            <div class="col-md-3">
-              <div class="card text-center shadow-sm">
-                <div class="card-body">
-                  <div class="text-muted">Total Ingresos</div>
-                  <div class="fs-4 fw-bold"><?= numberFormat($totalIngresos) ?></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="card text-center shadow-sm">
-                <div class="card-body">
-                  <div class="text-muted">Clientes Únicos</div>
-                  <div class="fs-4 fw-bold"><?= numberFormat($totalUnicos) ?></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card text-center shadow-sm">
-                <div class="card-body">
-                  
-                  <form class="row g-2 justify-content-end" method="post" action="informe.php" novalidate>
-                    <input type="hidden" name="opc" value="setFechas">
-                    <div class="col-12 col-sm-4">
-                      <label for="desde" class="form-label mb-1">Desde</label>
-                      <input type="date" class="form-control form-control-sm" id="desde" name="desde"
-                                value="<?= htmlspecialchars($_SESSION['FECHA_DESDE'] ?? '', ENT_QUOTES,'UTF-8') ?>">
+
+            <!-- HEADER KPI -->
+
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-3">
+
+                    <div class="card card-dashboard h-100">
+
+                        <div class="card-body">
+
+                            <div class="title-small">
+                                Total ingresos
+                            </div>
+
+                            <div class="kpi-number">
+
+                                <?= numberFormat($totalIngresos) ?>
+
+                            </div>
+
                         </div>
-                        <div class="col-12 col-sm-4">
-                      <label for="hasta" class="form-label mb-1">Hasta</label>
-                      <input type="date" class="form-control form-control-sm" id="hasta" name="hasta"
-                            value="<?= htmlspecialchars($_SESSION['FECHA_HASTA'] ?? '', ENT_QUOTES,'UTF-8') ?>">
-                    </div>
-                    <div class="col-12 col-sm-4 d-flex align-items-end gap-2">
-                      <button type="submit" class="btn btn-primary btn-sm w-50">Filtrar</button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm w-50"
-                              onclick="this.form.desde.value=''; this.form.hasta.value=''; this.form.submit();">
-                        Limpiar
-                      </button>
-                    </div>
-                  </form>
-                  
-                  
-                </div>
-              </div>
 
-              
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="card card-dashboard h-100">
+
+                        <div class="card-body">
+
+                            <div class="title-small">
+                                Ingresos únicos
+                            </div>
+
+                            <div class="kpi-number">
+
+                                <?= numberFormat($totalUnicos) ?>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="card card-dashboard">
+
+                        <div class="card-body">
+
+                            <form class="row g-2" method="post" action="informe.php">
+
+                                <input type="hidden" name="opc" value="setFechas">
+
+                                <div class="col-md-4">
+
+                                    <label class="form-label">
+                                        Desde
+                                    </label>
+
+                                    <input 
+                                        type="date"
+                                        class="form-control"
+                                        name="desde"
+                                        value="<?= htmlspecialchars($_SESSION['FECHA_DESDE'] ?? '', ENT_QUOTES,'UTF-8') ?>"
+                                    >
+
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <label class="form-label">
+                                        Hasta
+                                    </label>
+
+                                    <input 
+                                        type="date"
+                                        class="form-control"
+                                        name="hasta"
+                                        value="<?= htmlspecialchars($_SESSION['FECHA_HASTA'] ?? '', ENT_QUOTES,'UTF-8') ?>"
+                                    >
+
+                                </div>
+
+                                <div class="col-md-4 d-flex align-items-end gap-2">
+
+                                    <button class="btn btn-primary w-50">
+                                        Filtrar
+                                    </button>
+
+                                    <button 
+                                        type="button"
+                                        class="btn btn-outline-secondary w-50"
+                                        onclick="this.form.desde.value=''; this.form.hasta.value=''; this.form.submit();"
+                                    >
+                                        Limpiar
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            
-            
-            
-          </div>
+            <!-- CONCURSOS -->
+
+            <div class="row g-3 mb-4">
+
+                <?php foreach($concursos as $element):
+                    $campana = $campanasByGrupo[$element->grupo];
+                    $grupo = strtolower($element->grupo);
+
+                    $usabilidad = $objInforme->getUsabilidadPlataforma($element->grupo);
+
+                    $totalUsabilidad = (int)$usabilidad->total;
+
+                    $porcentajeSobre40 = $totalUsabilidad > 0
+                        ? round(($usabilidad->sobre_40 / $totalUsabilidad) * 100)
+                        : 0;
+
+                    $porcentajeEntre20y39 = $totalUsabilidad > 0
+                        ? round(($usabilidad->entre_20_39 / $totalUsabilidad) * 100)
+                        : 0;
+
+                    $porcentajeMenos20 = $totalUsabilidad > 0
+                        ? round(($usabilidad->menos_20 / $totalUsabilidad) * 100)
+                        : 0;
+                        
+
+                    $nombre = $campana['nombre'] ?? strtoupper($element->grupo);
+
+                    $inicio = $campana['fecha_inicio'] ?? null;
+                    $termino = $campana['fecha_fin'] ?? null;
+                    $estado = $campana['estado'] ?? 'Sin definir';
+
+                    $diasOnline = 0;
+                    $diasRestantes = 0;
+
+                    if($inicio){
+
+                        $diasOnline = floor(
+                            (time() - strtotime($inicio)) / 86400
+                        );
+                    }
+
+                    if($termino){
+
+                        $diasRestantes = floor(
+                            (strtotime($termino) - time()) / 86400
+                        );
+                    }
+                ?>
+
+                <div class="col-md-4">
+
+                    <div class="card card-dashboard h-100">
+
+                        <div class="card-body">
+
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+
+                                <div>
+
+                                    <div class="title-small">
+                                        Concurso
+                                    </div>
+
+                                    <h4 class="mb-0">
+                                        <?= htmlspecialchars($nombre, ENT_QUOTES,'UTF-8') ?>
+                                    </h4>
+
+                                </div>
+
+                                <span class="badge bg-success badge-status">
+
+                                    <?= $estado ?>
+
+                                </span>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-6">
+
+                                    <div class="title-small">
+                                        Inicio
+                                    </div>
+
+                                    <strong>
+                                        <?= sql2date($inicio) ?>
+                                    </strong>
+
+                                </div>
+
+                                <div class="col-6">
+
+                                    <div class="title-small">
+                                        Término
+                                    </div>
+
+                                    <strong>
+                                        <?= sql2date($termino) ?>
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="row text-center">
+
+                                <div class="col-6">
+
+                                    <div class="title-small">
+                                        Días online
+                                    </div>
+
+                                    <div class="fs-4 fw-bold text-success">
+
+                                        <?= $diasOnline ?>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+
+                                    <div class="title-small">
+                                        Restantes
+                                    </div>
+
+                                    <div class="fs-4 fw-bold text-warning">
+
+                                        <?= $diasRestantes ?>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="row text-center">
+
+                                <div class="col-6">
+
+                                    <div class="title-small">
+                                        Totales
+                                    </div>
+
+                                    <div class="fs-5 fw-bold">
+
+                                        <?= numberFormat($element->ingresos) ?>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+
+                                    <div class="title-small">
+                                        Únicos
+                                    </div>
+
+                                    <div class="fs-5 fw-bold">
+
+                                        <?= numberFormat($element->unicos) ?>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="text-center mb-2">
+
+                                <div class="title-small">
+                                    % Usabilidad Plataforma
+                                </div>
+
+                            </div>
+
+                            <div class="row text-center">
+
+                                <div class="col-4">
+
+                                    <div class="small text-muted">
+                                        +40
+                                    </div>
+
+                                    <div class="fw-bold text-success">
+                                        <?= $porcentajeSobre40 ?>%
+                                    </div>
+
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="small text-muted">
+                                        39-20
+                                    </div>
+
+                                    <div class="fw-bold text-warning">
+                                        <?= $porcentajeEntre20y39 ?>%
+                                    </div>
+
+                                </div>
+
+                                <div class="col-4">
+
+                                    <div class="small text-muted">
+                                        -20
+                                    </div>
+
+                                    <div class="fw-bold text-danger">
+                                        <?= $porcentajeMenos20 ?>%
+                                    </div>
+
+                                </div>
+                                <div class="col-12 mt-3">
+
+                                    <a href="xls-consolidado.php?grupo=<?= $grupo; ?>" class="btn btn-success w-100">
+                                        Exportar ingresos
+                                    </a>
+                                  </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <?php endforeach; ?>
+
+            </div>
+            <!-- GRAFICO -->
+
+            <div class="row">
+
+                <div class="col-12">
+
+                    <div class="card card-dashboard">
+
+                        <div class="card-body">
+
+                            <h4 class="mb-4">
+                                Ingresos por concurso
+                            </h4>
+
+                            <canvas id="ingresosPorConcurso" height="100"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-      </div>
+
+    </div>
+
+
+      
 
       
       <div class="row">
         <div class="col-12 col-md-10 m-auto pt-4">
-          <h4 class="mb-0">Ingresos x Concurso</h4>
+          <h4 class="mb-0">Ingresos x conccurso</h4>
           <?php if($titleFecha){ ?>
           <span class="badge bg-secondary"><?= $titleFecha; ?></span>
           <?php } ?>
@@ -182,8 +540,9 @@ $grupoActual = isset($get['grupo']) ? $get['grupo'] : '';
             <tbody>
               <?php if (!empty($concursos)): ?>
                 <?php foreach($concursos as $element):
+                  $campana = $campanasByGrupo[$element->grupo];
                   $grupo  = $element->grupo;
-                  $nombre = $campanasByGrupo[$grupo] ?? strtoupper($grupo);
+                  $nombre = $campana['nombre'] ?? strtoupper($grupo);
                   $lConcursos[] = $nombre;
                   $iConcursos[] = (int)$element->ingresos;
                   $uConcursos[] = (int)$element->unicos;
@@ -199,8 +558,6 @@ $grupoActual = isset($get['grupo']) ? $get['grupo'] : '';
               <?php endif; ?>
             </tbody>
           </table>
-          <canvas id="ingresosPorConcurso" width="600" height="400"></canvas>
-
         </div>
       </div>
 

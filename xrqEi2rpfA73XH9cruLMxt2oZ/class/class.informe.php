@@ -3,53 +3,106 @@
 	if (!defined("INCLUDE_PATH")) {
 		define("INCLUDE_PATH", "");
 	}
-	include_once(INCLUDE_PATH.'class/class.DB.php');
-	include_once(INCLUDE_PATH.'class/class.concurso.php');
+	include_once(INCLUDE_PATH.'class/class.DB.php');	
 
 	class informe extends DB {
 
 		public function getCampanas(){
-			$concurso = new concurso();
-			$concursos = $concurso->getConcursosVigentesHoy(); // <- ahora viene array de objetos
-
-			$campanas = [];
-
-			if (!empty($concursos)) {
-				foreach ($concursos as $c) {
-					$campanas[] = [
-						'grupo'        => $c->conc_grupo,
-						'nombre'       => $c->conc_nombre,
-						'fecha_inicio' => $c->conc_inicio,
-						'fecha_fin'    => $c->conc_termino,
-					];
-				}
-			}
-
+			$campanas[] = ['grupo' => 'cervezas', 'nombre' => 'Cervezas Masivas', 'fecha_inicio' => '2026-08-05', 'fecha_fin' => '2026-09-30', 'estado' => 'Online', 'columnas' => [
+            'CUMPLIMIENTO_VOLUMEN_CRIS_ESC',
+			'HL_FALTANTE'
+        ]];
+			$campanas[] = ['grupo' => 'gaseosas_sabores', 'nombre' => 'Gaseosas Sabores', 'fecha_inicio' => '2026-08-05', 'fecha_fin' => '2026-09-30', 'estado' => 'Online', 'columnas' => [
+            'CUMPLIMIENTO_SABORES_COBERTURA',
+			'CLIENTES_FALTANTE'
+        ]];
+			$campanas[] = ['grupo' => 'redbull2026', 'nombre' => 'Red Bull', 'fecha_inicio' => '2026-08-05', 'fecha_fin' => '2026-09-30', 'estado' => 'Online', 'columnas' => [
+            'CUMPLIMIENTO_250_ROMBO',
+			'CUMPLIMIENTO_EDITIONS',
+			'CUMPLIMIENTO_PONDERADO'
+        ]];
 			return $campanas;
 		}
-
-
 
 		public function getCampanasInactivas(){
-			$concurso = new concurso();
-			$concursos = $concurso->getConcursoInactivo(); // <- ahora viene array de objetos
-
-			$campanas = [];
-
-			if (!empty($concursos)) {
-				foreach ($concursos as $c) {
-					$campanas[] = [
-						'grupo'        => $c->conc_grupo,
-						'nombre'       => $c->conc_nombre,
-						'fecha_inicio' => $c->conc_inicio,
-						'fecha_fin'    => $c->conc_termino,
-					];
-				}
-			}
-
+					$campanas[] = ['grupo' => 'kunstmann', 'nombre' => 'Kunstmann', 'fecha_inicio' => '2026-06-05', 'fecha_fin' => '2026-06-31', 'estado' => 'Offline', 'columnas' => [
+						'CUMPLIMIENTO_VOL_KUNSTMANN',
+						'HL_FALTANTES'
+					]];
+					$campanas[] = ['grupo' => 'bep2026', 'nombre' => 'Beep', 'fecha_inicio' => '2026-06-05', 'fecha_fin' => '2026-07-31', 'estado' => 'Offline', 'columnas' => [
+						'CUMPLIMIENTO_CONC_BEP',
+						'CUMPLIMIENTO_VOL_BEP'
+					]];
+						$campanas[] = ['grupo' => 'gatorade2026', 'nombre' => 'Gatorade', 'fecha_inicio' => '2026-06-08', 'fecha_fin' => '2026-08-31', 'estado' => 'Offline', 'columnas' => [
+						'CUMPLIMIENTO_HORIZONTAL',
+						'CUMPLIMIENTO_ACELERADOR_750_1LT',
+						'CUMPLIMIENTO_VOL_GATORADE',
+						'CUMPLIMIENTO_VOL_ACELERADOR'
+					]];
+						$campanas[] = ['grupo' => 'watts', 'nombre' => 'Watts', 'fecha_inicio' => '2026-06-08', 'fecha_fin' => '2026-08-31', 'estado' => 'Offline', 'columnas' => [
+						'CUMPLIMIENTO_3_SABORES',
+						'CUMPLIMIENTO_LIGHT',
+						'CUMPLIMIENTO_VOL_R',
+						'CUMPLIMIENTO_VOL_LIGHT'
+					]];
+					
+				$campanas[] = ['grupo' => 'royalweekend', 'nombre' => 'Royal Weekend', 'fecha_inicio' => '2026-04-13', 'fecha_fin' => '2026-06-05', 'estado' => 'Offline', 'columnas' => [
+					'CUMPLIMIENTO_VOLUMEN'
+				]];
+					$campanas[] = ['grupo' => 'energia', 'nombre' => 'Energia', 'fecha_inicio' => '2026-04-15', 'fecha_fin' => '2026-06-05', 'estado' => 'Offline', 'columnas' => [
+					'CUMPLIMIENTO_REDBULL',
+					'CUMPLIMIENTO_ROCKSTAR',
+					'CUMPL_VOL_REDBULL',
+					'CUMPL_VOL_ROCKSTAR'
+				]];
+					$campanas[] = ['grupo' => 'cpch', 'nombre' => 'CPCH - Zona Comercial', 'fecha_inicio' => '2026-04-15', 'fecha_fin' => '2026-06-05', 'estado' => 'Offline', 'columnas' => [
+					'CUMPLIMIENTO_MISTRAL_ICE_3R',
+					'CUMPLIMIENTO_MISTRAL_ICE_LOW'
+				]];
+			$campanas[] = ['grupo' => 'gaseosas', 'nombre' => 'Gaseosas', 'fecha_inicio' => '2026-02-12', 'fecha_fin' => '2026-04-13', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_PEPSI_MAS_2_SABORES',
+				'CUMPLIMIENTO_PEPSI_MAS_3_SABORES'
+			]];
+			$campanas[] = ['grupo' => 'aguas', 'nombre' => 'Aguas', 'fecha_inicio' => '2026-02-03', 'fecha_fin' => '2026-04-13', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_DUO',
+				'CUMPLIMIENTO_MANANTIAL'
+			]];
+			$campanas[] = ['grupo' => 'heineken', 'nombre' => 'Heineken', 'fecha_inicio' => '2026-02-05', 'fecha_fin' => '2026-04-20', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_VOLUMEN']];
+			$campanas[] = ['grupo' => 'gatorade', 'nombre' => 'Gatorade', 'fecha_inicio' => '2026-01-12', 'fecha_fin' => '2026-03-02', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_3_SKU',
+				'CUMPLIMIENTO_COB_GATORADE'
+			]];
+			$campanas[] = ['grupo' => 'mas', 'nombre' => 'Mas', 'fecha_inicio' => '2026-01-06', 'fecha_fin' => '2026-02-02', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_G1',
+				'CUMPLIMIENTO_G2',
+				'CUMP_TOTAL'
+			]];
+			$campanas[] = ['grupo' => 'redbull', 'nombre' => 'Red Bull', 'fecha_inicio' => '2025-12-10', 'fecha_fin' => '2026-02-02', 'estado' => 'Offline', 'columnas' => [
+				'COB_250',
+				'COB_EDITIONS',
+				'CUMPLIMIENTO_TOTAL'
+			]];
+			$campanas[] = ['grupo' => 'sabores', 'nombre' => 'Sabores', 'fecha_inicio' => '2025-10-10', 'fecha_fin' => '2026-01-05', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_COB_2_SABORES_3L',
+				'CUMPLIMIENTO_COB_3_SABORES_3L'
+			]];
+			$campanas[] = ['grupo' => 'lipton', 'nombre' => 'Lipton', 'fecha_inicio' => '2025-11-06', 'fecha_fin' => '2025-12-02', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_LIPTON'
+			]];
+			$campanas[] = ['grupo' => 'craft', 'nombre' => 'Craft', 'fecha_inicio' => '2025-10-06', 'fecha_fin' => '2025-12-02', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_DUO_LN',
+				'CUMPLIMIENTO_TORRES',
+				'CUMPLIMIENTO_GUAYACAN'
+			]];
+			$campanas[] = ['grupo' => 'tirate', 'nombre' => 'Tírate', 'fecha_inicio' => '2025-10-01', 'fecha_fin' => '2025-12-02', 'estado' => 'Offline', 'columnas' => [
+				'CUMPLIMIENTO_DUO',
+				'CUMPLIMIENTO_MANANTIAL',
+				'CUMPLIMIENTO_TOTAL'
+			]];
+			
 			return $campanas;
 		}
-
 
 		public function getConsolidadoPorConcurso($desde = '', $hasta = ''){
 
@@ -217,97 +270,145 @@
 			return DB::getAll($sql);
 		}
 
-		public function getIngresosConsolidado(){
-			$desde = $_SESSION['FECHA_DESDE'] ?? null;
-			$hasta = $_SESSION['FECHA_HASTA'] ?? null;
+		public function getIngresosConsolidado($grupo = ''){
 
-			// WHERE fechas para tabla I
-			$whereDesde = !empty($desde) ? "AND I.ingr_fecha >= '$desde' " : '';
-			$whereHasta = !empty($hasta) ? "AND I.ingr_fecha <= '$hasta' " : '';
+			$whereDesde = '';
+			$whereHasta = '';
 
-			// WHERE fechas para subquery I2 (IMPORTANTE)
-			$whereDesdeI2 = !empty($desde) ? "AND I2.ingr_fecha >= '$desde' " : '';
-			$whereHastaI2 = !empty($hasta) ? "AND I2.ingr_fecha <= '$hasta' " : '';
+			if(!empty($_SESSION['FECHA_DESDE'])){
+				$desde = addslashes($_SESSION['FECHA_DESDE']);
+				$whereDesde = "AND I.ingr_fecha >= '$desde' ";
+			}
 
-			// Limitar a grupos válidos (opcional, si quieres acotar a los definidos en getCampanas)
-			$grupos = array_column($this->getCampanas(), 'grupo');
-			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
-			$whereGrupos   = "AND I.grupo IN ($inGrupos)";
-			$whereGruposI2 = "AND I2.grupo IN ($inGrupos)";
+			if(!empty($_SESSION['FECHA_HASTA'])){
+				$hasta = addslashes($_SESSION['FECHA_HASTA']);
+				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
+			}
+
+			// Grupos válidos
+			$campanas = $this->getCampanas();
 			
+			$columnas = [];
+			foreach ($campanas as $campana) {
+				if ($campana['grupo'] !== $grupo) {
+					continue;
+				}
+				 $columnas[] = "RG." . implode(", RG.", $campana['columnas']);
+				
+				//$grupo = $campana['grupo'];
 
-			$sql = "SELECT 
-						I.cliente_id AS id,
-						M.nombre,
-						Z.zona_codigo AS zona_nombre,
-						D.dist_codigo AS dist_nombre,
-						I.grupo,
-						I.ingr_fecha,
-						I.ingr_hora,
-						I.supervisor_id,
-						(
-							SELECT COUNT(*) 
-							FROM ingreso I2 
-							WHERE I2.grupo = I.grupo
-								$whereDesdeI2
-								$whereHastaI2
-								$whereGruposI2
-						) AS ingresos
-					FROM ingreso I 
-						INNER JOIN master M ON (I.cliente_id = M.id)
-						LEFT JOIN zona Z ON (Z.zona_id = I.zona_id)
-						LEFT JOIN distrito D ON (D.distrito_id = I.distrito_id)
+				$sql = "
+					SELECT
+						RG.id,
+						RG.nombre,
+						RG.tipo,
+						RG.canal,
+						RVC.grupo,
+						RVC.primera_visita,
+						RVC.ultima_visita,
+						RVC.total_visitas,
+						" . implode(", ", $columnas) . "
+					FROM registro_{$grupo} RG
+						LEFT JOIN vw_resumen_visitas_cliente RVC ON RVC.cliente_id = RG.id
+						AND RVC.grupo = '{$grupo}' 
 					WHERE 
-						1 = 1
-						$whereDesde
-                  		$whereHasta
-                  		$whereGrupos
-					ORDER BY
-						I.ingr_fecha DESC, 
-						I.ingr_hora DESC";
-			return DB::getAll($sql);
+						RG.tipo = 'JDV' OR RG.tipo = 'VENDEDOR'
+					ORDER BY 
+						COALESCE(RVC.total_visitas, 0) DESC";
+
+				return DB::getAll($sql);
+			}
 		}
 
 
-		public function getIngresosByGrupo($grupo){
-			$whereGrupo = "";
-			if(!empty($grupo)){
-				$whereGrupo = "AND I.grupo = '$grupo' ";
-			}
+		public function getIngresosConsolidadoInactivas($grupo = ''){
+
+			$whereDesde = '';
+			$whereHasta = '';
 
 			if(!empty($_SESSION['FECHA_DESDE'])){
-				$desde = $_SESSION['FECHA_DESDE'];
+				$desde = addslashes($_SESSION['FECHA_DESDE']);
+				$whereDesde = "AND I.ingr_fecha >= '$desde' ";
 			}
+
 			if(!empty($_SESSION['FECHA_HASTA'])){
-				$hasta = $_SESSION['FECHA_HASTA'];
+				$hasta = addslashes($_SESSION['FECHA_HASTA']);
+				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
+			}
+
+			// Grupos válidos
+			$campanas = $this->getCampanasInactivas();
+			
+			$columnas = [];
+			foreach ($campanas as $campana) {
+				if ($campana['grupo'] !== $grupo) {
+					continue;
+				}
+				 $columnas[] = "RG." . implode(", RG.", $campana['columnas']);
+				
+				//$grupo = $campana['grupo'];
+
+				$sql = "
+					SELECT
+						RG.id,
+						RG.nombre,
+						RG.tipo,
+						RG.canal,
+						RVC.grupo,
+						RVC.primera_visita,
+						RVC.ultima_visita,
+						RVC.total_visitas,
+						" . implode(", ", $columnas) . "
+					FROM registro_{$grupo} RG
+						LEFT JOIN vw_resumen_visitas_cliente RVC ON RVC.cliente_id = RG.id
+						AND RVC.grupo = '{$grupo}' 
+					WHERE 
+						RG.tipo = 'JDV' OR RG.tipo = 'VENDEDOR'
+					ORDER BY 
+						COALESCE(RVC.total_visitas, 0) DESC";
+						
+				return DB::getAll($sql);
+			}
+		}
+
+
+		public function getIngresosUnicosByGrupo($grupo){
+
+			$whereGrupo = "";
+			$whereGrupos = "";
+
+			if(!empty($grupo)){
+				$grupo = addslashes($grupo);
+				$whereGrupo = "AND I.grupo = '$grupo' ";
+			} else {
+				$grupos = array_column($this->getCampanas(), 'grupo');
+				$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+				$whereGrupos = "AND I.grupo IN ($inGrupos)";
 			}
 
 			$whereDesde = '';
 			$whereHasta = '';
 
-			if(!empty($desde)){
+			if(!empty($_SESSION['FECHA_DESDE'])){
+				$desde = addslashes($_SESSION['FECHA_DESDE']);
 				$whereDesde = "AND I.ingr_fecha >= '$desde' ";
 			}
-			if(!empty($hasta)){
+
+			if(!empty($_SESSION['FECHA_HASTA'])){
+				$hasta = addslashes($_SESSION['FECHA_HASTA']);
 				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
 			}
-			$grupos = array_column($this->getCampanas(), 'grupo');
-			$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
-			$whereGrupos = "AND I.grupo IN ($inGrupos)";
 
 			$sql = "SELECT 
 						I.cliente_id AS id,
 						M.nombre,
+						M.tipo,
 						Z.zona_codigo AS zona_nombre,
 						D.dist_codigo AS dist_nombre,
-						I.ingr_fecha,
-						I.ingr_hora,
+						MAX(I.ingr_fecha) AS ingr_fecha,
+						MAX(I.ingr_hora) AS ingr_hora,
 						I.supervisor_id,
-						(
-							SELECT COUNT(*) 
-							FROM ingreso I2 
-							WHERE I2.grupo = I.grupo
-						) AS ingresos 
+						COUNT(*) AS ingresos
 					FROM ingreso I 
 						INNER JOIN master M ON (I.cliente_id = M.id)
 						LEFT JOIN zona Z ON (Z.zona_id = I.zona_id)
@@ -315,14 +416,183 @@
 					WHERE 
 						1 = 1
 						$whereGrupo 
+						$whereGrupos
 						$whereDesde
 						$whereHasta
-						$whereGrupos
+					GROUP BY 
+						I.cliente_id,
+						M.nombre,
+						Z.zona_codigo,
+						D.dist_codigo,
+						I.supervisor_id
 					ORDER BY
-						I.ingr_fecha DESC, 
-						I.ingr_hora DESC";
+						ingresos DESC,
+						ingr_fecha DESC, 
+						ingr_hora DESC";
 			return DB::getAll($sql);
 		}
+
+
+		public function getIngresosTotalesByGrupo($grupo)
+		{
+			$whereGrupo = "";
+			$whereGrupos = "";
+
+			if(!empty($grupo)){
+
+				$grupo = addslashes($grupo);
+
+				$whereGrupo = "AND I.grupo = '$grupo' ";
+
+			} else {
+
+				$grupos = array_column($this->getCampanas(), 'grupo');
+
+				$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+
+				$whereGrupos = "AND I.grupo IN ($inGrupos)";
+			}
+
+			$whereDesde = '';
+			$whereHasta = '';
+
+			if(!empty($_SESSION['FECHA_DESDE'])){
+
+				$desde = addslashes($_SESSION['FECHA_DESDE']);
+
+				$whereDesde = "AND I.ingr_fecha >= '$desde' ";
+			}
+
+			if(!empty($_SESSION['FECHA_HASTA'])){
+
+				$hasta = addslashes($_SESSION['FECHA_HASTA']);
+
+				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
+			}
+
+			$sql = "
+				SELECT
+					I.cliente_id as 'id',
+					M.nombre,
+					M.tipo,
+					Z.zona_codigo AS zona_nombre,
+					D.dist_codigo AS dist_nombre,
+					I.ingr_fecha,
+					I.ingr_hora,
+					I.supervisor_id,
+					I.grupo
+
+				FROM ingreso I
+
+				INNER JOIN master M
+					ON (I.cliente_id = M.id)
+
+				LEFT JOIN zona Z
+					ON (Z.zona_id = I.zona_id)
+
+				LEFT JOIN distrito D
+					ON (D.distrito_id = I.distrito_id)
+
+				WHERE
+					1 = 1
+					$whereGrupo
+					$whereGrupos
+					$whereDesde
+					$whereHasta
+
+				ORDER BY
+					I.ingr_fecha DESC,
+					I.ingr_hora DESC
+			";
+
+			return DB::getAll($sql);
+		}
+
+		public function getUsabilidadPlataforma($grupo = null)
+		{
+			$whereGrupo = "";
+			$whereGrupos = "";
+
+			if(!empty($grupo)){
+
+				$grupo = addslashes($grupo);
+
+				$whereGrupo = "AND I.grupo = '$grupo' ";
+
+			} else {
+
+				$grupos = array_column($this->getCampanas(), 'grupo');
+
+				$inGrupos = "'" . implode("','", array_map('addslashes', $grupos)) . "'";
+
+				$whereGrupos = "AND I.grupo IN ($inGrupos)";
+			}
+
+			$whereDesde = '';
+			$whereHasta = '';
+
+			if(!empty($_SESSION['FECHA_DESDE'])){
+
+				$desde = addslashes($_SESSION['FECHA_DESDE']);
+
+				$whereDesde = "AND I.ingr_fecha >= '$desde' ";
+			}
+
+			if(!empty($_SESSION['FECHA_HASTA'])){
+
+				$hasta = addslashes($_SESSION['FECHA_HASTA']);
+
+				$whereHasta = "AND I.ingr_fecha <= '$hasta' ";
+			}
+
+			$sql = "
+				SELECT
+					COUNT(*) AS total,
+
+					SUM(
+						CASE
+							WHEN T.ingresos > 40 THEN 1
+							ELSE 0
+						END
+					) AS sobre_40,
+
+					SUM(
+						CASE
+							WHEN T.ingresos BETWEEN 20 AND 39 THEN 1
+							ELSE 0
+						END
+					) AS entre_20_39,
+
+					SUM(
+						CASE
+							WHEN T.ingresos < 20 THEN 1
+							ELSE 0
+						END
+					) AS menos_20
+
+				FROM (
+
+					SELECT
+						I.cliente_id,
+						COUNT(*) AS ingresos
+
+					FROM ingreso I
+
+					WHERE
+						1 = 1
+						$whereGrupo
+						$whereGrupos
+						$whereDesde
+						$whereHasta
+
+					GROUP BY I.cliente_id
+
+				) T
+			";
+
+			return DB::getRow($sql);
+		}
+
 
 		public function getIngresosDiarios($grupo){
 			

@@ -1,10 +1,15 @@
+@use "./variables" as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
-body, html {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .ubuntu-regular {
@@ -22,47 +27,62 @@ body, html {
 .ubuntu-bold {
     font-family: "Ubuntu", serif;
     font-weight: 700;
-    font-style: normal; 
+    font-style: normal;
 }
 
 
 ::-webkit-scrollbar {
-    width: 10px; /* Ancho del scroll vertical */
-    height: 10px; /* Alto del scroll horizontal */
+    width: 10px;
+    /* Ancho del scroll vertical */
+    height: 10px;
+    /* Alto del scroll horizontal */
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent; /* Fondo del track transparente */
+    background: transparent;
+    /* Fondo del track transparente */
 }
+
 ::-webkit-scrollbar-thumb {
-    background: rgba(7, 78, 49, .8); /* Color del dragger */
-    border-radius: 10px; /* Bordes redondeados */
-    border: 2px solid transparent; /* Espacio alrededor del dragger */
-    background-clip: content-box; /* Hace visible la transparencia del borde */
+    background: rgba(7, 78, 49, .8);
+    /* Color del dragger */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    border: 2px solid transparent;
+    /* Espacio alrededor del dragger */
+    background-clip: content-box;
+    /* Hace visible la transparencia del borde */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 127, 45, .8); /* Color al pasar el mouse */
+    background: rgba(0, 127, 45, .8);
+    /* Color al pasar el mouse */
 }
+
 .table-spacing {
-  border-collapse: separate;
-  border-spacing: 1px 2px;
-  border-spacing: 1px; /* Ajusta este valor como necesites */
-  border-spacing: 2px 1px;
+    border-collapse: separate;
+    border-spacing: 1px 2px;
+    border-spacing: 1px;
+    /* Ajusta este valor como necesites */
+    border-spacing: 2px 1px;
 }
+
 .borde {
     border: 1px solid #dee2e6;
 }
-.botella-cc { 
+
+.botella-cc {
     width: 94px;
     padding: .2rem .2rem;
     margin-bottom: -1.2rem;
 }
-.botella-cn { 
+
+.botella-cn {
     width: 59.5px;
     padding: .2rem .2rem;
     margin-bottom: -1.2rem;
 }
+
 p.premios {
     color: $color-blanco;
     font-weight: 500;
@@ -76,32 +96,54 @@ p.premios {
         padding: 0rem 0.5rem;
     }
 }
+
 .table {
     margin-bottom: .2rem;
-    
+
     & .transparent {
         background-color: transparent !important;
         padding: 0 !important;
     }
-    & thead{
+
+    & thead {
         & small {
             font-size: .75rem;
             line-height: 8px !important;
         }
-        & .titulo{
+
+        & .titulo {
             height: 44px;
             padding: .3rem .2rem;
         }
     }
-    
-    & th { font-weight: 500; font-size: .75rem; font-style: normal;}
-    & td { font-weight: 400; font-size: .75rem; font-style: normal;}
+
+    & th {
+        font-weight: 500;
+        font-size: .75rem;
+        font-style: normal;
+    }
+
+    & td {
+        font-weight: 400;
+        font-size: .75rem;
+        font-style: normal;
+    }
 }
 
 .totales {
-    & th { font-weight: 300; font-size: .75rem; font-style: normal;}
-    & td { font-weight: 300; font-size: .75rem; font-style: normal;}
+    & th {
+        font-weight: 300;
+        font-size: .75rem;
+        font-style: normal;
+    }
+
+    & td {
+        font-weight: 300;
+        font-size: .75rem;
+        font-style: normal;
+    }
 }
+
 .table>:not(caption)>*>* {
     padding: .1rem .2rem;
 }
@@ -114,71 +156,114 @@ p.premios {
         font-weight: 700;
     }
 }
-.bordered { border: 1px solid #dee2e6; }
-.cliente-verde, .cliente-rojo, .cliente-azul {
+
+.bordered {
+    border: 1px solid #dee2e6;
+}
+
+.cliente-verde,
+.cliente-rojo,
+.cliente-azul {
     width: 340px;
 }
+
 .bg-verde-oscuro {
     background-color: $color-verde-oscuro !important;
     color: $color-blanco !important;
 }
+
 .bg-verde-claro {
     background-color: $color-verde-claro !important;
     color: $color-blanco !important;
 }
+
+.bg-verde {
+    background-color: $color-verde !important;
+    color: $color-blanco !important;
+}
+
+.bg-naranjo {
+    background-color: $color-naranjo !important;
+    color: $color-blanco !important;
+}
+
+
 .bg-amarillo {
     background-color: $color-amarillo !important;
     color: $color-blanco !important;
 }
+
 .bg-celeste {
     background-color: $color-celeste !important;
     color: $color-blanco !important;
 }
+
 .bg-amarillo-claro {
     background-color: $color-amarillo-claro !important;
     color: $color-blanco !important;
 }
+
 .bg-rojo-oscuro {
     background-color: $color-rojo-oscuro !important;
     color: $color-blanco !important;
 }
+
 .bg-rojo {
     background-color: $color-rojo !important;
     color: $color-blanco !important;
 }
+
 .bg-gris {
     background-color: $color-gris !important;
     color: $color-blanco !important;
 }
+
 .bg-azul {
     background-color: $color-azul !important;
     color: $color-blanco !important;
 }
+
 .bg-negro {
     background-color: $color-negro !important;
     color: $color-blanco !important;
 }
+
 .bg-blanco {
     background-color: $color-blanco !important;
     color: $color-blanco !important;
 }
-.bg-pepsi{
+
+.bg-verde {
+    background-color: $color-verde !important;
+    color: $color-blanco !important;
+}
+
+.bg-naranjo {
+    background-color: $color-naranjo !important;
+    color: $color-blanco !important;
+}
+
+.bg-pepsi {
     background-color: $color-pepsi !important;
     color: $color-blanco !important;
 }
-.bg-bilz{
+
+.bg-bilz {
     background-color: $color-bilz !important;
     color: $color-blanco !important;
-} 
-.bg-pap{
+}
+
+.bg-pap {
     background-color: $color-pap !important;
     color: $color-blanco !important;
 }
-.bg-kem{
+
+.bg-kem {
     background-color: $color-kem !important;
     color: $color-blanco !important;
 }
-.bg-limon{
+
+.bg-limon {
     background-color: $color-limon !important;
     color: $color-blanco !important;
 }
@@ -186,33 +271,51 @@ p.premios {
 .txt-verde-oscuro {
     color: $color-verde-oscuro !important;
 }
+
 .txt-verde-claro {
     color: $color-verde-claro !important;
 }
+
+.txt-naranjo {
+    color: $color-naranjo !important;
+}
+
+.txt-verde {
+    color: $color-verde !important;
+}
+
 .txt-amarillo {
     color: $color-amarillo !important;
 }
+
 .txt-amarillo-claro {
     color: $color-amarillo-claro !important;
 }
+
 .txt-rojo {
     color: $color-rojo !important;
 }
+
 .txt-rojo-oscuro {
     color: $color-rojo-oscuro !important;
 }
+
 .txt-gris {
     color: $color-gris !important;
 }
+
 .txt-azul {
     color: $color-azul !important;
 }
+
 .txt-blanco {
     color: $color-blanco !important;
 }
+
 .txt-celeste {
     color: $color-celeste !important;
 }
+
 .txt-negro {
     color: $color-negro !important;
 }
@@ -222,27 +325,34 @@ p.premios {
     background-color: $redbull-amarillo !important;
     color: $color-blanco !important;
 }
+
 .bg-redbull-celeste {
     background-color: $redbull-celeste !important;
     color: $color-blanco !important;
 }
+
 .bg-redbull-azul {
     background-color: $redbull-azul !important;
     color: $color-blanco !important;
 }
+
 .bg-redbull-rojo {
     background-color: $redbull-rojo !important;
     color: $color-blanco !important;
 }
+
 .txt-redbull-amarillo {
     color: $redbull-amarillo !important;
 }
+
 .txt-redbull-celeste {
     color: $redbull-celeste !important;
 }
+
 .txt-redbull-azul {
     color: $redbull-azul !important;
-}   
+}
+
 .txt-redbull-rojo {
     color: $redbull-rojo !important;
 }
@@ -256,23 +366,25 @@ p.premios {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    background: url(../img/bg-home.png) no-repeat center center ;
+    background: url(../img/bg-home.png) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Ubuntu', sans-serif;
     color: $color-blanco;
-    
+
     .interior {
         margin-top: -1.8rem;
     }
+
     .home-gana {
         max-width: 70%;
     }
+
     //Formulario
     .formulario-inline {
-        
+
         margin-top: 1rem;
         margin-right: 2rem;
 
@@ -280,28 +392,29 @@ p.premios {
             color: $color-blanco;
             text-align: left;
         }
+
         .input-entrar,
         .btn-entrar {
             font-family: 'Ubuntu', serif;
             font-weight: 700;
             font-style: normal;
-            
+
         }
-    
+
         .input-entrar {
             background-color: $color-blanco;
             color: $color-rosado;
             text-align: center;
             font-size: 1rem;
         }
-    
+
         .btn-entrar {
             background-color: $color-rosado;
             color: $color-blanco;
             font-size: 1.2rem;
             padding: 0.275rem 1rem;
             border-color: $color-rosado;
-    
+
             &:hover {
                 background-color: $color-blanco;
                 color: $color-rosado;
@@ -309,7 +422,7 @@ p.premios {
             }
         }
     }
-    
+
 }
 
 
@@ -318,7 +431,7 @@ p.premios {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    background: url(../img/bg-home.png) no-repeat center center ;
+    background: url(../img/bg-home.png) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -327,23 +440,22 @@ p.premios {
     color: $color-blanco;
 
     & .conccursos-blanco {
-        margin-top: 1rem;
-        width: 80%;
+        width: 75%;
     }
 
     & .txt-selecciona-el-concurso {
-        margin-top: 1rem;
         width: 50%;
-        padding-bottom: 2rem;
+        padding-bottom: 1rem;
     }
 
     & .btn-minions {
         margin-top: 1rem;
         width: 280px;
     }
+
     & .btn-energia {
         margin-top: 1rem;
-        width: 280px; 
+        width: 280px;
     }
 }
 
@@ -352,7 +464,7 @@ p.premios {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    background: url(../img/bg-home.png) no-repeat center center ;
+    background: url(../img/bg-home.png) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -363,10 +475,11 @@ p.premios {
     & .tablitas {
         margin-top: -2.5rem;
     }
+
     & .minions {
         width: 400px;
     }
-    
+
 }
 
 
@@ -382,49 +495,51 @@ p.premios {
     & .tablitas {
         margin-top: -2.5rem;
     }
+
     & .minions {
         width: 400px;
     }
-    
+
 }
 
 
 /* Cambiar color del filtro de búsqueda */
 .dataTables_filter input {
-  background-color: $color-blanco !important;   /* verde claro */
-  border: 1px solid $color-verde-claro !important;   /* borde verde */
-  color: $color-verde-oscuro !important;
-  padding: 5px;
+    background-color: $color-blanco !important;
+    /* verde claro */
+    border: 1px solid $color-verde-claro !important;
+    /* borde verde */
+    color: $color-verde-oscuro !important;
+    padding: 5px;
 }
 
 /* Cambiar el color de fondo del paginador */
 .dataTables_paginate {
-  background-color: $color-verde-oscuro !important;
-  border-radius: 5px;
-  padding: 10px;
+    background-color: $color-verde-oscuro !important;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 /* Estilos de los botones del paginador */
 .dataTables_paginate a {
-  color: #fff !important;
-  background-color: $color-verde-claro;
-  margin: 0 2px;
-  padding: 6px 12px;
-  border-radius: 4px;
-  text-decoration: none;
+    color: #fff !important;
+    background-color: $color-verde-claro;
+    margin: 0 2px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-decoration: none;
 }
 
 /* Página activa */
 .dataTables_paginate .current {
-  background-color: $color-amarillo !important;
-  color: #000 !important;
-  font-weight: bold;
+    background-color: $color-amarillo !important;
+    color: #000 !important;
+    font-weight: bold;
 }
 
 /* Estilo de select de "mostrar N registros" */
 .dataTables_length select {
-  background-color: $color-blanco !important;
-  border: 1px solid $color-verde-claro !important;
-  color: $color-verde-oscuro !important;
+    background-color: $color-blanco !important;
+    border: 1px solid $color-verde-claro !important;
+    color: $color-verde-oscuro !important;
 }
-

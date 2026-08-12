@@ -94,7 +94,7 @@
                       <th scope="col" class="transparent">
                         <div class="titulo bg-celeste borde"> 
                             <div class="space-5"></div>
-                            <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
+                            <div class="text-small">CUMP ACELERADOR<br>MISTRAL ENERGY</div>
                         </div>
                       </th>
                 </tr>
@@ -159,7 +159,7 @@
                   </th>
                   <th scope="col" class="transparent">
                     <div class="titulo bg-celeste borde" style="height: 60px;padding-top: 0px;"> 
-                        <div class="text-small">CUMP ACELERADOR<br>MISTRAL ICE LOW</div>
+                        <div class="text-small">CUMP ACELERADOR<br>MISTRAL ENERGY</div>
                     </div>
                   </th>
               </tr>

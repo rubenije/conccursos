@@ -27,8 +27,16 @@
                 <a href="home.php"><i class="fa fa-th-large"></i> <span class="nav-label">Escritorio</span></a>
             </li>
 
-            <li <?php if($base == 'concurso' || $base == 'concurso-add'){?>class="active"<?php } ?>>
-                <a href="concurso.php"><i class="fa fa-th-large"></i> <span class="nav-label">Concurso</span></a>
+            <!--
+            <li <?php if($base == 'codigo' || $base == 'codigo-add'){?>class="active"<?php } ?>>
+                <a href="codigo.php"><i class="fa fa-th-large"></i> <span class="nav-label">Códigos</span></a>
+            </li>
+            <li <?php if($base == 'marca' || $base == 'marca-add'){?>class="active"<?php } ?>>
+                <a href="registro.php"><i class="fa fa-th-large"></i> <span class="nav-label">Participantes</span></a>
+            </li>
+            -->
+            <li <?php if($base == 'ganador' || $base == 'ganador-add'){?>class="active"<?php } ?>>
+                <a href="ganador.php"><i class="fa fa-th-large"></i> <span class="nav-label">Ganadores</span></a>
             </li>
             <li <?php if($base == 'pregunta' || $base == 'pregunta-add'){?>class="active"<?php } ?>><!--  class="active" -->
                 <a href="pregunta.php"><i class="fa fa-th-large"></i> <span class="nav-label">Pregunta</span></a>

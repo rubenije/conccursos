@@ -9,7 +9,8 @@
     require_once(INCLUDE_PATH.'class/class.registro.php');
   
     session_start();
-    $table = "tirate";
+    $tables = array('energia', 'royalweekend', 'cpch');
+
     $objRegistro = new registro();
   
     if(isset($get['opc']) && $get['opc'] == 'bypass'){
@@ -25,8 +26,12 @@
         
     }
 
-    $objRegistro = new registro();
-    $registros = $objRegistro->getRegistroDataAllNewByTable($table);
+    if(isset($get['table']) && !empty($get['table'])){
+        $table = $get['table'];
+        $objRegistro = new registro();
+        $registros = $objRegistro->getRegistroDataAllNewByTable($table);
+        $cantidad = count($registros);
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -45,7 +50,22 @@
     <link href="assets/css/main.min.css?<?= $time; ?>" rel="stylesheet">
   </head>
   <body class="d-flex flex-column min-vh-100 page-index">
+    
     <main class="flex-grow-1">
+        <ul class="nav nav-pills mb-3">
+            <?php foreach($tables as $table){ ?>
+                <li class="nav-item">
+                    <a 
+                        class="nav-link text-white <?= (isset($_GET['table']) && $_GET['table'] == $table) ? 'active' : '' ?>" 
+                        href="?table=<?= $table; ?>"
+                    >
+                        <?= ucfirst($table); ?>
+                    </a>
+                </li>
+            <?php } ?>
+        </ul>
+
+        <?php if($registros){ ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -56,11 +76,7 @@
                                 <th scope="col">Tipo</th>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">CUMPLIMIENTO_DUO</th>
-                                <th scope="col">CUANTOS_FALTAN_DUO</th>
-                                <th scope="col">CUMPLIMIENTO_MANANTIAL</th>
-                                <th scope="col">CUANTOS_FALTAN_MANANTIAL</th>
-                                <th scope="col">CUMPLIMIENTO_TOTAL</th>
+                                <th scope="col">Canal</th>
                                 <th scope="col">Supervisor</th>
                                 <th scope="col">Distrito</th>
                             </tr>
@@ -75,11 +91,7 @@
                                 </th>
                                 <td><?= $registro->id; ?></td>
                                 <td><?= $registro->nombre; ?></td>
-                                <td><?= $registro->CUMPLIMIENTO_DUO; ?></td>
-                                <td><?= $registro->CUANTOS_FALTAN_DUO; ?></td>
-                                <td><?= $registro->CUMPLIMIENTO_MANANTIAL; ?></td>
-                                <td><?= $registro->CUANTOS_FALTAN_MANANTIAL; ?></td>
-                                <td><?= $registro->CUMPLIMIENTO_TOTAL; ?></td>
+                                <td><?= $registro->canal; ?></td>
                                 <td><?= $registro->supervisor_id; ?></td>
                                 <td><?= $registro->distrito; ?></td>
                             </tr>
@@ -91,6 +103,7 @@
                 </div>
             </div>
         </div>
+        <?php } ?>
         
 
       <div class="space-80"></div>

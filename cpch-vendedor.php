@@ -94,25 +94,25 @@
                       <th scope="col" class="transparent">
                         <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
                             <div class="space-15"></div>
-                            <div class="text-small">CUMP<br>3R ICE</div>
+                            <div class="text-small">CUMP 2 + MISTRAL + 1 3R ICE</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-azul borde" style="height: 60px;padding-top: 0px;"> 
                             <div class="space-15"></div>
-                            <div class="text-small">FALTANTES<br>3R ICE</div>
+                            <div class="text-small">FALTANTES<br>MISTRAL 3R ICE</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-celeste borde" style="height: 60px;padding-top: 0px;"> 
                             <div class="space-15"></div>
-                            <div class="text-small">CUMP<br>ICE LOW</div>
+                            <div class="text-small">CUMP<br>ENERGY</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-celeste borde" style="height: 60px;padding-top: 0px;"> 
                             <div class="space-15"></div>
-                            <div class="text-small">FALTANTES<br>ICE LOW</div>
+                            <div class="text-small">FALTANTES<br>ENERGY</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
@@ -191,25 +191,25 @@
                       <th scope="col" class="transparent">
                         <div class="titulo bg-azul borde" style="height: 60px;">
                             <div class="space-15"></div>
-                            <div class="text-small">CUMP 3R ICE</div>
+                            <div class="text-small">CUMP 2 + MISTRAL + 1 3R ICE</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-azul borde" style="height: 60px;">
                             <div class="space-15"></div>
-                            <div class="text-small">FALTANTES 3R ICE</div>
+                            <div class="text-small">FALTANTES MISTRAL 3R ICE</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-celeste borde" style="height: 60px;">
                             <div class="space-15"></div>
-                            <div class="text-small">CUMP ICE LOW</div>
+                            <div class="text-small">CUMP ENERGY</div>
                         </div>
                       </th>
                       <th scope="col" class="transparent">
                         <div class="titulo bg-celeste borde" style="height: 60px;">
                             <div class="space-15"></div>
-                            <div class="text-small">FALTANTES ICE LOW</div>
+                            <div class="text-small">FALTANTES ENERGY</div>
                         </div>
                       </th>
                       

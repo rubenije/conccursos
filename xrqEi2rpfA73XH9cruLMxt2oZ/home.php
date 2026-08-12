@@ -1,11 +1,13 @@
 <?php
-    error_reporting(0); 
+    error_reporting(E_ALL & ~E_NOTICE); 
     if (!defined('INCLUDE_PATH')) {
         define('INCLUDE_PATH', '');
     }
     include_once(INCLUDE_PATH.'class/class.home.php');
     include_once(INCLUDE_PATH.'class/class.registro.php');
-    
+    include_once(INCLUDE_PATH.'class/class.producto.php');
+
+
     /*
     $registro   = new registro();
     $total      = $registro->getTotal();
@@ -16,12 +18,6 @@
     $producto   = new producto();
     $productos  = $producto->getProductoPublicAll();
     */
-
-    $total   = 0;
-    $total7  = 0;
-    $total15 = 0;
-    $total1M = 0;
-
 ?>
 <!DOCTYPE html>
 <html>

@@ -48,43 +48,37 @@ if (!defined("INCLUDE_PATH")) {
 
 
 		public function autenticateBack($usua_user, $usua_pass){
+	    	$usua_user = trim($usua_user);
+	    	$usua_pass = trim($usua_pass);
 
-			$usua_user = trim($usua_user);
-			$usua_pass = trim($usua_pass);
+	    	if(!empty($usua_user) && is_string($usua_user) && !empty($usua_pass)){
+	    		$sql = "SELECT 
+        				* 
+        			FROM 
+        				usuario 
+        			WHERE 
+        				usua_user = '$usua_user' 
+        				AND usua_pass = '$usua_pass' 
+        				AND usua_estado = 'A' 
+        			LIMIT 1";
+        		$autenticate = DB::getRow($sql);
 
-			if(!empty($usua_user) && !empty($usua_pass)){
-
-				$sql = "SELECT * 
-						FROM usuario 
-						WHERE usua_user = '$usua_user'
-						AND usua_pass = '$usua_pass'
-						AND usua_estado = 'A'
-						LIMIT 1";
-
-				$autenticate = DB::getRow($sql);
-
-				if(is_object($autenticate)){
-
-					if(session_status() === PHP_SESSION_NONE){
-						session_start();
-					}
-
-					$_SESSION['PANEL']                = true;
-					$_SESSION['PANEL_USUARIO_ID']     = $autenticate->usuario_id ?? null;
-					$_SESSION['PANEL_USUA_NOMBRE']    = $autenticate->usua_nombre ?? null;
-					$_SESSION['PANEL_USUA_CARGO']     = $autenticate->usua_cargo ?? null;
-					$_SESSION['PANEL_USUA_EMAIL']     = $autenticate->usua_email ?? null;
-					$_SESSION['PANEL_USUA_PERFIL']    = $autenticate->usua_perfil ?? null;
-					$_SESSION['PANEL_USUA_IMAGEN']    = $autenticate->usua_imagen ?? null;
-					$_SESSION['PANEL_USUA_FECHA']     = date('Y-m-d');
-
+        		if(is_object($autenticate) && !empty($autenticate)){
+	        		session_start();
+	        		$_SESSION['PANEL'] 				= true;
+			  		$_SESSION['PANEL_USUARIO_ID'] 	= $autenticate->usuario_id;
+			  		$_SESSION['PANEL_USUA_NOMBRE'] 	= $autenticate->usua_nombre;
+					$_SESSION['PANEL_USUA_CARGO'] 	= $autenticate->usua_cargo;
+					$_SESSION['PANEL_USUA_EMAIL'] 	= $autenticate->usua_email;
+					$_SESSION['PANEL_USUA_PERFIL'] 	= $autenticate->usua_perfil;
+					$_SESSION['PANEL_USUA_IMAGEN'] 	= $autenticate->usua_imagen;
+					$_SESSION['PANEL_USUA_FECHA'] 	= date('Y-m-d');
 					return true;
-				}
-			}
-
-			return false;
-		}
-
+	        	}
+		        
+	    	}
+	    	return false;
+	    }
 
 	}
 ?>

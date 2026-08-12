@@ -4,8 +4,9 @@
   }
   $time = date('His');
   require_once(INCLUDE_PATH.'class/class.inputfilter.php');
-  require_once(INCLUDE_PATH.'class/class.master.php');
+  require_once(INCLUDE_PATH.'class/class.registro.php');
   require_once(INCLUDE_PATH.'class/class.ingreso.php');
+  require_once(INCLUDE_PATH.'class/class.concurso.php');
   
   
 
@@ -20,6 +21,11 @@
     $objIngreso = new ingreso();
     $distrito   = $objIngreso->getDistritoByCodigo($_SESSION['LOGIN_DISTRITO']);
 
+    if(!empty($get['grupo']) && ($_SESSION['LOGIN_TIPO'] == "VENDEDOR" || $_SESSION['LOGIN_TIPO'] == "JDV")){
+      $registro = new registro();
+      $canal = $registro->getCanalByGrupoId($get['grupo'], $_SESSION['LOGIN_ID']);
+      $_SESSION['LOGIN_CANAL'] 		    = $canal;
+    }  
     $page = strtolower($_SESSION['LOGIN_TIPO']);
     
     $tmp['grupo']             = (isset($get['grupo']) && !empty($get['grupo'])) ? $get['grupo'] : '';
@@ -35,6 +41,9 @@
     header("Location: ".$get['grupo']."-".$page.".php");
     exit;
   }
+  $concurso = new concurso();
+  $concursosActivos = $concurso->getConcursosActivos();
+  $concursosPendientes = $concurso->getConcursosPendientes();
 ?>
 <!doctype html>
 <html lang="en">
@@ -78,23 +87,54 @@
           <div class="container">
             <div class="row">
               <div class="col-8 m-auto col-auto">
+                  <!-- INI CONCURSOS ACTIVOS -->
+                  <?php if(!empty($concursosActivos)){ ?>
                   <div class="container">
                     <div class="row">
-                      
-                      <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=royalweekend"><img src="assets/img/btn-royalweekend.png" class="img-fluid btn-minions" alt="Botón ROYAL WEEKEND"></a>
-                      </div>
-                      
-                      <div class="col-12 col-md-6 text-center">
-                        <a href="?opc=ingreso&grupo=energia"><img src="assets/img/btn-energia.png" class="img-fluid btn-minions" alt="Botón ENERGIA"></a>
-                      </div>
-                      
-                      <div class="col-12 col-md-12 text-center p-4">
-                        <a href="?opc=ingreso&grupo=cpch"><img src="assets/img/btn-cpch.png" class="img-fluid btn-minions" alt="Botón CPCH"></a>
-                      </div>
-                      
+                      <?php 
+                      $total = count($concursosActivos);
+
+                      foreach ($concursosActivos as $index => $concurso) { 
+
+                          // Si es impar y es el último
+                          $colClass = ($total % 2 != 0 && $index == $total - 1)
+                              ? 'col-12 col-md-12'
+                              : 'col-12 col-md-6';
+                      ?>
+                          <div class="<?= $colClass; ?> text-center">
+                              <a href="?opc=ingreso&grupo=<?= $concurso->conc_grupo; ?>">
+                                  <img src="assets/img/btn-<?= $concurso->conc_grupo; ?>.png" class="img-fluid btn-minions" alt="Botón <?= $concurso->conc_nombre; ?>">
+                              </a>
+                          </div>
+                      <?php } ?>
                     </div>
                   </div>
+                  <?php } ?>
+                  <!-- FIN CONCURSOS ACTIVOS -->
+
+                  <!-- INI CONCURSOS PENDIENTES -->
+                  <?php if(!empty($concursosPendientes)){ ?>
+                  <div class="container">
+                    <div class="row">
+                      <p class="text-center m-0 p-0 mt-4">* Próximamente por evaluación de metas</p>
+                      <?php 
+                      $total = count($concursosPendientes);
+
+                      foreach ($concursosPendientes as $index => $concurso) { 
+
+                          // Si es impar y es el último
+                          $colClass = ($total % 2 != 0 && $index == $total - 1)
+                              ? 'col-12 col-md-12'
+                              : 'col-12 col-md-6';
+                      ?>
+                          <div class="<?= $colClass; ?> text-center">
+                            <img src="assets/img/btn-<?= $concurso->conc_grupo; ?>-off.png" class="img-fluid btn-minions" alt="Botón <?= $concurso->conc_nombre; ?>">
+                          </div>
+                      <?php } ?>
+                    </div>
+                  </div>
+                  <?php } ?>
+                  <!-- FIN CONCURSOS PENDIENTES -->
               </div>
             </div>
           </div>
@@ -112,18 +152,21 @@
             <div class="col-12">
               <img src="assets/img/txt-selecciona-el-concurso.png" class="img-fluid txt-selecciona-el-concurso" alt="Selecciona el concurso">
             </div>
+            <?php foreach ($concursosActivos as $index => $concurso) { ?> 
             <div class="col-12">
-              <a href="?opc=ingreso&grupo=royalweekend"><img src="assets/img/btn-royalweekend.png" class="img-fluid btn-minions" alt="Botón ROYAL WEEKEND"></a>
+              <a href="?opc=ingreso&grupo=<?= $concurso->conc_grupo; ?>"><img src="assets/img/btn-<?= $concurso->conc_grupo; ?>.png" class="img-fluid btn-minions" alt="Botón <?= $concurso->conc_nombre; ?>"></a>
             </div>
-            
-            <div class="col-12">
-              <a href="?opc=ingreso&grupo=energia"><img src="assets/img/btn-energia.png" class="img-fluid btn-minions" alt="Botón ENERGIA"></a>
-            </div>
-            
-            <div class="col-12">
-              <a href="?opc=ingreso&grupo=cpch"><img src="assets/img/btn-cpch.png" class="img-fluid btn-minions" alt="Botón CPCH"></a>
-            </div>
-            
+            <?php } ?>
+
+            <?php if(!empty($concursosPendientes)){ ?>
+              <p class="text-center m-0 p-0 mt-4">* Próximamente por evaluación de metas</p>
+              <?php foreach ($concursosPendientes as $index => $concurso) { ?>
+              <div class="col-12">
+                <img src="assets/img/btn-<?= $concurso->conc_grupo; ?>-off.png" class="img-fluid btn-minions" alt="Botón <?= $concurso->conc_nombre; ?>">
+              </div>
+              <?php } ?>
+            <?php } ?>
+                      
           </div>
         </div>
       </div> 

@@ -62,7 +62,44 @@ foreach ($concursos as $row) {
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
 
+        body{
+            background:#f4f6f9;
+        }
+
+        .card-dashboard{
+            border:none;
+            border-radius:14px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .title-small{
+            font-size:13px;
+            color:#6c757d;
+            margin-bottom:6px;
+        }
+
+        .kpi-number{
+            font-size:34px;
+            font-weight:700;
+        }
+
+        .navbar-custom{
+            background:#fff;
+            box-shadow:0 2px 10px rgba(0,0,0,0.04);
+        }
+
+        .table-dashboard thead{
+            background:#f1f3f5;
+        }
+
+        .badge-status{
+            font-size:11px;
+            padding:6px 10px;
+        }
+
+    </style>
     <title>Informe ONLINE</title>
   </head>
   <body>
@@ -82,7 +119,7 @@ foreach ($concursos as $row) {
                   </li>
                   <?php foreach($campanas as $campana){ ?>
                     <li class="nav-item">
-                    <a class="nav-link active" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
+                    <a class="nav-link" href="informe-detalle.php?grupo=<?= $campana['grupo']; ?>"><?= strtoupper($campana['grupo']); ?></a>
                   </li>
                   <?php } ?>
                   <li class="nav-item">
@@ -103,35 +140,142 @@ foreach ($concursos as $row) {
       
       <div class="row">
         <div class="col-12 col-md-10 m-auto pt-4">
-          <h4 class="mb-0">Ingresos x Concurso</h4>
-          <?php if($titleFecha){ ?>
-          <span class="badge bg-secondary"><?= $titleFecha; ?></span>
-          <?php } ?>
-          <table class="table table-striped table-sm" style="font-size:12px;">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th class="text-center" style="width:15%;">Inicio</th>
-                <th class="text-center" style="width:15%;">Término</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php if (!empty($inactivas)): ?>
-                <?php foreach($inactivas as $element):
-                  $grupo  = $element['grupo'];
+          <div class="row g-4">
+
+          <?php if (!empty($inactivas)): ?>
+
+              <?php foreach($inactivas as $element):
+
+                  $grupo = $element['grupo'];
+
                   $nombre = $campanasByGrupo[$grupo] ?? strtoupper($grupo);
-                ?>
-                <tr>
-                  <td><a href="informe-detalle.php?grupo=<?= $element['grupo']; ?>"><?= $element['nombre']; ?></a></td>
-                  <td class="text-center"><?= $element['fecha_inicio']; ?></td>
-                  <td class="text-center"><?= $element['fecha_fin']; ?></td>
-                </tr>
-                <?php endforeach; ?>
-              <?php else: ?>
-                <tr><td colspan="3" class="text-center text-muted">Sin datos</td></tr>
-              <?php endif; ?>
-            </tbody>
-          </table>
+
+                  $inicio = !empty($element['fecha_inicio'])
+                      ? sql2date($element['fecha_inicio'])
+                      : '-';
+
+                  $termino = !empty($element['fecha_fin'])
+                      ? sql2date($element['fecha_fin'])
+                      : '-';
+
+                  $dias = 0;
+
+                  if(!empty($element['fecha_inicio']) && !empty($element['fecha_fin'])){
+
+                      $dias = floor(
+                          (
+                              strtotime($element['fecha_fin']) -
+                              strtotime($element['fecha_inicio'])
+                          ) / 86400
+                      );
+                  }
+
+              ?>
+
+              <div class="col-12 col-md-6 col-lg-4">
+
+                  <div class="card shadow-sm border-0 h-100">
+
+                      <div class="card-body">
+
+                          <div class="d-flex justify-content-between align-items-start mb-3">
+
+                              <div>
+
+                                  <div class="text-muted small">
+                                      Concurso histórico
+                                  </div>
+
+                                  <h5 class="mb-0">
+                                      <?= htmlspecialchars($nombre, ENT_QUOTES,'UTF-8') ?>
+                                  </h5>
+
+                              </div>
+
+                              <span class="badge bg-secondary">
+                                  FINALIZADO
+                              </span>
+
+                          </div>
+
+                          <hr>
+
+                          <div class="row text-center mb-3">
+
+                              <div class="col-6">
+
+                                  <div class="small text-muted">
+                                      Inicio
+                                  </div>
+
+                                  <div class="fw-bold">
+                                      <?= $inicio ?>
+                                  </div>
+
+                              </div>
+
+                              <div class="col-6">
+
+                                  <div class="small text-muted">
+                                      Término
+                                  </div>
+
+                                  <div class="fw-bold">
+                                      <?= $termino ?>
+                                  </div>
+
+                              </div>
+
+                          </div>
+
+                          <div class="text-center mb-4">
+
+                              <div class="small text-muted">
+                                  Duración campaña
+                              </div>
+
+                              <div class="fs-3 fw-bold text-primary">
+
+                                  <?= $dias ?>
+
+                              </div>
+
+                              <div class="small text-muted">
+                                  días
+                              </div>
+
+                          </div>
+
+                          <a
+                              href="informe-detalle-historico.php?grupo=<?= urlencode($grupo) ?>"
+                              class="btn btn-outline-primary w-100"
+                          >
+                              Ver detalle
+                          </a>
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+              <?php endforeach; ?>
+
+          <?php else: ?>
+
+          <div class="col-12">
+
+              <div class="alert alert-secondary text-center">
+
+                  Sin campañas históricas
+
+              </div>
+
+          </div>
+
+          <?php endif; ?>
+
+          </div>
          
         </div>
       </div>

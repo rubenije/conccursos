@@ -181,7 +181,7 @@
 
         // Filtro por Sector
         $('#filtroSector').on('change', function () {
-          tabla.column(2).search($(this).val());
+          tabla.column(1).search($(this).val());
           tabla.draw();
         });
 

@@ -223,7 +223,7 @@
 
 
             <!-- END TABLA -->
-            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="#" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
+            <p class="premios ubuntu-bold">REVISA LA INFORMACIÓN DE LOS PREMIOS HACIENDO <a href="assets/pdf/heineken.pdf" target="_blank" class="irpdf">CLICK AQUÍ</a></p>
           </div>
           <div class="col-12 col-lg-2 text-center is-desktop">
             <?php //include("include-derecha.php"); ?>
